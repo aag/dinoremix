@@ -1,0 +1,37 @@
+.panelContainer {
+	width: 754px;
+	margin: 0px;
+	padding: 0px;
+	font-size: 0;
+}
+
+.unlockedLock {
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	background-color: #ddffdd;
+}
+
+.unlockedLock:hover {
+	background-color: #bbddbb;
+}
+
+.lockedLock {
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	background-color: #ffdddd;
+}
+
+.lockedLock:hover {
+	background-color: #ddbbbb;
+}
+
+#reloadLink {
+	border: 1px black solid;
+	padding: 5px 5px;
+	color: black;
+	text-decoration: none;
+	background-color: #ddddff;
+}
+
