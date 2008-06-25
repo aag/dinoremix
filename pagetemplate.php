@@ -23,6 +23,7 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 
     <title>Dinosaur Remix</title>
 
+	<link rel="stylesheet" title="Default Style" href="reset.css" type="text/css" />
 	<link rel="stylesheet" title="Default Style" href="dino.css" type="text/css" />
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="dino.js"></script>
@@ -38,6 +39,8 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 <p>
 <br />
 <a id="reloadLink" href="./">Reload the unlocked panels</a>
+<br />
+<br />
 </p>
 <div>
 <span id="tlLock" class="<?=$lockClasses["tl"] ?>Lock" style="width: 244px; text-align: center;"><img src="" alt="Click to lock" /></span>

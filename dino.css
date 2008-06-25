@@ -1,3 +1,18 @@
+h1 {
+	font-size: 30px;
+	margin-bottom: 1em;
+}
+
+ol {
+	list-style: decimal inside;
+	margin-bottom: 1em;
+}
+
+body {
+	padding-top: 1em;
+	padding-left: 5em;
+}
+
 .panelContainer {
 	width: 754px;
 	margin: 0px;
@@ -33,5 +48,7 @@
 	color: black;
 	text-decoration: none;
 	background-color: #ddddff;
+	margin-bottom: 1em;
+	clear: both;
 }
 
