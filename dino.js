@@ -33,6 +33,7 @@ function changeNumPanels(event) {
 	event.preventDefault();
 	var clickedLink = this;
 	if (clickedLink.id == "2panelsLink") {
+		$(".creditsSpacer").fadeOut("fast");
 		$(".panelImage").fadeOut("fast");
 		$(".lockSpan").fadeOut("fast");
 		$(".creditsImage").fadeOut("fast");
@@ -42,6 +43,7 @@ function changeNumPanels(event) {
 		$(".2panelLock").fadeIn("fast");
 		$("#tlLock").after( $("#brLock") );
 	} else if (clickedLink.id == "3panelsLink") {
+		$(".creditsSpacer").fadeOut("fast");
 		$(".panelImage").fadeOut("fast");
 		$(".lockSpan").fadeOut("fast");
 		$("#rowDivider").fadeOut("fast");
@@ -51,6 +53,7 @@ function changeNumPanels(event) {
 		$(".3panelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
 	} else if (clickedLink.id == "6panelsLink") {
+		$(".creditsSpacer").fadeOut("fast");
 		$("#rowDivider").fadeIn("fast");
 		$(".panelImage").fadeIn("fast");
 		$(".lockSpan").fadeIn("fast");

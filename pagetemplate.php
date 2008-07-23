@@ -64,8 +64,8 @@ include("6panels.php");
 <br />
 <br />
 <p>
-<img id="2panelCreditsSpacer" class="creditsImage 2panelImage" src="panels/2panel_credits_spacer.gif" />
-<img id="3panelCreditsSpacer" class="creditsImage 3panelImage" src="panels/3panel_credits_spacer.gif" />
+<img id="2panelCreditsSpacer" class="creditsSpacer 2panelImage" src="panels/2panel_credits_spacer.gif" />
+<img id="3panelCreditsSpacer" class="creditsSpacer 3panelImage" src="panels/3panel_credits_spacer.gif" />
 <br />
 <br />
 Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
