@@ -23,8 +23,8 @@ def cutImage(image):
 	bmwidth = 298
 	brwidth = 243
 
-	theight = 242
-	bheight = 245
+	theight = 243
+	bheight = 244
 
 	tlcoords = (0, 0, tlwidth, theight)
 	tlimage = image.crop(tlcoords)

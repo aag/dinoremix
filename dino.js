@@ -7,6 +7,10 @@ $(document).ready(function() {
 
 	$("#reloadLink").click(doReloadClick);
 
+	$("#2panelsLink").click(changeNumPanels);
+	$("#3panelsLink").click(changeNumPanels);
+	$("#6panelsLink").click(changeNumPanels);
+
 	buildLinkURLFromDOM();
 });
 
@@ -14,7 +18,7 @@ $(document).ready(function() {
 function doLockUnlock() {
 	var clickedSpan = this;
 	var pos = clickedSpan.id.substr(0,2);
-    if (clickedSpan.className == "lockedLock") {
+    if (hasClass(clickedSpan.id, "lockedLock")) {
         clickedSpan.firstChild.src = "lock_open.png";
 		unlockPanel(pos);
 	} else {
@@ -25,14 +29,73 @@ function doLockUnlock() {
 	buildLinkURLFromDOM();
 }
 
+function changeNumPanels(event) {
+	event.preventDefault();
+	var clickedLink = this;
+	if (clickedLink.id == "2panelsLink") {
+		$(".panelImage").fadeOut("fast");
+		$(".lockSpan").fadeOut("fast");
+		$(".creditsImage").fadeOut("fast");
+		$("#rowDivider").fadeOut("fast");
+		$(".2panelImage").fadeIn("fast");
+		$("#lCredit").after( $("#2panelCreditsSpacer") );
+		$(".2panelLock").fadeIn("fast");
+		$("#tlLock").after( $("#brLock") );
+	} else if (clickedLink.id == "3panelsLink") {
+		$(".panelImage").fadeOut("fast");
+		$(".lockSpan").fadeOut("fast");
+		$("#rowDivider").fadeOut("fast");
+		$(".creditsImage").fadeOut("fast");
+		$(".3panelImage").fadeIn("fast");
+		$("#lCredit").after( $("#3panelCreditsSpacer") );
+		$(".3panelLock").fadeIn("fast");
+		$("#tmLock").after( $("#brLock") );
+	} else if (clickedLink.id == "6panelsLink") {
+		$("#rowDivider").fadeIn("fast");
+		$(".panelImage").fadeIn("fast");
+		$(".lockSpan").fadeIn("fast");
+		$(".creditsImage").fadeIn("fast");
+		$("#bmLock").after( $("#brLock") );
+	}
+}
+
+function showBottomRightImage() {
+	$("#brImage").show("fast");
+}
+
 function lockPanel(pos) {
-	$("#" + pos + "Lock").attr("class","lockedLock");
-	$("#" + pos + "Image").attr("class","lockedImage");
+	replaceClass(pos + "Lock", "unlockedLock", "lockedLock");
+	replaceClass(pos + "Image", "unlockedImage", "lockedImage");
 }
 
 function unlockPanel(pos) {
-	$("#" + pos + "Lock").attr("class","unlockedLock");
-	$("#" + pos + "Image").attr("class","unlockedImage");
+	replaceClass(pos + "Lock", "lockedLock", "unlockedLock");
+	replaceClass(pos + "Image", "lockedImage", "unlockedImage");
+}
+
+function hasClass(elementID, className) {
+	var classes = new Array();
+	var classString = $("#" + elementID).attr("class");
+	classes = classString.split(' ');
+	if ( jQuery.inArray(className, classes) != -1) {
+		return true;
+	}
+	return false;
+}
+
+function replaceClass(elementID, oldClass, newClass) {
+	var classes = new Array();
+	var classString = $("#" + elementID).attr("class");
+	classes = classString.split(' ');
+
+	for (var i = 0; i < classes.length; i++) {
+		if (classes[i] == oldClass) {
+			classes[i] = newClass;
+		}
+	}
+
+	var newClasses = classes.join(" ");
+	$("#" + elementID).attr("class", newClasses);
 }
 
 function getComicNumForLock(lockID) {

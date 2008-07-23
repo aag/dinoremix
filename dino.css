@@ -14,10 +14,15 @@ body {
 }
 
 .panelContainer {
-	width: 754px;
 	margin: 0px;
 	padding: 0px;
 	font-size: 0;
+	vertical-align: top;
+}
+
+.panelImage {
+	position: relative;
+	top: -1px;
 }
 
 .unlockedLock {
@@ -52,3 +57,10 @@ body {
 	clear: both;
 }
 
+#2panelCreditsSpacer {
+	visibility: hidden;
+}
+
+#3panelCreditsSpacer {
+	visibility: hidden;
+}
