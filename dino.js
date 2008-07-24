@@ -3,12 +3,14 @@ $(document).ready(function() {
 	$(".lockSpan").css({ visibility: "visible" });
 	$("#reloadText").text("Reload the unlocked panels");
 
+	// All of the lock images default to the "open" image, so
+	// set it to the closed image if the user has passed in
+	// specific comics in the URL
+	$(".lockedLock > img").attr("src","lock.png");
+
 	$(".lockSpan").click(doLockUnlock);
 	$("#reloadLink").click(doReloadClick);
-
-	$("#2panelsLink").click(changeNumPanels);
-	$("#3panelsLink").click(changeNumPanels);
-	$("#6panelsLink").click(changeNumPanels);
+	$(".panelNumLink").click(changeNumPanels);
 
 	buildLinkURLFromDOM();
 });
@@ -31,6 +33,18 @@ function doLockUnlock() {
 function changeNumPanels(event) {
 	event.preventDefault();
 	var clickedLink = this;
+
+	$(".panelNumLink").css({ borderTop: "2px gray solid",
+							borderBottom: "2px black solid",
+							borderLeft: "2px gray solid",
+							borderRight: "2px black solid",
+							backgroundColor: "#ddddff" });
+	$(clickedLink).css({ borderTop: "2px black solid",
+						 borderBottom: "2px gray solid",
+						 borderLeft: "2px black solid",
+						 borderRight: "2px gray solid",
+						 backgroundColor: "#ccccee" });
+
 	if (clickedLink.id == "2panelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
 		$(".panelImage").fadeOut("fast");

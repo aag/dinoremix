@@ -41,7 +41,8 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 <a id="reloadLink" href="./?reload=yes"><span id="reloadButton"><img src="reload.png" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
 <br />
 <br />
-Number of panels: <a id="2panelsLink" href="./?numpanels=2">2</a> <a id="3panelsLink" href="./?numpanels=3">3</a> <a id="6panelsLink" href="./?numpanels=6">6</a>
+<br />
+Number of panels: <span id="panelNumSwitcher"><a id="2panelsLink" href="./?numpanels=2" class="panelNumLink">2</a> <a id="3panelsLink" href="./?numpanels=3" class="panelNumLink">3</a> <a id="6panelsLink" href="./?numpanels=6" class="panelNumLink">6</a></span>
 <br />
 <br />
 <br />
