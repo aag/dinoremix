@@ -62,10 +62,6 @@ function changeNumPanels(event) {
 	}
 }
 
-function showBottomRightImage() {
-	$("#brImage").show("fast");
-}
-
 function lockPanel(pos) {
 	replaceClass(pos + "Lock", "unlockedLock", "lockedLock");
 	replaceClass(pos + "Image", "unlockedImage", "lockedImage");
@@ -123,30 +119,43 @@ function buildLinkURLFromDOM() {
 	$("#reloadLink").attr("href", cleanURL);
 }
 
+var unlockedPanels = "";
+
 function doReloadClick(event) {
 	event.preventDefault();
 	// Fade to 1% opacity instead of invisible so the space
 	// won't collapse.
 	$(".unlockedImage").fadeTo("fast", 0.01);
+	// The "load" event gets fired when an img's src changes
 	$(".unlockedImage").load(fadeInImage);
-	$(".unlockedLock").each(queryForRandomPanel);
+
+	unlockedPanels = "";
+	$(".unlockedLock").each(addToUnlockedPanelsString);
+	if (unlockedPanels != "") {
+		$.post("randomImages.php", { pos: unlockedPanels }, setAllPanelURLs, "json");
+	}
 }
 
 function fadeInImage() {
 	$("#" + this.id).fadeTo("fast", 1.0);
 }
 
-function queryForRandomPanel() {
-	var panel = this.id.substr(0, 2);
-	// Use POST instead of GET to disable caching in IE
-	$.post("randomImage.php", { pos: panel }, setPanelURL, "json");
+function addToUnlockedPanelsString() {
+	if (unlockedPanels.length > 0) {
+		unlockedPanels = unlockedPanels + "-";
+	}
+
+	unlockedPanels = unlockedPanels + this.id.substr(0, 2);
 }
 
-function setPanelURL(imgDesc) {
-	var pos = imgDesc.pos;
-	var imgURL = "panels/" + posAbbrToFull(pos) + "/" + imgDesc.file;
+function setAllPanelURLs(imgDescList) {
+	jQuery.each(imgDescList, setPanelImgURL);
+}
+
+function setPanelImgURL() {
+	var pos = this.pos;
+	var imgURL = "panels/" + posAbbrToFull(pos) + "/" + this.file;
 	$("#" + pos + "Image").attr("src", imgURL);
-//	$("#" + pos + "Image").fadeIn("fast");
 }
 
 function posAbbrToFull(abbr) {
