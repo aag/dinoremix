@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// Set up the initial display for browsers with JavaScript
-	$(".lockSpan").css({ visibility: "visible" });
+	$(".startingLock").css({ display: "inline" });
 	$("#reloadText").text("Reload the unlocked panels");
 
 	// All of the lock images default to the "open" image, so
@@ -34,18 +34,13 @@ function changeNumPanels(event) {
 	event.preventDefault();
 	var clickedLink = this;
 
-	$(".panelNumLink").css({ borderTop: "2px gray solid",
-							borderBottom: "2px black solid",
-							borderLeft: "2px gray solid",
-							borderRight: "2px black solid",
-							backgroundColor: "#ddddff" });
-	$(clickedLink).css({ borderTop: "2px black solid",
-						 borderBottom: "2px gray solid",
-						 borderLeft: "2px black solid",
-						 borderRight: "2px gray solid",
-						 backgroundColor: "#ccccee" });
+	$(".panelNumLink").addClass("unchosenPanelNumLink");
+	$(".panelNumLink").removeClass("chosenPanelNumLink");
 
-	if (clickedLink.id == "2panelsLink") {
+	$(clickedLink).addClass("chosenPanelNumLink");
+	$(clickedLink).removeClass("unchosenPanelNumLink");
+
+	if (clickedLink.id == "twoPanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
 		$(".panelImage").fadeOut("fast");
 		$(".lockSpan").fadeOut("fast");
@@ -53,10 +48,10 @@ function changeNumPanels(event) {
 		$("#rowDivider").fadeOut("fast");
 
 		$(".2panelImage").fadeIn("fast");
-		$("#lCredit").after( $("#2panelCreditsSpacer") );
+		$("#lCredit").after( $("#TwoPanelCreditsSpacer") );
 		$(".2panelLock").fadeIn("fast");
 		$("#tlLock").after( $("#brLock") );
-	} else if (clickedLink.id == "3panelsLink") {
+	} else if (clickedLink.id == "threePanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
 		$(".panelImage").fadeOut("fast");
 		$(".lockSpan").fadeOut("fast");
@@ -64,10 +59,10 @@ function changeNumPanels(event) {
 		$(".creditsImage").fadeOut("fast");
 
 		$(".3panelImage").fadeIn("fast");
-		$("#lCredit").after( $("#3panelCreditsSpacer") );
+		$("#lCredit").after( $("#ThreePanelCreditsSpacer") );
 		$(".3panelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
-	} else if (clickedLink.id == "6panelsLink") {
+	} else if (clickedLink.id == "sixPanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
 
 		$("#rowDivider").fadeIn("fast");
@@ -99,18 +94,8 @@ function hasClass(elementID, className) {
 }
 
 function replaceClass(elementID, oldClass, newClass) {
-	var classes = new Array();
-	var classString = $("#" + elementID).attr("class");
-	classes = classString.split(' ');
-
-	for (var i = 0; i < classes.length; i++) {
-		if (classes[i] == oldClass) {
-			classes[i] = newClass;
-		}
-	}
-
-	var newClasses = classes.join(" ");
-	$("#" + elementID).attr("class", newClasses);
+	$("#" + elementID).addClass(newClass);
+	$("#" + elementID).removeClass(oldClass);
 }
 
 function getComicNumForLock(lockID) {

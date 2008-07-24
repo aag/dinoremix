@@ -37,42 +37,31 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 		<li>Reload the page to your little heart's content.</li>
 	</ol>
 <p>
-<br />
-<a id="reloadLink" href="./?reload=yes"><span id="reloadButton"><img src="reload.png" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
-<br />
-<br />
-<br />
-Number of panels: <span id="panelNumSwitcher"><a id="2panelsLink" href="./?numpanels=2" class="panelNumLink">2</a> <a id="3panelsLink" href="./?numpanels=3" class="panelNumLink">3</a> <a id="6panelsLink" href="./?numpanels=6" class="panelNumLink">6</a></span>
+	<br />
+	<a id="reloadLink" href="./?numpanels=<?=$_GET['numpanels'] ?>"><span id="reloadButton"><img src="reload.png" alt="" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
 <br />
 <br />
 <br />
 </p>
-<div>
-<span id="tlLock" class="<?=$lockClasses["tl"] ?>Lock 2panelLock 3panelLock lockSpan" style="width: 244px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
-	<span id="tmLock" class="<?=$lockClasses["tm"] ?>Lock 3panelLock lockSpan" style="width: 129px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
-	<span id="trLock" class="<?=$lockClasses["tr"] ?>Lock lockSpan" style="width: 362px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
-</div>
-<br style="clear: both" />
+
 <?php
-include("6panels.php");
+if ($_GET['numpanels'] == "2") {
+	include("2panels.php");
+} elseif ($_GET['numpanels'] == "3") {
+	include("3panels.php");
+} else {
+	include("6panels.php");
+}
 ?>
-<br style="clear: both" />
-<div>
-	<span id="blLock" class="<?=$lockClasses["bl"] ?>Lock lockSpan" style="width: 194px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
-	<span id="bmLock" class="<?=$lockClasses["bm"] ?>Lock lockSpan" style="width: 298px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
-	<span id="brLock" class="<?=$lockClasses["br"] ?>Lock lockSpan 2panelLock 3panelLock" style="width: 243px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
-</div>
-<br />
-<br />
 <p>
-<img id="2panelCreditsSpacer" class="creditsSpacer 2panelImage" src="panels/2panel_credits_spacer.gif" />
-<img id="3panelCreditsSpacer" class="creditsSpacer 3panelImage" src="panels/3panel_credits_spacer.gif" />
+<br />
+<br />
 <br />
 <br />
 Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
+<br />
+<br />
 </p>
-<br />
-<br />
 
 </body>
 </html>

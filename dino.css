@@ -31,7 +31,8 @@ body {
 }
 
 .lockSpan {
-	visibility: hidden;
+	display: none;
+	text-align: center;
 }
 
 .unlockedLock {
@@ -39,6 +40,10 @@ body {
 	cursor: pointer;
 	float: left;
 	background-color: #ddffdd;
+}
+
+.clearBR {
+	clear: both;
 }
 
 .unlockedLock:hover {
@@ -54,6 +59,10 @@ body {
 
 .lockedLock:hover {
 	background-color: #ddbbbb;
+}
+
+.hidden {
+	display: none;
 }
 
 #reloadButton {
@@ -75,7 +84,7 @@ body {
 	padding: 3px 0px;
 }
 
-.panelNumLink {
+.unchosenPanelNumLink {
 	background-color: #ddddff;
 	border-top: 2px gray solid;
 	border-bottom: 2px black solid;
@@ -84,13 +93,17 @@ body {
 	padding: 4px 6px;
 	margin: 0px 0px;
 	text-decoration: none;
+	color: black;	
+}
+
+.chosenPanelNumLink {
+	background-color: #ccccee;
+	border-top: 2px black solid;
+	border-bottom: 2px gray solid;
+	border-left: 2px black solid;
+	border-right: 2px gray solid;
+	padding: 4px 6px;
+	margin: 0px 0px;
+	text-decoration: none;
 	color: black;
-}
-
-#2panelCreditsSpacer {
-	visibility: hidden;
-}
-
-#3panelCreditsSpacer {
-	visibility: hidden;
 }
