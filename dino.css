@@ -25,6 +25,11 @@ body {
 	top: -1px;
 }
 
+.creditsImage {
+	position: relative;
+	top: -1px;
+}
+
 .unlockedLock {
 	text-align: center;
 	cursor: pointer;
