@@ -38,7 +38,7 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 	</ol>
 <p>
 <br />
-<a id="reloadLink" href="./">Reload the unlocked panels</a>
+<a id="reloadLink" href="./?reload=yes"><span id="reloadButton"><img src="reload.png" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
 <br />
 <br />
 Number of panels: <a id="2panelsLink" href="./?numpanels=2">2</a> <a id="3panelsLink" href="./?numpanels=3">3</a> <a id="6panelsLink" href="./?numpanels=6">6</a>
@@ -47,9 +47,9 @@ Number of panels: <a id="2panelsLink" href="./?numpanels=2">2</a> <a id="3panels
 <br />
 </p>
 <div>
-<span id="tlLock" class="<?=$lockClasses["tl"] ?>Lock 2panelLock 3panelLock lockSpan" style="width: 244px; text-align: center;"><img src="" alt="Click to lock" /></span>
-	<span id="tmLock" class="<?=$lockClasses["tm"] ?>Lock 3panelLock lockSpan" style="width: 129px; text-align: center;"><img src="" alt="Click to lock" /></span>
-	<span id="trLock" class="<?=$lockClasses["tr"] ?>Lock lockSpan" style="width: 362px; text-align: center;"><img src="" alt="Click to lock" /></span>
+<span id="tlLock" class="<?=$lockClasses["tl"] ?>Lock 2panelLock 3panelLock lockSpan" style="width: 244px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
+	<span id="tmLock" class="<?=$lockClasses["tm"] ?>Lock 3panelLock lockSpan" style="width: 129px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
+	<span id="trLock" class="<?=$lockClasses["tr"] ?>Lock lockSpan" style="width: 362px; text-align: center;"><img src="lock_open.png" alt="Click to lock" /></span>
 </div>
 <br style="clear: both" />
 <?php

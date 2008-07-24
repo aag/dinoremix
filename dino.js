@@ -1,10 +1,9 @@
 $(document).ready(function() {
-	// Set the image
-	$(".unlockedLock > img").attr("src","lock_open.png");
-	$(".unlockedLock").click(doLockUnlock);
-	$(".lockedLock > img").attr("src","lock.png");
-	$(".lockedLock").click(doLockUnlock);
+	// Set up the initial display for browsers with JavaScript
+	$(".lockSpan").css({ visibility: "visible" });
+	$("#reloadText").text("Reload the unlocked panels");
 
+	$(".lockSpan").click(doLockUnlock);
 	$("#reloadLink").click(doReloadClick);
 
 	$("#2panelsLink").click(changeNumPanels);
