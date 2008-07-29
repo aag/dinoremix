@@ -47,6 +47,9 @@ function changeNumPanels(event) {
 		$(".creditsImage").fadeOut("fast");
 		$("#rowDivider").fadeOut("fast");
 
+		$(".panelImage").removeClass("notShowing");
+		$(".panelImage:not(.2panelImage)").addClass("notShowing");
+
 		$(".2panelImage").fadeIn("fast");
 		$("#lCredit").after( $("#TwoPanelCreditsSpacer") );
 		$(".2panelLock").fadeIn("fast");
@@ -58,12 +61,17 @@ function changeNumPanels(event) {
 		$("#rowDivider").fadeOut("fast");
 		$(".creditsImage").fadeOut("fast");
 
+		$(".panelImage").removeClass("notShowing");
+		$(".panelImage:not(.3panelImage)").addClass("notShowing");
+
 		$(".3panelImage").fadeIn("fast");
 		$("#lCredit").after( $("#ThreePanelCreditsSpacer") );
 		$(".3panelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
 	} else if (clickedLink.id == "sixPanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
+
+		$(".panelImage").removeClass("notShowing");
 
 		$("#rowDivider").fadeIn("fast");
 		$(".panelImage").fadeIn("fast");
@@ -126,9 +134,9 @@ function doReloadClick(event) {
 	event.preventDefault();
 	// Fade to 1% opacity instead of invisible so the space
 	// won't collapse.
-	$(".unlockedImage").fadeTo("fast", 0.01);
+	$(".unlockedImage:not(.notShowing)").fadeTo("fast", 0.01);
 	// The "load" event gets fired when an img's src changes
-	$(".unlockedImage").load(fadeInImage);
+	$(".unlockedImage:not(.notShowing)").load(fadeInImage);
 
 	unlockedPanels = "";
 	$(".unlockedLock").each(addToUnlockedPanelsString);
@@ -142,11 +150,13 @@ function fadeInImage() {
 }
 
 function addToUnlockedPanelsString() {
-	if (unlockedPanels.length > 0) {
-		unlockedPanels = unlockedPanels + "-";
-	}
+	if (!hasClass(this.id.substr(0, 2) + "Image", "notShowing")) {
+		if (unlockedPanels.length > 0) {
+			unlockedPanels = unlockedPanels + "-";
+		}
 
-	unlockedPanels = unlockedPanels + this.id.substr(0, 2);
+		unlockedPanels = unlockedPanels + this.id.substr(0, 2);
+	}
 }
 
 function setAllPanelURLs(imgDescList) {
