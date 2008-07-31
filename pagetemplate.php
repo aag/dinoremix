@@ -52,20 +52,20 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 		include("6panels.php");
 	}
 	?>
-	<p>
-	<br />
-	<br />
-	<br />
-	<br />
-	<div id="permaLinkHolder">
-	Link to this remix: <a id="permaLink" href="<?=$permaLink ?>">Rawr!</a>
+	<div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<div id="permaLinkHolder">
+		Link to this remix: <a id="permaLink" href="<?=$permaLink ?>">Rawr!</a>
+		</div>
+		<br />
+		<br />
+		Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
+		<br />
+		<br />
 	</div>
-	<br />
-	<br />
-	Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
-	<br />
-	<br />
-	</p>
 </div>
 </body>
 </html>

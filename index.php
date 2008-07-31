@@ -51,6 +51,8 @@ if (isset($_GET['numpanels']) && is_numeric($_GET['numpanels'])) {
 	$permaLink = $permaLink . "&numpanels=" . $_GET['numpanels'];
 }
 
+$permaLink = htmlspecialchars($permaLink);
+
 include("pagetemplate.php");
 ?>
 
