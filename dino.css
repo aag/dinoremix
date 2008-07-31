@@ -87,7 +87,7 @@ body {
 #panelNumSwitcher {
 	color: black;
 	text-decoration: none;
-	padding: 3px 0px;
+	padding: 6px 0px;
 	text-align: right;
 }
 
@@ -120,6 +120,6 @@ body {
 	width: 300px;
 	clear: none;
 	float: right;
-	margin-top: 7px;
 	text-align: right;
+	padding: 8px 0px;
 }
