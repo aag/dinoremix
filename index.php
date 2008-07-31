@@ -26,7 +26,7 @@ $posNums = array();
 // Check each panel to see if it's locked
 foreach ($posAbbrs as $key => $pos) {
 	$fullName = posAbbrToFull($pos);
-	if (isset($_GET[$pos]) && is_numeric($_GET[$pos])) {
+	if (isset($_GET[$pos])) {
 		// Panel is locked
 		$imgFileNames[$pos] = "comic2-" . $_GET[$pos] . "-" . $fullName . ".png";
 		$lockClasses[$pos] = "locked";

@@ -112,7 +112,7 @@ function getComicNumForLock(lockID) {
 	var pos = lockID.substr(0, 2);
 	var filepath = $("#" + pos + "Image").attr("src");
 	var filename = filepath.substr(filepath.indexOf("comic2"));
-	var comicNum = filename.substring(7, filename.indexOf("-", 8));
+	var comicNum = filename.substring(7, filename.lastIndexOf("-"));
 	return comicNum;
 }
 
@@ -146,7 +146,7 @@ function addToAllPanelsURL() {
 	var pos = this.id.substr(0, 2);
 	var filepath = $(this).attr("src");
 	var filename = filepath.substr(filepath.indexOf("comic2"));
-	var comicNum = filename.substring(7, filename.indexOf("-", 8));
+	var comicNum = filename.substring(7, filename.lastIndexOf("-"));
 	allPanelsURL = allPanelsURL + pos + "=" + comicNum;
 }
 

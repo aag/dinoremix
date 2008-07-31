@@ -26,7 +26,9 @@ function getRandomImageForPos($panelsDir, $pos) {
 }
 
 function getComicNumFromImageURL($url) {
-	preg_match_all("/comic2-(.*)-/", $url, $out, PREG_PATTERN_ORDER);
+	// Match the unique part of the filename: what's between
+	// "comic2-" and "-{position}"
+	preg_match_all("/comic2-(.*)-\w+.*\.(png|jpg|gif)/", $url, $out, PREG_PATTERN_ORDER);
 	return $out[1][0];
 }
 
