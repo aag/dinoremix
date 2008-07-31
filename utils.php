@@ -25,6 +25,11 @@ function getRandomImageForPos($panelsDir, $pos) {
 	return $filename;
 }
 
+function getComicNumFromImageURL($url) {
+	preg_match_all("/comic2-(.*)-/", $url, $out, PREG_PATTERN_ORDER);
+	return $out[1][0];
+}
+
 function getRandomString($strings){
 	$stringIdx = mt_rand(0, sizeof($strings) - 1);
 	return $strings[$stringIdx];

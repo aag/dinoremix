@@ -79,6 +79,8 @@ function changeNumPanels(event) {
 		$(".creditsImage").fadeIn("fast");
 		$("#bmLock").after( $("#brLock") );
 	}
+
+	setPermaLink();
 }
 
 function lockPanel(pos) {
@@ -128,6 +130,26 @@ function buildLinkURLFromDOM() {
 	$("#reloadLink").attr("href", cleanURL);
 }
 
+var allPanelsURL = "";
+
+function getAllPanelsURL() {
+	allPanelsURL = "";
+	$(".panelImage").each(addToAllPanelsURL);
+	return allPanelsURL;
+}
+
+function addToAllPanelsURL() {
+	if (allPanelsURL.length > 0) {
+		allPanelsURL = allPanelsURL + "&";
+	}
+
+	var pos = this.id.substr(0, 2);
+	var filepath = $(this).attr("src");
+	var filename = filepath.substr(filepath.indexOf("comic2"));
+	var comicNum = filename.substring(7, filename.indexOf("-", 8));
+	allPanelsURL = allPanelsURL + pos + "=" + comicNum;
+}
+
 var unlockedPanels = "";
 
 function doReloadClick(event) {
@@ -161,6 +183,20 @@ function addToUnlockedPanelsString() {
 
 function setAllPanelURLs(imgDescList) {
 	jQuery.each(imgDescList, setPanelImgURL);
+	setPermaLink();
+}
+
+function setPermaLink() {
+	var numPanels = getNumPanels();
+	var panelsURL = "";
+
+	if (numPanels != 6) {
+		panelsURL = "&numpanels=" + numPanels;
+	}
+
+	var fullLink = "http://" + document.location.host + document.location.pathname + "?" + getAllPanelsURL() + panelsURL;
+
+	$("#permaLink").attr("href", fullLink);
 }
 
 function setPanelImgURL() {
@@ -189,4 +225,18 @@ function posAbbrToFull(abbr) {
 	}
 
 	return fullName;
+}
+
+function getNumPanels() {
+	var numPanels = 0;
+
+	if ( hasClass("twoPanelsLink", "chosenPanelNumLink") ) {
+		numPanels = 2;
+	} else if ( hasClass("threePanelsLink", "chosenPanelNumLink") ) {
+		numPanels = 3;
+	} else if ( hasClass("sixPanelsLink", "chosenPanelNumLink") ) {
+		numPanels = 6;
+	}
+
+	return numPanels;
 }

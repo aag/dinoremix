@@ -21,6 +21,7 @@ $numPerms = number_format(pow($numComics, 6));
 $lockClasses = array();
 $imgFileNames = array();
 $posAbbrs = array(0 => "tl", "tm", "tr", "bl", "bm", "br");
+$posNums = array();
 
 // Check each panel to see if it's locked
 foreach ($posAbbrs as $key => $pos) {
@@ -29,11 +30,25 @@ foreach ($posAbbrs as $key => $pos) {
 		// Panel is locked
 		$imgFileNames[$pos] = "comic2-" . $_GET[$pos] . "-" . $fullName . ".png";
 		$lockClasses[$pos] = "locked";
+		$posNums[$pos] = $_GET[$pos];
 	} else {
 		// Panel is unlocked
 		$imgFileNames[$pos] = getRandomImageForPos($panelsDir, $pos);
 		$lockClasses[$pos] = "unlocked";
+		$posNums[$pos] = getComicNumFromImageURL($imgFileNames[$pos]);
 	}
+}
+
+// Build the permalink
+$currentURL = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+$permaLink = substr($currentURL, 0, strrpos($currentURL, "/") + 1) . "?";
+
+foreach ($posAbbrs as $key => $pos) {
+	$permaLink = $permaLink . "&" . $pos . "=" . $posNums[$pos];
+}
+
+if (isset($_GET['numpanels']) && is_numeric($_GET['numpanels'])) {
+	$permaLink = $permaLink . "&numpanels=" . $_GET['numpanels'];
 }
 
 include("pagetemplate.php");
