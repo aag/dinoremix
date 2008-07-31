@@ -29,39 +29,38 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 	<script type="text/javascript" src="dino.js"></script>
 </head>
 <body>
-<h1>Dinosaur Remix!</h1>
-	<ol>
-		<li>Take a bunch of <a href="http://qwantz.com">Dinosaur Comics</a>.</li>
-		<li>Cut out all of the panels.</li>
-		<li>Randomly pick panels from different comics and hook them up to make a new, <i>remixed</i> comic!</li>
-		<li>Reload the page to your little heart's content.</li>
-	</ol>
-<p>
+<div id="content">
+	<h1>Dinosaur Remix!</h1>
+		<ol>
+			<li>Take a bunch of <a href="http://qwantz.com">Dinosaur Comics</a>.</li>
+			<li>Cut out all of the panels.</li>
+			<li>Randomly pick panels from different comics and hook them up to make a new, <i>remixed</i> comic!</li>
+			<li>Reload the page to your little heart's content.</li>
+		</ol>
 	<br />
-	<a id="reloadLink" href="./?numpanels=<?=$_GET['numpanels'] ?>"><span id="reloadButton"><img src="reload.png" alt="" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
-<br />
-<br />
-<br />
-</p>
+	<br />
+	<br />
+	<div id="linksBar">
+		<a id="reloadLink" href="./?numpanels=<?=$_GET['numpanels'] ?>"><span id="reloadButton"><img src="reload.png" alt="" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
 
-<?php
-if ($_GET['numpanels'] == "2") {
-	include("2panels.php");
-} elseif ($_GET['numpanels'] == "3") {
-	include("3panels.php");
-} else {
-	include("6panels.php");
-}
-?>
-<p>
-<br />
-<br />
-<br />
-<br />
-Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
-<br />
-<br />
-</p>
-
+	<?php
+	if ($_GET['numpanels'] == "2") {
+		include("2panels.php");
+	} elseif ($_GET['numpanels'] == "3") {
+		include("3panels.php");
+	} else {
+		include("6panels.php");
+	}
+	?>
+	<p>
+	<br />
+	<br />
+	<br />
+	<br />
+	Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
+	<br />
+	<br />
+	</p>
+</div>
 </body>
 </html>

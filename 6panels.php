@@ -1,8 +1,9 @@
-<p>Number of panels: <span id="panelNumSwitcher"><a id="twoPanelsLink" href="./?numpanels=2" class="panelNumLink unchosenPanelNumLink">2</a> <a id="threePanelsLink" href="./?numpanels=3" class="panelNumLink unchosenPanelNumLink">3</a> <a id="sixPanelsLink" href="./?numpanels=6" class="panelNumLink chosenPanelNumLink">6</a></span>
+	<div id="numPanelsHolder">Number of panels: <span id="panelNumSwitcher"><a id="twoPanelsLink" href="./?numpanels=2" class="panelNumLink unchosenPanelNumLink">2</a> <a id="threePanelsLink" href="./?numpanels=3" class="panelNumLink unchosenPanelNumLink">3</a> <a id="sixPanelsLink" href="./?numpanels=6" class="panelNumLink chosenPanelNumLink">6</a></span></div>
 <br />
 <br />
 <br />
-</p>
+<br />
+</div>
 
 <div>
 	<span id="tlLock" class="<?=$lockClasses["tl"] ?>Lock 2panelLock 3panelLock lockSpan startingLock" style="width: 244px;"><img src="lock_open.png" alt="Click to lock" /></span>

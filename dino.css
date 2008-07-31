@@ -13,6 +13,10 @@ body {
 	padding-left: 5em;
 }
 
+#content {
+	width: 735px;
+}
+
 .panelContainer {
 	margin: 0px;
 	padding: 0px;
@@ -76,13 +80,15 @@ body {
 	text-decoration: none;
 	background-color: #dddddd;
 	margin-bottom: 1em;
-	clear: both;
+	clear: none;
+	float: left;
 }
 
 #panelNumSwitcher {
 	color: black;
 	text-decoration: none;
 	padding: 3px 0px;
+	text-align: right;
 }
 
 .unchosenPanelNumLink {
@@ -107,4 +113,13 @@ body {
 	margin: 0px 0px;
 	text-decoration: none;
 	color: black;
+}
+
+#numPanelsHolder {
+	position: relative;
+	width: 300px;
+	clear: none;
+	float: right;
+	margin-top: 7px;
+	text-align: right;
 }
