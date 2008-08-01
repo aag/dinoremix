@@ -9,14 +9,15 @@ Started on: 2008.07.31
 from BeautifulSoup import BeautifulSoup
 import urllib
 import re
-import os.path
+import os
 import sys
 
 scriptDir = sys.path[0]
-guestComicsPath = scriptDir + "/GuestComicsURLs.txt"
-visitedPagesPath = scriptDir + "/AlreadyDownloaded.txt"
+guestComicsPath = os.path.join(scriptDir, "GuestComicsURLs.txt")
+visitedPagesPath = os.path.join(scriptDir, "AlreadyDownloaded.txt")
+downloadDirPath = os.path.join(scriptDir, "comics/")
 
-def getImageOnArchivePage(url):
+def getImageOnArchivePage(url, downloadDir):
 	"""Accepts the url of a Dinosaur Comics archive page and saves the contained comic image to disk."""
 	comicPage = urllib.urlopen(url)
 	pageContents = comicPage.read()
@@ -33,7 +34,7 @@ def getImageOnArchivePage(url):
 	else:
 		print "\tDownloading " + comicImg['src']
 		filename = comicImg['src'].replace("http://www.qwantz.com/comics/", "")
-		urllib.urlretrieve(comicImg['src'], "downloads/" + filename)
+		urllib.urlretrieve(comicImg['src'], os.path.join(downloadDir, filename))
 		
 		"""Add the page url to a list of already downloaded comics"""
 		dlListFile = open(visitedPagesPath, 'a')
@@ -58,8 +59,12 @@ if os.path.exists(guestComicsPath):
 
 excludePages = visitedPages + guestPages
 
+print "Downloading comic archive list...\n"
+
 archivePage = urllib.urlopen("http://www.qwantz.com/archive/list.html")
 contents = archivePage.read()
+
+print "Retrieving new comics...\n"
 
 archiveSoup = BeautifulSoup(contents)
 allLinks = archiveSoup.findAll('a', href=re.compile("\/archive\/[0-9]+\.html"))
@@ -67,6 +72,11 @@ for link in allLinks:
 	url = "http://www.qwantz.com" + link['href']
 	if url not in excludePages:
 		print url
-		getImageOnArchivePage(url)
-	else:
-		print "Already downloaded: " + url
+		getImageOnArchivePage(url, downloadDirPath)
+
+""" Create panels """
+import cutimages
+cutimages.cutAllImages()
+
+""" Create serialized file lists """
+os.spawnl(os.P_WAIT, "/usr/local/bin/php", "php", "/usr/local/apache2/htdocs/dt/dinoremix/updateFileLists.php")

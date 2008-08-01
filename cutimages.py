@@ -69,21 +69,32 @@ def dumpPanels(outdir, comicFileName, imageDict):
 		image.save(outfileName)
 
 
-numImages = 0
+def cutAllImagesInDir(indir, outdir):
+	allFiles = os.listdir(indir)
+	numImages = 0
 
-for arg in sys.argv:
-	if not arg == "cutimages.py":
-		print 'processing', arg
+	for filename in allFiles:
+		filePath = os.path.join(indir + filename)
+		print 'processing', filePath
 
-		image = Image.open(arg)
+		image = Image.open(filePath)
 		panels = cutImage(image)
 
-		dirs, filename = os.path.split(arg)
+		dirs, filename = os.path.split(filePath)
 		filename, sep, ext = filename.rpartition(".")
 
-		dumpPanels("panels", filename, panels)
+		dumpPanels(outdir, filename, panels)
 		numImages = numImages + 1
 
-print numImages, 'images processed'
+	return numImages
 
-	
+
+def cutAllImages():
+	scriptDir = sys.path[0]
+	comicsDir = os.path.join(scriptDir, "comics/")
+	panelsDir = os.path.join(scriptDir, "panels/")
+	processedImages = cutAllImagesInDir(comicsDir, panelsDir)
+
+	print processedImages, 'images processed'
+
+cutAllImages()	

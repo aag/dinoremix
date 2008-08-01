@@ -16,10 +16,12 @@ function removeDots($filelist){
 function getRandomImageForPos($panelsDir, $pos) {
 	$fullPosName = posAbbrToFull($pos);
 	$filename = "";
+	$fileListDir = "filelists/";
 
 	if ($fullPosName != "") {
-		$allfiles = removeDots(scandir($panelsDir . $fullPosName));
-		$filename = getRandomString($allfiles);
+		$serializedPaths = file_get_contents($fileListDir . $fullPosName . "Paths.txt");
+		$allFiles = unserialize($serializedPaths);
+		$filename = getRandomString($allFiles);
 	}
 
 	return $filename;
