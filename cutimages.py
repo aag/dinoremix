@@ -73,18 +73,24 @@ def cutAllImagesInDir(indir, outdir):
 	allFiles = os.listdir(indir)
 	numImages = 0
 
+	print "Looking for new files to cut..."
+
 	for filename in allFiles:
 		filePath = os.path.join(indir + filename)
-		print 'processing', filePath
+		filenamePrefix = filename[0:filename.rfind(".")]
+		tlPanelFileName = filenamePrefix + "-topleft.png"
 
-		image = Image.open(filePath)
-		panels = cutImage(image)
+		if not os.path.exists(os.path.join(outdir, "topleft", tlPanelFileName)):
+			print 'processing', filePath
 
-		dirs, filename = os.path.split(filePath)
-		filename, sep, ext = filename.rpartition(".")
+			image = Image.open(filePath)
+			panels = cutImage(image)
 
-		dumpPanels(outdir, filename, panels)
-		numImages = numImages + 1
+			dirs, filename = os.path.split(filePath)
+			filename, sep, ext = filename.rpartition(".")
+
+			dumpPanels(outdir, filename, panels)
+			numImages = numImages + 1
 
 	return numImages
 
@@ -95,6 +101,7 @@ def cutAllImages():
 	panelsDir = os.path.join(scriptDir, "panels/")
 	processedImages = cutAllImagesInDir(comicsDir, panelsDir)
 
-	print processedImages, 'images processed'
+	print processedImages, 'images processed\n'
 
-cutAllImages()	
+if __name__ == "__main__":
+	cutAllImages()
