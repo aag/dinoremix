@@ -52,6 +52,7 @@ function changeNumPanels(event) {
 
 		$(".2panelImage").fadeIn("fast");
 		$("#lCredit").after( $("#TwoPanelCreditsSpacer") );
+		$("#brImage").css("top", "1px");
 		$(".2panelLock").fadeIn("fast");
 		$("#tlLock").after( $("#brLock") );
 	} else if (clickedLink.id == "threePanelsLink") {
@@ -66,6 +67,7 @@ function changeNumPanels(event) {
 
 		$(".3panelImage").fadeIn("fast");
 		$("#lCredit").after( $("#ThreePanelCreditsSpacer") );
+		$("#brImage").css("top", "1px");
 		$(".3panelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
 	} else if (clickedLink.id == "sixPanelsLink") {
@@ -73,6 +75,7 @@ function changeNumPanels(event) {
 
 		$(".panelImage").removeClass("notShowing");
 
+		$("#brImage").css("top", "0px");
 		$("#rowDivider").fadeIn("fast");
 		$(".panelImage").fadeIn("fast");
 		$(".lockSpan").fadeIn("fast");
