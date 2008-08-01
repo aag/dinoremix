@@ -84,6 +84,7 @@ body {
 	margin-bottom: 1em;
 	clear: none;
 	float: left;
+	cursor: pointer;
 }
 
 #panelNumSwitcher {
