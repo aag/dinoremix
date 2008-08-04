@@ -12,6 +12,9 @@ $(document).ready(function() {
 	$("#reloadLink").click(doReloadClick);
 	$(".panelNumLink").click(changeNumPanels);
 
+	$("#setAltText").click(showAltTextInput);
+	$("#altTextForm").submit(updateAltText);
+
 	buildLinkURLFromDOM();
 });
 
@@ -242,4 +245,51 @@ function getNumPanels() {
 	}
 
 	return numPanels;
+}
+
+function showAltTextInput(event) {
+	event.preventDefault();
+	$("#altTextInput").fadeIn("fast");
+}
+
+function updateAltText(event) {
+	event.preventDefault();
+	rawInput = $("#altTextInput").val();
+
+	$("#altTextInput").fadeOut("fast");
+
+	cleanInput = sanitizeForOutput(rawInput);
+	$(".panelImage").attr("alt", rawInput);
+	$(".panelImage").attr("title", rawInput);
+	return false;
+}
+
+function urlEncode(str) {
+	// % must be first, or it will destroy other entities
+	str = str.replace(/%/g, "%25");
+	str = str.replace(/;/g, "%3B");
+	str = str.replace(/\?/g, "%3F");
+	str = str.replace(/\//g, "%2F");
+	str = str.replace(/:/g, "%3A");
+	str = str.replace(/#/g, "%23");
+	str = str.replace(/&/g, "%24");
+	str = str.replace(/\+/g, "%2B");
+	str = str.replace(/$/g, "%26");
+	str = str.replace(/,/g, "%2C");
+	str = str.replace(/ /g, "%20");
+	str = str.replace(/\</gi, "%3C");
+	str = str.replace(/\>/gi, "%3E");
+	str = str.replace(/~/g, "%7E");
+	return str;
+}
+
+// Return the given string, but sanitized so it's safe to include
+// it in a page, preventing XSS and other injections
+function sanitizeForOutput(str) {
+	str = str.replace(/\"/g, "&#34;");
+	str = str.replace(/\'/g, "&#39;");
+	str = str.replace(/\</g, "&#60;");
+	str = str.replace(/\>/g, "&#62;");
+	str = str.replace(/\n/g, "<br />");
+	return str;
 }

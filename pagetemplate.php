@@ -58,7 +58,15 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 		<br />
 		<br />
 		<div id="permaLinkHolder">
-		Link to this remix: <a id="permaLink" href="<?=$permaLink ?>">Rawr!</a>
+			Link to this remix: <a id="permaLink" href="<?=$permaLink ?>">Rawr!</a>
+		</div>
+		<br />
+		<br />
+		<div id="ttLinkHolder">
+			Set the alt text: <a id="setAltText" href="">Open</a><br />
+			<form id="altTextForm" action="./">
+				<input id="altTextInput" name="altText" class="hidden" type="text" size="100" />
+			</form>
 		</div>
 		<br />
 		<br />
