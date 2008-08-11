@@ -12,8 +12,10 @@ $(document).ready(function() {
 	$("#reloadLink").click(doReloadClick);
 	$(".panelNumLink").click(changeNumPanels);
 
-	$("#setAltText").click(showAltTextInput);
+	$("#setAltTextLink").click(showAltTextInput);
 	$("#altTextForm").submit(updateAltText);
+
+	$("#panelContainer").hover(enterHoverPanelImage, exitHoverPanelImage);
 
 	buildLinkURLFromDOM();
 });
@@ -58,6 +60,7 @@ function changeNumPanels(event) {
 		$("#brImage").css("top", "1px");
 		$(".2panelLock").fadeIn("fast");
 		$("#tlLock").after( $("#brLock") );
+		$("#panelContainer").css("width", "489px");
 	} else if (clickedLink.id == "threePanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
 		$(".panelImage").fadeOut("fast");
@@ -73,6 +76,7 @@ function changeNumPanels(event) {
 		$("#brImage").css("top", "1px");
 		$(".3panelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
+		$("#panelContainer").css("width", "618px");
 	} else if (clickedLink.id == "sixPanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
 
@@ -84,6 +88,7 @@ function changeNumPanels(event) {
 		$(".lockSpan").fadeIn("fast");
 		$(".creditsImage").fadeIn("fast");
 		$("#bmLock").after( $("#brLock") );
+		$("#panelContainer").css("width", "735px");
 	}
 
 	setPermaLink();
@@ -196,7 +201,7 @@ function setPermaLink() {
 	var numPanels = getNumPanels();
 	var panelsURL = "";
 
-	if (numPanels != 6) {
+	if (numPanels != 3) {
 		panelsURL = "&numpanels=" + numPanels;
 	}
 
@@ -245,6 +250,14 @@ function getNumPanels() {
 	}
 
 	return numPanels;
+}
+
+function enterHoverPanelImage() {
+	$("#setAltTextLink").fadeIn("fast");
+}
+
+function exitHoverPanelImage() {
+	$("#setAltTextLink").fadeOut("fast");
 }
 
 function showAltTextInput(event) {

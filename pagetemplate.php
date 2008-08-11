@@ -62,12 +62,6 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 		</div>
 		<br />
 		<br />
-		<div id="ttLinkHolder">
-			Set the alt text: <a id="setAltText" href="">Open</a><br />
-			<form id="altTextForm" action="./">
-				<input id="altTextInput" name="altText" class="hidden" type="text" size="100" />
-			</form>
-		</div>
 		<br />
 		<br />
 		Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.

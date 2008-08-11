@@ -21,11 +21,12 @@ body {
 	width: 735px;
 }
 
-.panelContainer {
+#panelContainer {
 	margin: 0px;
 	padding: 0px;
 	font-size: 0;
 	vertical-align: top;
+	position: relative;
 }
 
 .panelImage {
@@ -133,4 +134,27 @@ body {
 
 .shiftDownOnePx {
 	top: 1px;
+}
+
+#setAltTextLink {
+	background-color: white;
+	border: 1px blue solid;
+	color: blue;
+	position: absolute;
+	bottom: 16px;
+	right: 1px; 
+	clear: none;
+	float: none;
+	padding: 2px 2px;
+	z-index: 1000;
+	font-size: small;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+#altTextInput {
+	position: absolute;
+	left: 0px;
+	bottom: 40px;
+	z-index: 1001;
 }
