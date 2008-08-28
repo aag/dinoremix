@@ -121,7 +121,7 @@ body {
 
 #numPanelsHolder {
 	position: relative;
-	width: 300px;
+	width: 270px;
 	clear: none;
 	float: right;
 	text-align: right;
@@ -152,9 +152,21 @@ body {
 	vertical-align: middle;
 }
 
-#altTextInput {
+#altTextInputControls {
 	position: absolute;
-	left: 0px;
+	right: 2px;
 	bottom: 40px;
 	z-index: 1001;
+	font-size: small;
+	text-align: right;
+}
+
+.altTextInputButton {
+	background-color: white;
+	border: 1px blue solid;
+	color: blue;
+	padding: 2px 2px;
+	text-decoration: none;
+	vertical-align: middle;
+	margin-top: 5px;
 }

@@ -40,9 +40,6 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 	<br />
 	<br />
 	<br />
-	<div id="linksBar">
-		<a id="reloadLink" href="./?numpanels=<?=$_GET['numpanels'] ?>"><span id="reloadButton"><img src="reload.png" alt="" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
-
 	<?php
 	if ($_GET['numpanels'] == "2") {
 		include("2panels.php");

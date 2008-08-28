@@ -60,6 +60,7 @@ function changeNumPanels(event) {
 		$("#brImage").css("top", "1px");
 		$(".2panelLock").fadeIn("fast");
 		$("#tlLock").after( $("#brLock") );
+		$("#linksBar").css("width", "489px");
 		$("#panelContainer").css("width", "489px");
 	} else if (clickedLink.id == "threePanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
@@ -76,6 +77,7 @@ function changeNumPanels(event) {
 		$("#brImage").css("top", "1px");
 		$(".3panelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
+		$("#linksBar").css("width", "618px");
 		$("#panelContainer").css("width", "618px");
 	} else if (clickedLink.id == "sixPanelsLink") {
 		$(".creditsSpacer").fadeOut("fast");
@@ -88,6 +90,7 @@ function changeNumPanels(event) {
 		$(".lockSpan").fadeIn("fast");
 		$(".creditsImage").fadeIn("fast");
 		$("#bmLock").after( $("#brLock") );
+		$("#linksBar").css("width", "735px");
 		$("#panelContainer").css("width", "735px");
 	}
 
@@ -262,14 +265,15 @@ function exitHoverPanelImage() {
 
 function showAltTextInput(event) {
 	event.preventDefault();
-	$("#altTextInput").fadeIn("fast");
+	$("#altTextInputControls").fadeIn("fast");
+	$("#altTextInput").focus();
 }
 
 function updateAltText(event) {
 	event.preventDefault();
 	rawInput = $("#altTextInput").val();
 
-	$("#altTextInput").fadeOut("fast");
+	$("#altTextInputControls").fadeOut("fast");
 
 	cleanInput = sanitizeForOutput(rawInput);
 	$(".panelImage").attr("alt", rawInput);
