@@ -51,11 +51,8 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 	?>
 	<div>
 		<br />
-		<br />
-		<br />
-		<br />
 		<div id="permaLinkHolder">
-			Link to this remix: <a id="permaLink" href="<?=$permaLink ?>">Rawr!</a>
+			<a id="permaLink" style="text-decoration: none" href="<?=$permaLink ?>"><img src="link.png" alt="Link" /> <span style="text-decoration: underline">Permalink to this remix</span></a>
 		</div>
 		<br />
 		<br />
