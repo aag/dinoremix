@@ -168,11 +168,15 @@ var unlockedPanels = "";
 
 function doReloadClick(event) {
 	event.preventDefault();
+	replaceClass("reloadButton", "unpressedReloadButton", "depressedReloadButton");
 	// Fade to 1% opacity instead of invisible so the space
 	// won't collapse.
 	$(".unlockedImage:not(.notShowing)").fadeTo("fast", 0.01);
 	// The "load" event gets fired when an img's src changes
 	$(".unlockedImage:not(.notShowing)").load(fadeInImage);
+
+	resetLoadedImages();
+	$(".unlockedImage:not(.notShowing)").load(imageLoaded);
 
 	unlockedPanels = "";
 	$(".unlockedLock").each(addToUnlockedPanelsString);
@@ -183,6 +187,30 @@ function doReloadClick(event) {
 
 function fadeInImage() {
 	$("#" + this.id).fadeTo("fast", 1.0);
+}
+
+var loadedImages = 0;
+
+function resetLoadedImages() {
+	loadedImages = 0;
+}
+
+function imageLoaded() {
+	loadedImages++;
+
+	var numImages = numImagesToReload();
+
+	if (loadedImages == numImages) {
+		allImagesLoaded();
+	}
+}
+
+function allImagesLoaded() {
+	replaceClass("reloadButton", "depressedReloadButton", "unpressedReloadButton");
+}
+
+function numImagesToReload() {
+	return $(".unlockedImage:not(.notShowing)").length;
 }
 
 function addToUnlockedPanelsString() {
