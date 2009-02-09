@@ -14,6 +14,8 @@ $(document).ready(function() {
 
 	$("#setAltTextLink").click(showAltTextInput);
 	$("#altTextForm").submit(updateAltText);
+	$("#altTextOKButton").click(updateAltText);
+	$("#altTextCancelButton").click(hideAltTextInput);
 
 	$("#panelContainer").hover(enterHoverPanelImage, exitHoverPanelImage);
 
@@ -293,7 +295,9 @@ function getNumPanels() {
 }
 
 function enterHoverPanelImage() {
-	$("#setAltTextLink").fadeIn("fast");
+	if (!$("#altTextInputControls").is(':visible')) {
+		$("#setAltTextLink").fadeIn("fast");
+	}
 }
 
 function exitHoverPanelImage() {
@@ -302,8 +306,15 @@ function exitHoverPanelImage() {
 
 function showAltTextInput(event) {
 	event.preventDefault();
+	exitHoverPanelImage();
 	$("#altTextInputControls").fadeIn("fast");
 	$("#altTextInput").focus();
+}
+
+function hideAltTextInput(event) {
+	event.preventDefault();
+	$("#altTextInputControls").fadeOut("fast");
+	enterHoverPanelImage();
 }
 
 function updateAltText(event) {

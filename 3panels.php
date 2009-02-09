@@ -23,13 +23,14 @@
 	<br class="clearBR" />
 	<img id="lCredit" src="panels/credits_left.png" alt="" class="creditsImage 2panelImage 3panelImage" /><img id="TwoPanelCreditsSpacer" class="creditsSpacer 2panelImage hidden notShowing" src="panels/2panel_credits_spacer.gif" alt="" /><img id="ThreePanelCreditsSpacer" class="creditsSpacer 3panelImage" src="panels/3panel_credits_spacer.gif" alt="" /><img id="mCredit" src="panels/credits_middle.png" alt="" class="creditsImage hidden notShowing" /><img id="rCredit" src="panels/credits_right.png" alt="" class="creditsImage 2panelImage 3panelImage" />
 
-	<a id="setAltTextLink" class="hidden" href="./"><img src="comment_edit.png" alt="" /> Edit alt text</a>
+	<a id="setAltTextLink" class="hidden" href="./"><img src="edit_alt_text.png" alt="" /></a>
 	<div id="altTextInputControls" class="hidden">
 		<form id="altTextForm" action="./">
 			<input id="altTextInput" name="altText" class="" type="text" size="60" />
-		</form>
-		<a href="./" class="altTextInputButton">OK</a> <a href="./" class="altTextInputButton">Cancel</a>
-	</div></div>
+		</form><br />
+		<a href="./" id="altTextOKButton" class="altTextInputButton">OK</a> <a href="./" id="altTextCancelButton" class="altTextInputButton">Cancel</a>
+	</div>
+</div>
 
 <div><br class="clearBR" /></div>
 <div>
