@@ -171,21 +171,22 @@ var unlockedPanels = "";
 
 function doReloadClick(event) {
 	event.preventDefault();
-	replaceClass("reloadButton", "unpressedReloadButton", "depressedReloadButton");
-	// Fade to 1% opacity instead of invisible so the space
-	// won't collapse.
-	$(".unlockedImage:not(.notShowing)").fadeTo("fast", 0.01);
-	// The "load" event gets fired when an img's src changes
-	$(".unlockedImage:not(.notShowing)").load(fadeInImage);
-
-	resetLoadedImages();
-	$(".unlockedImage:not(.notShowing)").load(imageLoaded);
-	$("#reloadLink").unbind('click', doReloadClick);
-	$("#reloadLink").click(preventDefault);
 
 	unlockedPanels = "";
 	$(".unlockedLock").each(addToUnlockedPanelsString);
 	if (unlockedPanels != "") {
+		replaceClass("reloadButton", "unpressedReloadButton", "depressedReloadButton");
+		// Fade to 1% opacity instead of invisible so the space
+		// won't collapse.
+		$(".unlockedImage:not(.notShowing)").fadeTo("fast", 0.01);
+		// The "load" event gets fired when an img's src changes
+		$(".unlockedImage:not(.notShowing)").load(fadeInImage);
+
+		resetLoadedImages();
+		$(".unlockedImage:not(.notShowing)").load(imageLoaded);
+		$("#reloadLink").unbind('click', doReloadClick);
+		$("#reloadLink").click(preventDefault);
+
 		$.post("randomImages.php", { pos: unlockedPanels }, setAllPanelURLs, "json");
 	}
 }
