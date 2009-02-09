@@ -25,7 +25,7 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 
 	<link rel="stylesheet" title="Default Style" href="reset.css" type="text/css" />
 	<link rel="stylesheet" title="Default Style" href="dino.css" type="text/css" />
-	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery-1.3.1.js"></script>
 	<script type="text/javascript" src="dino.js"></script>
 </head>
 <body>
