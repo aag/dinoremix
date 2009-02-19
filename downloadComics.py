@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from BeautifulSoup import BeautifulSoup
+from subprocess import call
 import urllib
 import re
 import os
@@ -92,4 +93,5 @@ import cutimages
 cutimages.cutAllImages()
 
 """ Create serialized file lists """
-os.spawnl(os.P_WAIT, "/usr/local/bin/php", "php", "/usr/local/apache2/htdocs/dt/dinoremix/updateFileLists.php")
+fileListsPath = os.path.join(scriptDir, "updateFileLists.php")
+call(["php", fileListsPath])
