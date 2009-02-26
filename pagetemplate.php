@@ -74,6 +74,10 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 		Currently remixing <?=$numComics ?> comics, making for <?=$numPerms ?> possible remixes.
 		<br />
 		<br />
+		<br />
+		<br />
+		<br />
+		<p style="font-size: small; color: gray">The code for this page is available here: <a href="http://github.com/aag/dinoremix/" style="color: gray;">http://github.com/aag/dinoremix/</a></p>
 	</div>
 </div>
 </body>
