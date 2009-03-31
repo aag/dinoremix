@@ -28,7 +28,7 @@
 		<form id="altTextForm" action="./">
 			<input id="altTextInput" name="altText" class="" type="text" size="60" value="<?=$outAltText?>" />
 		</form><br />
-		<a href="./" id="altTextOKButton" class="altTextInputButton">OK</a> <a href="./" id="altTextCancelButton" class="altTextInputButton">Cancel</a>
+		<a href="./" id="altTextOKButton"><img src="ok.png" class="altTextInputButton" alt="" /></a> <a href="./" id="altTextCancelButton"><img src="cancel.png" class="altTextInputButton" alt="" /></a>
 	</div>
 </div>
 

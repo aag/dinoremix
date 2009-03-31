@@ -164,7 +164,6 @@ body {
 	right: 3px;
 	bottom: 20px;
 	z-index: 1001;
-	font-size: small;
 	text-align: right;
 }
 
@@ -173,11 +172,7 @@ body {
 }
 
 .altTextInputButton {
-	background-color: white;
-	border: 1px blue solid;
-	color: blue;
 	padding: 2px 2px;
 	text-decoration: none;
 	vertical-align: middle;
-	margin-top: 5px;
 }
