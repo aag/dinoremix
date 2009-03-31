@@ -26,7 +26,7 @@
 	<a id="setAltTextLink" class="hidden" href="./"><img src="edit_alt_text.png" alt="" /></a>
 	<div id="altTextInputControls" class="hidden">
 		<form id="altTextForm" action="./">
-			<input id="altTextInput" name="altText" class="" type="text" size="60" />
+			<input id="altTextInput" name="altText" class="" type="text" size="60" value="<?=$outAltText?>" />
 		</form><br />
 		<a href="./" id="altTextOKButton" class="altTextInputButton">OK</a> <a href="./" id="altTextCancelButton" class="altTextInputButton">Cancel</a>
 	</div>
