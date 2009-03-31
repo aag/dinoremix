@@ -250,6 +250,12 @@ function setPermaLink() {
 
 	var fullLink = "http://" + document.location.host + document.location.pathname + "?" + getAllPanelsURL() + panelsURL;
 
+	var altText = $("#tlImage").attr("title"); 
+	if (altText != "")
+	{
+		fullLink = fullLink + "&alt=" + urlEncode(altText);
+	}
+
 	$("#permaLink").attr("href", fullLink);
 }
 
@@ -327,6 +333,9 @@ function updateAltText(event) {
 	cleanInput = sanitizeForOutput(rawInput);
 	$(".panelImage").attr("alt", rawInput);
 	$(".panelImage").attr("title", rawInput);
+
+	setPermaLink();
+
 	return false;
 }
 
@@ -340,7 +349,7 @@ function urlEncode(str) {
 	str = str.replace(/#/g, "%23");
 	str = str.replace(/&/g, "%24");
 	str = str.replace(/\+/g, "%2B");
-	str = str.replace(/$/g, "%26");
+	str = str.replace(/\$/g, "%26");
 	str = str.replace(/,/g, "%2C");
 	str = str.replace(/ /g, "%20");
 	str = str.replace(/\</gi, "%3C");

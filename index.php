@@ -35,6 +35,7 @@ $lockClasses = array();
 $imgFileNames = array();
 $posAbbrs = array(0 => "tl", "tm", "tr", "bl", "bm", "br");
 $posNums = array();
+$altText = "";
 
 // Check each panel to see if it's locked
 foreach ($posAbbrs as $key => $pos) {
@@ -52,6 +53,13 @@ foreach ($posAbbrs as $key => $pos) {
 	}
 }
 
+// Get the alt text for the panels
+if (isset($_GET['alt'])) {
+	$altText = stripslashes($_GET['alt']);
+	$linkAltText = rawurlencode($altText);
+	$outAltText = htmlspecialchars($altText);
+}
+
 // Build the permalink
 $currentURL = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 $permaLink = substr($currentURL, 0, strrpos($currentURL, "/") + 1) . "?";
@@ -65,6 +73,10 @@ if (isset($_GET['numpanels']) && is_numeric($_GET['numpanels'])) {
 }
 
 $permaLink = htmlspecialchars($permaLink);
+
+if ($altText != "") {
+	$permaLink = $permaLink . "&alt=" . $linkAltText;
+}
 
 include("pagetemplate.php");
 ?>

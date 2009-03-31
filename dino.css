@@ -168,6 +168,10 @@ body {
 	text-align: right;
 }
 
+#altTextInput {
+	border: 2px blue solid;
+}
+
 .altTextInputButton {
 	background-color: white;
 	border: 1px blue solid;
