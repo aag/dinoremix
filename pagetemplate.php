@@ -51,7 +51,10 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 			<li>Reload the page to your little heart's content.</li>
 		</ol>
 	<br />
-	<br />
+	<noscript>
+		<div><span style="color: black; background-color: #ffffaf;">Psst!  This page is way more fun with JavaScript enabled.</span></div>
+		<br />
+	</noscript>
 	<br />
 	<?php
 	if ($_GET['numpanels'] == "2") {
