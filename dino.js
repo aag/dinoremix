@@ -302,7 +302,8 @@ function getNumPanels() {
 }
 
 function enterHoverPanelImage() {
-	if (!$("#altTextInputControls").is(':visible')) {
+	if (!$("#altTextInputControls").is(':visible') &&
+		(numImagesToReload() > 0)) {
 		$("#setAltTextLink").fadeIn("fast");
 	}
 }
