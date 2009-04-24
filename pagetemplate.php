@@ -38,7 +38,11 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 
 	<link rel="stylesheet" title="Default Style" href="reset.css" type="text/css" />
 	<link rel="stylesheet" title="Default Style" href="dino.css" type="text/css" />
+<?php if ($jqueryVer == "1.3.2") { ?>
+	<script type="text/javascript" src="jquerytest/jquery-1.3.2.js"></script>
+<?php } else { ?>
 	<script type="text/javascript" src="jquery.min.js"></script>
+<?php } ?>
 	<script type="text/javascript" src="dino.js"></script>
 </head>
 <body>
@@ -47,8 +51,10 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 		<ol>
 			<li>Take a bunch of <a href="http://qwantz.com">Dinosaur Comics</a>.</li>
 			<li>Cut out all of the panels.</li>
-			<li>Randomly pick panels from different comics and hook them up to make a new, <i>remixed</i> comic!</li>
-			<li>Reload the page to your little heart's content.</li>
+			<li>Randomly pick panels from different comics and hook them up.</li>
+			<li>Lock the panels you like and reload the ones you don't.</li>
+			<li>Add a funny alt text.</li>
+			<li>Send links of the good ones to your friends and enemies.</li>
 		</ol>
 	<br />
 	<noscript>
