@@ -55,12 +55,12 @@ function changeNumPanels(event) {
 		$("#rowDivider").fadeOut("fast");
 
 		$(".panelImage").removeClass("notShowing");
-		$(".panelImage:not(.2panelImage)").addClass("notShowing");
+		$(".panelImage:not(.twoPanelImage)").addClass("notShowing");
 
-		$(".2panelImage").fadeIn("fast");
+		$(".twoPanelImage").fadeIn("fast");
 		$("#lCredit").after( $("#TwoPanelCreditsSpacer") );
 		$("#brImage").css("top", "1px");
-		$(".2panelLock").fadeIn("fast");
+		$(".twoPanelLock").fadeIn("fast");
 		$("#tlLock").after( $("#brLock") );
 		$("#linksBar").css("width", "489px");
 		$("#panelContainer").css("width", "489px");
@@ -72,12 +72,12 @@ function changeNumPanels(event) {
 		$(".creditsImage").fadeOut("fast");
 
 		$(".panelImage").removeClass("notShowing");
-		$(".panelImage:not(.3panelImage)").addClass("notShowing");
+		$(".panelImage:not(.threePanelImage)").addClass("notShowing");
 
-		$(".3panelImage").fadeIn("fast");
+		$(".threePanelImage").fadeIn("fast");
 		$("#lCredit").after( $("#ThreePanelCreditsSpacer") );
 		$("#brImage").css("top", "1px");
-		$(".3panelLock").fadeIn("fast");
+		$(".threePanelLock").fadeIn("fast");
 		$("#tmLock").after( $("#brLock") );
 		$("#linksBar").css("width", "618px");
 		$("#panelContainer").css("width", "618px");
