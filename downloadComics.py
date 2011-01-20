@@ -36,7 +36,7 @@ def getImageOnArchivePage(url, downloadDir):
 	comicPage = urllib.urlopen(url)
 	pageContents = comicPage.read()
 	comicSoup = BeautifulSoup(pageContents)
-	comicImg = comicSoup.find('img', src=re.compile("comics\/comic2-.*\.[png|gif|jpg]"), width="735", height="500")
+	comicImg = comicSoup.find('img', src=re.compile("comics\/comic2-.*\.[png|gif|jpg]"))
 	if comicImg == None:
 		comicImg = comicSoup.find('img', src=re.compile("comics\/.*\.[png|jpg|jpeg|gif]"))
 		print "\t*** NO MATCH *** Guess: " + comicImg['src']
@@ -75,15 +75,15 @@ excludePages = visitedPages + guestPages
 
 print "Downloading comic archive list...\n"
 
-archivePage = urllib.urlopen("http://www.qwantz.com/archive/list.html")
+archivePage = urllib.urlopen("http://www.qwantz.com/archive.php")
 contents = archivePage.read()
 
 print "Retrieving new comics...\n"
 
 archiveSoup = BeautifulSoup(contents)
-allLinks = archiveSoup.findAll('a', href=re.compile("\/archive\/[0-9]+\.html"))
+allLinks = archiveSoup.findAll('a', href=re.compile("http:\/\/www.qwantz.com\/index\.php\?comic\=\d+"))
 for link in allLinks:
-	url = "http://www.qwantz.com" + link['href']
+	url = link['href']
 	if url not in excludePages:
 		print url
 		getImageOnArchivePage(url, downloadDirPath)
