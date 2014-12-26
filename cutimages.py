@@ -2,7 +2,7 @@
 Python script to cut up Dinosaur Comics strips into their
 constituent panels.
 
-Copyright 2008, 2009 Adam Goforth
+Copyright 2008, 2009, 2014 Adam Goforth
 Started on: 2008.04.20
 
 This program is free software: you can redistribute it and/or modify
