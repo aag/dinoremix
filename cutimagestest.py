@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import unittest
 import cutimages
-import Image
+from PIL import Image
 
 class CutImage(unittest.TestCase):
 	"""Tests whether the script can load and cut up an image."""
