@@ -1,0 +1,7 @@
+*.pyc
+AlreadyDownloaded.txt
+GuestComicsURLs.txt
+/comics/
+/filelists/
+/panels/
+/test/
