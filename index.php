@@ -29,7 +29,11 @@ $panelsDir = "panels/";
 // Get permutation information
 $comicsfiles = removeDots(scandir("panels/topleft"));
 $numComics = sizeof($comicsfiles);
-$numPerms = number_format(pow($numComics, 6));
+$numPerms = number_format(
+        pow($numComics, 6) +
+        pow($numComics, 3) +
+        pow($numComics, 2)
+    );
 
 $lockClasses = array();
 $imgFileNames = array();
