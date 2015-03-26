@@ -25,4 +25,4 @@ sudo apt-get install python3-pil
 
 License
 -------
-This code is free software licensed under the GPL 2. See the file gpl-2.0.txt for details.
+This code is free software licensed under the GPL 2. See the [LICENSE.md](LICENSE.md) file for details.
