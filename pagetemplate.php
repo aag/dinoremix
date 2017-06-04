@@ -38,11 +38,7 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 
 	<link rel="stylesheet" title="Default Style" href="reset.css" type="text/css" />
 	<link rel="stylesheet" title="Default Style" href="dino.css" type="text/css" />
-<?php if ($jqueryVer == "1.3.2") { ?>
-	<script type="text/javascript" src="jquerytest/jquery-1.3.2.js"></script>
-<?php } else { ?>
 	<script type="text/javascript" src="jquery.min.js"></script>
-<?php } ?>
 	<script type="text/javascript" src="dino.js"></script>
 </head>
 <body>
