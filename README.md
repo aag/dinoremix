@@ -23,6 +23,12 @@ Or, for Python 3:
 sudo apt-get install python3-pil
 ```
 
+The BeautifulSoup module is also required. It can be installed with pip:
+
+```sh
+sudo pip install beautifulsoup
+```
+
 License
 -------
 This code is free software licensed under the GPL 2. See the [LICENSE.md](LICENSE.md) file for details.
