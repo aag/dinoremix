@@ -28,7 +28,7 @@ if (!isset($_REQUEST["pos"])) {
 include("utils.php");
 
 $panelsDir = "panels/";
-$posList = split("-", $_REQUEST["pos"]);
+$posList = explode("-", $_REQUEST["pos"]);
 $imgDescList = array();
 
 foreach ($posList as $pos) {
