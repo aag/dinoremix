@@ -110,8 +110,8 @@ def cutAllImagesInDir(indir, outdir):
 
 def cutAllImages():
 	scriptDir = sys.path[0]
-	comicsDir = os.path.join(scriptDir, "comics/")
-	panelsDir = os.path.join(scriptDir, "panels/")
+	comicsDir = os.path.join(scriptDir, "../comics/")
+	panelsDir = os.path.join(scriptDir, "../public/panels/")
 	processedImages = cutAllImagesInDir(comicsDir, panelsDir)
 
 	print processedImages, 'images processed\n'

@@ -27,9 +27,9 @@ import os
 import sys
 
 scriptDir = sys.path[0]
-guestComicsPath = os.path.join(scriptDir, "GuestComicsURLs.txt")
-visitedPagesPath = os.path.join(scriptDir, "AlreadyDownloaded.txt")
-downloadDirPath = os.path.join(scriptDir, "comics/")
+guestComicsPath = os.path.join(scriptDir, "../GuestComicsURLs.txt")
+visitedPagesPath = os.path.join(scriptDir, "../AlreadyDownloaded.txt")
+downloadDirPath = os.path.join(scriptDir, "../comics/")
 
 def getImageOnArchivePage(url, downloadDir):
 	"""Accepts the url of a Dinosaur Comics archive page and saves the contained comic image to disk."""

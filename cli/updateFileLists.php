@@ -22,7 +22,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once("utils.php");
+require_once("../utils.php");
 
 function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {
     $allfiles = removeDots(scandir($panelsDir . $pos));
@@ -34,8 +34,8 @@ function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {
 }
 
 $scriptDir = dirname(__FILE__);
-$panelsDir = $scriptDir . "/public/panels/";
-$outputDir = $scriptDir . "/filelists/";
+$panelsDir = $scriptDir . "/../public/panels/";
+$outputDir = $scriptDir . "/../filelists/";
 
 print("Rewriting files in $outputDir\n");
 storeImagePathsToDisk($panelsDir, $outputDir, "topleft");
