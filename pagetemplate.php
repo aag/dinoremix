@@ -36,10 +36,10 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 
     <title>Dinosaur Remix</title>
 
-	<link rel="stylesheet" title="Default Style" href="reset.css" type="text/css" />
-	<link rel="stylesheet" title="Default Style" href="dino.css" type="text/css" />
-	<script type="text/javascript" src="jquery.min.js"></script>
-	<script type="text/javascript" src="dino.js"></script>
+	<link rel="stylesheet" title="Default Style" href="assets/reset.css" type="text/css" />
+	<link rel="stylesheet" title="Default Style" href="assets/dino.css" type="text/css" />
+	<script type="text/javascript" src="assets/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/dino.js"></script>
 </head>
 <body>
 <div id="content">
