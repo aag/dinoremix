@@ -3,7 +3,7 @@
  * This script will put together panels from a bunch
  * of Dinosaur Comics and make a new one!
  *
- * Copyright 2008, 2009 Adam Goforth
+ * Copyright 2008-2017 Adam Goforth
  * Started on: 2008.04.18
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$IN_DINOREMIX = true;
-
-require_once("utils.php");
+require_once("../utils.php");
 
 $panelsDir = "panels/";
 
@@ -83,6 +81,5 @@ if ($altText != "") {
 	$permaLink = $permaLink . "&alt=" . $linkAltText;
 }
 
-include("pagetemplate.php");
-?>
+include("../pagetemplate.php");
 

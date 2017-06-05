@@ -3,5 +3,7 @@ AlreadyDownloaded.txt
 GuestComicsURLs.txt
 /comics/
 /filelists/
-/panels/
+/public/panels/
 /test/
+/vendor/
+

@@ -19,11 +19,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Must be included in the main page
-if (!$IN_DINOREMIX){
-	exit();
-}
-
 // Can't put this outside of the php tags because of the <? at
 // the beginning.
 echo('<?xml version="1.0" encoding="iso-8859-1"?>');

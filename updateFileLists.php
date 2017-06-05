@@ -34,7 +34,7 @@ function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {
 }
 
 $scriptDir = dirname(__FILE__);
-$panelsDir = $scriptDir . "/panels/";
+$panelsDir = $scriptDir . "/public/panels/";
 $outputDir = $scriptDir . "/filelists/";
 
 print("Rewriting files in $outputDir\n");
@@ -45,4 +45,3 @@ storeImagePathsToDisk($panelsDir, $outputDir, "bottomleft");
 storeImagePathsToDisk($panelsDir, $outputDir, "bottommiddle");
 storeImagePathsToDisk($panelsDir, $outputDir, "bottomright");
 
-?>

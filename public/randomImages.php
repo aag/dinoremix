@@ -25,7 +25,7 @@ if (!isset($_REQUEST["pos"])) {
 	die;
 }
 
-include("utils.php");
+include("../utils.php");
 
 $panelsDir = "panels/";
 $posList = explode("-", $_REQUEST["pos"]);
@@ -40,4 +40,4 @@ foreach ($posList as $pos) {
 	}
 }
 print json_encode($imgDescList);
-?>
+

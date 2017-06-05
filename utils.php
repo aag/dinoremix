@@ -31,7 +31,7 @@ function removeDots($filelist){
 function getRandomImageForPos($panelsDir, $pos) {
 	$fullPosName = posAbbrToFull($pos);
 	$filename = "";
-	$fileListDir = "filelists/";
+	$fileListDir = "../filelists/";
 
 	if ($fullPosName != "") {
 		$serializedPaths = file_get_contents($fileListDir . $fullPosName . "Paths.txt");
@@ -75,4 +75,4 @@ function posAbbrToFull($abbr) {
 
 	return $fullName;
 }
-?>
+
