@@ -58,6 +58,7 @@ foreach ($posAbbrs as $key => $pos) {
 }
 
 // Get the alt text for the panels
+$outAltText = "";
 if (isset($_GET['alt'])) {
 	$altText = stripslashes($_GET['alt']);
 	$linkAltText = rawurlencode($altText);
