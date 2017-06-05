@@ -70,7 +70,7 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 	<div>
 		<br />
 		<div id="permaLinkHolder">
-			<a id="permaLink" style="text-decoration: none" href="<?=$permaLink ?>"><img src="link.png" alt="Link" /> <span style="text-decoration: underline">Permalink to this remix</span></a>
+			<a id="permaLink" style="text-decoration: none" href="<?=$permaLink ?>"><img src="images/link.png" alt="Link" /> <span style="text-decoration: underline">Permalink to this remix</span></a>
 		</div>
 		<br />
 		<br />

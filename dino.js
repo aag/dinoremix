@@ -6,7 +6,7 @@ $(document).ready(function() {
 	// All of the lock images default to the "open" image, so
 	// set it to the closed image if the user has passed in
 	// specific comics in the URL
-	$(".lockedLock > img").attr("src","lock.png");
+	$(".lockedLock > img").attr("src","images/lock.png");
 
 	$(".lockSpan").click(doLockUnlock);
 	$("#reloadLink").click(doReloadClick);
@@ -27,10 +27,10 @@ function doLockUnlock() {
 	var clickedSpan = this;
 	var pos = clickedSpan.id.substr(0,2);
     if (hasClass(clickedSpan.id, "lockedLock")) {
-        clickedSpan.firstChild.src = "lock_open.png";
+        clickedSpan.firstChild.src = "images/lock_open.png";
 		unlockPanel(pos);
 	} else {
-        clickedSpan.firstChild.src = "lock.png";
+        clickedSpan.firstChild.src = "images/lock.png";
 		lockPanel(pos);
 		var comicNum = getComicNumForLock(clickedSpan.id);
     }
