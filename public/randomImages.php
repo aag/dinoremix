@@ -37,14 +37,13 @@ if (!isset($postData["pos"])) {
 	die;
 }
 
-$panelsDir = "panels/";
 $posList = explode("-", $postData["pos"]);
 $imgDescList = array();
 
 foreach ($posList as $pos) {
 	$posdir = posAbbrToFull($pos);
 	if ($posdir != "") {
-		$imgFileName = getRandomImageForPos($panelsDir, $pos);
+		$imgFileName = getRandomImageForPos($pos);
 		$imgDesc = array("pos" => $pos, "file" => $imgFileName);
 		$imgDescList[] = $imgDesc;
 	}

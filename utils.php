@@ -22,7 +22,7 @@ function removeDots($filelist){
     return array_slice($filelist, 2);
 }
 
-function getRandomImageForPos($panelsDir, $pos) {
+function getRandomImageForPos($pos) {
 	$fullPosName = posAbbrToFull($pos);
 	$filename = "";
 

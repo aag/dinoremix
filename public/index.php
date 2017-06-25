@@ -32,8 +32,6 @@ use GuzzleHttp\Psr7\ServerRequest;
 $request = ServerRequest::fromGlobals();
 $queryParams = $request->getQueryParams();
 
-$panelsDir = "panels/";
-
 // Get permutation information
 $comicsfiles = removeDots(scandir("panels/topleft"));
 $numComics = sizeof($comicsfiles);
@@ -59,7 +57,7 @@ foreach ($posAbbrs as $key => $pos) {
 		$posNums[$pos] = $queryParams[$pos];
 	} else {
 		// Panel is unlocked
-		$imgFileNames[$pos] = getRandomImageForPos($panelsDir, $pos);
+		$imgFileNames[$pos] = getRandomImageForPos($pos);
 		$lockClasses[$pos] = "unlocked";
 		$posNums[$pos] = getComicNumFromImageURL($imgFileNames[$pos]);
 	}
