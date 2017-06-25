@@ -54,9 +54,9 @@ echo('<?xml version="1.0" encoding="iso-8859-1"?>');
 	</noscript>
 	<br />
 	<?php
-	if (isset($_GET['numpanels']) && $_GET['numpanels'] == "2") {
+	if (isset($queryParams['numpanels']) && $queryParams['numpanels'] == "2") {
 		include("2panels.php");
-	} elseif (isset($_GET['numpanels']) && $_GET['numpanels'] == "6") {
+	} elseif (isset($queryParams['numpanels']) && $queryParams['numpanels'] == "6") {
 		include("6panels.php");
 	} else {
 		include("3panels.php");

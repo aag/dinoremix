@@ -1,7 +1,7 @@
 <?php
 /*
  * Returns a list of URLs to random panel images
- * The "pos" GET or POST variable specifies which positions
+ * The "pos" POST variable specifies which positions
  * the images should be in.  It is a list of two-letter
  * position abbreviations, separated by dashes, "-".
  *
@@ -21,14 +21,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */
 
-if (!isset($_REQUEST["pos"])) {
+require __DIR__ . '/../vendor/autoload.php';
+include("../utils.php");
+
+use GuzzleHttp\Psr7\ServerRequest;
+
+$request = ServerRequest::fromGlobals();
+$postData = $request->getParsedBody();
+
+if (!isset($postData["pos"])) {
 	die;
 }
 
-include("../utils.php");
-
 $panelsDir = "panels/";
-$posList = explode("-", $_REQUEST["pos"]);
+$posList = explode("-", $postData["pos"]);
 $imgDescList = array();
 
 foreach ($posList as $pos) {

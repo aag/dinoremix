@@ -1,0 +1,6 @@
+{
+    "require": {
+        "guzzlehttp/psr7": "^1.4",
+        "league/route": "^3.0"
+    }
+}

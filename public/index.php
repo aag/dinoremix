@@ -20,7 +20,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require __DIR__ . '/../vendor/autoload.php';
 require_once("../utils.php");
+
+use GuzzleHttp\Psr7\ServerRequest;
+
+$request = ServerRequest::fromGlobals();
+$queryParams = $request->getQueryParams();
 
 $panelsDir = "panels/";
 
@@ -42,11 +48,11 @@ $altText = "";
 // Check each panel to see if it's locked
 foreach ($posAbbrs as $key => $pos) {
 	$fullName = posAbbrToFull($pos);
-	if (isset($_GET[$pos])) {
+	if (isset($queryParams[$pos])) {
 		// Panel is locked
-		$imgFileNames[$pos] = "comic2-" . $_GET[$pos] . "-" . $fullName . ".png";
+		$imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
 		$lockClasses[$pos] = "locked";
-		$posNums[$pos] = $_GET[$pos];
+		$posNums[$pos] = $queryParams[$pos];
 	} else {
 		// Panel is unlocked
 		$imgFileNames[$pos] = getRandomImageForPos($panelsDir, $pos);
@@ -57,29 +63,14 @@ foreach ($posAbbrs as $key => $pos) {
 
 // Get the alt text for the panels
 $outAltText = "";
-if (isset($_GET['alt'])) {
-	$altText = stripslashes($_GET['alt']);
+if (isset($queryParams['alt'])) {
+	$altText = stripslashes($queryParams['alt']);
 	$linkAltText = rawurlencode($altText);
 	$outAltText = htmlspecialchars($altText);
 }
 
-// Build the permalink
-$currentURL = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-$permaLink = substr($currentURL, 0, strrpos($currentURL, "/") + 1) . "?";
-
-foreach ($posAbbrs as $key => $pos) {
-	$permaLink = $permaLink . "&" . $pos . "=" . $posNums[$pos];
-}
-
-if (isset($_GET['numpanels']) && is_numeric($_GET['numpanels'])) {
-	$permaLink = $permaLink . "&numpanels=" . $_GET['numpanels'];
-}
-
-$permaLink = htmlspecialchars($permaLink);
-
-if ($altText != "") {
-	$permaLink = $permaLink . "&alt=" . $linkAltText;
-}
+// Just take the current URL as the permalink, even if it's invalid
+$permalink = (string) $request->getUriFromGlobals();
 
 include("../pagetemplate.php");
 
