@@ -24,6 +24,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 define('ROOT_DIR', dirname(__DIR__));
 define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
+define('TEMPLATES_DIR', ROOT_DIR . '/templates');
 
 require_once(ROOT_DIR . '/utils.php');
 
@@ -74,5 +75,5 @@ if (isset($queryParams['alt'])) {
 // Just take the current URL as the permalink, even if it's invalid
 $permalink = (string) $request->getUriFromGlobals();
 
-include("../pagetemplate.php");
+include(TEMPLATES_DIR . "/pagetemplate.php");
 
