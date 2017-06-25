@@ -1,4 +1,5 @@
-
+This file contains an ASCII diagram of the layout of the panels in a Dinosaur
+Comic. All of the sizes are in pixels.
 
 --------------------------------------------------    -----
 |<-- 244 ----->|<-- 129 -->|<------- 362 -------->|    ^
