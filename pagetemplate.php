@@ -2,7 +2,7 @@
 /*
  * The template for the Dinosaur Remix HTML page.
  *
- * Copyright 2008, 2009 Adam Goforth
+ * Copyright 2008-2017 Adam Goforth
  * Started on: 2008.04.18
  *
  * This program is free software: you can redistribute it and/or modify

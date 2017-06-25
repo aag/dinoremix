@@ -5,7 +5,7 @@
  * the images should be in.  It is a list of two-letter
  * position abbreviations, separated by dashes, "-".
  *
- * Copyright 2008, 2009 Adam Goforth
+ * Copyright 2008-2017 Adam Goforth
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
