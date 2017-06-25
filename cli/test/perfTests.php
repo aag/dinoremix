@@ -19,7 +19,7 @@
  */ 
 
 define('ROOT_DIR', dirname(dirname(__DIR__)));
-define('FILELISTS_DIR', ROOT_DIR . '/filelists');
+define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 define('PATHS_FILE', __DIR__ . '/serializedTLPaths.txt');
 
 require_once(ROOT_DIR . '/utils.php');

@@ -23,7 +23,7 @@
  */
 
 define('ROOT_DIR', dirname(__DIR__));
-define('FILELISTS_DIR', ROOT_DIR . '/filelists');
+define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 define('PANELS_DIR', ROOT_DIR . '/public/panels');
 
 function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {

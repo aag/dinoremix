@@ -1,8 +1,5 @@
 *.pyc
-AlreadyDownloaded.txt
-GuestComicsURLs.txt
-/comics/
-/filelists/
+/data/
 /public/panels/
 /test/
 /vendor/
