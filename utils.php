@@ -50,7 +50,7 @@ function getComicNumFromImageURL($url) {
 }
 
 function getRandomString($strings){
-	$stringIdx = mt_rand(0, sizeof($strings) - 1);
+	$stringIdx = random_int(0, sizeof($strings) - 1);
 	return $strings[$stringIdx];
 }
 
