@@ -5,7 +5,7 @@
  * files, instead of doing a directory listing.  This gives a 3-4x
  * speedup.
  *
- * Copyright 2008, 2009 Adam Goforth
+ * Copyright 2008-2017 Adam Goforth
  * Started on: 2008.07.31
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,26 +22,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once("../utils.php");
+require __DIR__ . '/../vendor/autoload.php';
+
+define('ROOT_DIR', dirname(__DIR__));
+define('FILELISTS_DIR', ROOT_DIR . '/filelists');
+define('PANELS_DIR', ROOT_DIR . '/public/panels');
+
+require_once(ROOT_DIR . "/utils.php");
 
 function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {
-    $allfiles = removeDots(scandir($panelsDir . $pos));
+    $allfiles = removeDots(scandir($panelsDir . "/" . $pos));
 
     $serializedPaths = serialize($allfiles);
-    $fp = fopen($outputDir . $pos . "Paths.txt", "w");
+    $fp = fopen($outputDir . "/" . $pos . "Paths.txt", "w");
     fwrite($fp, $serializedPaths);
     fclose($fp);
 }
 
-$scriptDir = dirname(__FILE__);
-$panelsDir = $scriptDir . "/../public/panels/";
-$outputDir = $scriptDir . "/../filelists/";
-
-print("Rewriting files in $outputDir\n");
-storeImagePathsToDisk($panelsDir, $outputDir, "topleft");
-storeImagePathsToDisk($panelsDir, $outputDir, "topmiddle");
-storeImagePathsToDisk($panelsDir, $outputDir, "topright");
-storeImagePathsToDisk($panelsDir, $outputDir, "bottomleft");
-storeImagePathsToDisk($panelsDir, $outputDir, "bottommiddle");
-storeImagePathsToDisk($panelsDir, $outputDir, "bottomright");
+print("Rewriting files in " . FILELISTS_DIR . "\n");
+storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topleft");
+storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topmiddle");
+storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topright");
+storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottomleft");
+storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottommiddle");
+storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottomright");
 

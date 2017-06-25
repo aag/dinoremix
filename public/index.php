@@ -21,7 +21,11 @@
  */
 
 require __DIR__ . '/../vendor/autoload.php';
-require_once("../utils.php");
+
+define('ROOT_DIR', dirname(__DIR__));
+define('FILELISTS_DIR', ROOT_DIR . '/filelists');
+
+require_once(ROOT_DIR . '/utils.php');
 
 use GuzzleHttp\Psr7\ServerRequest;
 
