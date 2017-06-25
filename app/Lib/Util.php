@@ -20,22 +20,27 @@
 
 namespace App\Lib;
 
-class Util {
-    private static function getRandomString($strings) {
+class Util
+{
+    private static function getRandomString($strings)
+    {
         $stringIdx = random_int(0, sizeof($strings) - 1);
         return $strings[$stringIdx];
     }
 
-    private static function removeDots($filelist){
+    private static function removeDots($filelist)
+    {
         return array_slice($filelist, 2);
     }
 
-    public static function countComics() {
+    public static function countComics()
+    {
         $comicsfiles = self::removeDots(scandir(ROOT_DIR . "/public/panels/topleft"));
         return sizeof($comicsfiles);
     }
 
-    public static function getRandomImageForPos($pos) {
+    public static function getRandomImageForPos($pos)
+    {
         $fullPosName = self::posAbbrToFull($pos);
         $filename = "";
 
@@ -48,22 +53,23 @@ class Util {
         return $filename;
     }
 
-    public static function posAbbrToFull($abbr) {
+    public static function posAbbrToFull($abbr)
+    {
         $fullName = "";
 
         $firstChar = substr($abbr, 0, 1);
         if ($firstChar == "t") {
             $fullName = "top";
-        } else if ($firstChar == "b") {
+        } elseif ($firstChar == "b") {
             $fullName = "bottom";
         }
 
         $secondChar = substr($abbr, 1, 1);
         if ($secondChar == "l") {
             $fullName .= "left";
-        } else if ($secondChar == "m") {
+        } elseif ($secondChar == "m") {
             $fullName .= "middle";
-        } else if ($secondChar == "r") {
+        } elseif ($secondChar == "r") {
             $fullName .= "right";
         }
 

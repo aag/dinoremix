@@ -35,10 +35,10 @@ $queryParams = $request->getQueryParams();
 // Get permutation information
 $numComics = Util::countComics();
 $numPerms = number_format(
-        pow($numComics, 6) +
+    pow($numComics, 6) +
         pow($numComics, 3) +
         pow($numComics, 2)
-    );
+);
 
 $lockClasses = array();
 $imgFileNames = array();
@@ -47,28 +47,27 @@ $altText = "";
 
 // Check each panel to see if it's locked
 foreach ($posAbbrs as $key => $pos) {
-	$fullName = Util::posAbbrToFull($pos);
-	if (isset($queryParams[$pos])) {
-		// Panel is locked
-		$imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
-		$lockClasses[$pos] = "locked";
-	} else {
-		// Panel is unlocked
-		$imgFileNames[$pos] = Util::getRandomImageForPos($pos);
-		$lockClasses[$pos] = "unlocked";
-	}
+    $fullName = Util::posAbbrToFull($pos);
+    if (isset($queryParams[$pos])) {
+        // Panel is locked
+        $imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
+        $lockClasses[$pos] = "locked";
+    } else {
+        // Panel is unlocked
+        $imgFileNames[$pos] = Util::getRandomImageForPos($pos);
+        $lockClasses[$pos] = "unlocked";
+    }
 }
 
 // Get the alt text for the panels
 $outAltText = "";
 if (isset($queryParams['alt'])) {
-	$altText = stripslashes($queryParams['alt']);
-	$linkAltText = rawurlencode($altText);
-	$outAltText = htmlspecialchars($altText);
+    $altText = stripslashes($queryParams['alt']);
+    $linkAltText = rawurlencode($altText);
+    $outAltText = htmlspecialchars($altText);
 }
 
 // Just take the current URL as the permalink, even if it's invalid
 $permaLink = (string) $request->getUriFromGlobals();
 
 include(TEMPLATES_DIR . "/pagetemplate.php");
-

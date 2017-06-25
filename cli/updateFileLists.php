@@ -26,7 +26,8 @@ define('ROOT_DIR', dirname(__DIR__));
 define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 define('PANELS_DIR', ROOT_DIR . '/public/panels');
 
-function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {
+function storeImagePathsToDisk($panelsDir, $outputDir, $pos)
+{
     $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);
 
     $serializedPaths = serialize($allfiles);

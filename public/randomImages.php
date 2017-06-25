@@ -33,19 +33,19 @@ $request = ServerRequest::fromGlobals();
 $postData = $request->getParsedBody();
 
 if (!isset($postData["pos"])) {
-	die;
+    die;
 }
 
 $posList = explode("-", $postData["pos"]);
 $imgDescList = array();
 
 foreach ($posList as $pos) {
-	$posdir = Util::posAbbrToFull($pos);
-	if ($posdir != "") {
-		$imgFileName = Util::getRandomImageForPos($pos);
-		$imgDesc = array("pos" => $pos, "file" => $imgFileName);
-		$imgDescList[] = $imgDesc;
-	}
+    $posdir = Util::posAbbrToFull($pos);
+    if ($posdir != "") {
+        $imgFileName = Util::getRandomImageForPos($pos);
+        $imgDesc = array("pos" => $pos, "file" => $imgFileName);
+        $imgDescList[] = $imgDesc;
+    }
 }
 print json_encode($imgDescList);
 
