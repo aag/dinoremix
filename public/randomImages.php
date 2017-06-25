@@ -21,13 +21,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */
 
-require __DIR__ . '/../vendor/autoload.php';
-
 define('ROOT_DIR', dirname(__DIR__));
 define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 
-require_once(ROOT_DIR . "/utils.php");
+require ROOT_DIR . '/vendor/autoload.php';
 
+use App\Lib\Util;
 use GuzzleHttp\Psr7\ServerRequest;
 
 $request = ServerRequest::fromGlobals();
@@ -41,9 +40,9 @@ $posList = explode("-", $postData["pos"]);
 $imgDescList = array();
 
 foreach ($posList as $pos) {
-	$posdir = posAbbrToFull($pos);
+	$posdir = Util::posAbbrToFull($pos);
 	if ($posdir != "") {
-		$imgFileName = getRandomImageForPos($pos);
+		$imgFileName = Util::getRandomImageForPos($pos);
 		$imgDesc = array("pos" => $pos, "file" => $imgFileName);
 		$imgDescList[] = $imgDesc;
 	}

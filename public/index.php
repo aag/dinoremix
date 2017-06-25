@@ -20,21 +20,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
-
 define('ROOT_DIR', dirname(__DIR__));
 define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 define('TEMPLATES_DIR', ROOT_DIR . '/templates');
 
-require_once(ROOT_DIR . '/utils.php');
+require ROOT_DIR . '/vendor/autoload.php';
 
+use App\Lib\Util;
 use GuzzleHttp\Psr7\ServerRequest;
 
 $request = ServerRequest::fromGlobals();
 $queryParams = $request->getQueryParams();
 
 // Get permutation information
-$comicsfiles = removeDots(scandir("panels/topleft"));
+$comicsfiles = Util::removeDots(scandir("panels/topleft"));
 $numComics = sizeof($comicsfiles);
 $numPerms = number_format(
         pow($numComics, 6) +
@@ -50,7 +49,7 @@ $altText = "";
 
 // Check each panel to see if it's locked
 foreach ($posAbbrs as $key => $pos) {
-	$fullName = posAbbrToFull($pos);
+	$fullName = Util::posAbbrToFull($pos);
 	if (isset($queryParams[$pos])) {
 		// Panel is locked
 		$imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
@@ -58,9 +57,9 @@ foreach ($posAbbrs as $key => $pos) {
 		$posNums[$pos] = $queryParams[$pos];
 	} else {
 		// Panel is unlocked
-		$imgFileNames[$pos] = getRandomImageForPos($pos);
+		$imgFileNames[$pos] = Util::getRandomImageForPos($pos);
 		$lockClasses[$pos] = "unlocked";
-		$posNums[$pos] = getComicNumFromImageURL($imgFileNames[$pos]);
+		$posNums[$pos] = Util::getComicNumFromImageURL($imgFileNames[$pos]);
 	}
 }
 
@@ -73,7 +72,7 @@ if (isset($queryParams['alt'])) {
 }
 
 // Just take the current URL as the permalink, even if it's invalid
-$permalink = (string) $request->getUriFromGlobals();
+$permaLink = (string) $request->getUriFromGlobals();
 
 include(TEMPLATES_DIR . "/pagetemplate.php");
 

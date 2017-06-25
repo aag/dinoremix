@@ -22,13 +22,15 @@ define('ROOT_DIR', dirname(dirname(__DIR__)));
 define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 define('PATHS_FILE', __DIR__ . '/serializedTLPaths.txt');
 
-require_once(ROOT_DIR . '/utils.php');
+require ROOT_DIR . '/vendor/autoload.php';
+
+use App\Lib\Util;
 
 $numRuns = 1100;
 
 $starttime = microtime_float();
 for ($i = 0; $i < $numRuns; $i++) {
-	$image = getRandomImageForPos("tl");
+	$image = Util::getRandomImageForPos("tl");
 }
 $endtime = microtime_float();
 print $numRuns . " x getRandomImageForPos took " . ($endtime - $starttime) . " sec.\n";
@@ -45,7 +47,7 @@ print $numRuns . " x getRandomImageFromStore took " . ($endtime - $starttime) . 
 unlink(PATHS_FILE);
 
 function storeTLImagePathsToDisk() {
-	$allfiles = removeDots(scandir(ROOT_DIR . "/public/panels/topleft/"));
+	$allfiles = Util::removeDots(scandir(ROOT_DIR . "/public/panels/topleft/"));
 	$serializedPaths = serialize($allfiles);
 	$fp = fopen(PATHS_FILE, "w");
 	fwrite($fp, $serializedPaths);
@@ -55,7 +57,7 @@ function storeTLImagePathsToDisk() {
 function getRandomImageFromStore() {
 	$serializedPaths = file_get_contents(PATHS_FILE);
 	$allPaths = unserialize($serializedPaths);
-	return getRandomString($allPaths);
+	return Util::getRandomString($allPaths);
 }
 
 function microtime_float()
