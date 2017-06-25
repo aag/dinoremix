@@ -19,13 +19,7 @@
  */
 
 function removeDots($filelist){
-	for ($i = 0; $i < sizeof($filelist); $i++){
-		if ($filelist[$i] == "." || $filelist[$i] == ".."){
-			unset($filelist[$i]);
-		}
-	}
-	$filelist = array_values($filelist);
-	return $filelist;
+    return array_slice($filelist, 2);
 }
 
 function getRandomImageForPos($panelsDir, $pos) {
