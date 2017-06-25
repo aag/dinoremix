@@ -22,16 +22,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
-
 define('ROOT_DIR', dirname(__DIR__));
 define('FILELISTS_DIR', ROOT_DIR . '/filelists');
 define('PANELS_DIR', ROOT_DIR . '/public/panels');
 
-require_once(ROOT_DIR . "/utils.php");
-
 function storeImagePathsToDisk($panelsDir, $outputDir, $pos) {
-    $allfiles = removeDots(scandir($panelsDir . "/" . $pos));
+    $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);
 
     $serializedPaths = serialize($allfiles);
     $fp = fopen($outputDir . "/" . $pos . "Paths.txt", "w");
