@@ -18,7 +18,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */ 
 
-include("utils.php");
+define('ROOT_DIR', __DIR__);
+define('FILELISTS_DIR', ROOT_DIR . '/filelists');
+
+require_once(ROOT_DIR . '/utils.php');
 
 $numRuns = 1100;
 
@@ -39,7 +42,7 @@ $endtime = microtime_float();
 print $numRuns . " x getRandomImageFromStore took " . ($endtime - $starttime) . " sec.\n";
 
 function storeTLImagePathsToDisk() {
-	$allfiles = removeDots(scandir("panels/topleft/"));
+	$allfiles = removeDots(scandir(ROOT_DIR . "/public/panels/topleft/"));
 	$serializedPaths = serialize($allfiles);
 	$fp = fopen("serializedTLPaths.txt", "w");
 	fwrite($fp, $serializedPaths);
@@ -59,4 +62,3 @@ function microtime_float()
 	//return $sec . substr($usec, 1);
 }
 
-?>
