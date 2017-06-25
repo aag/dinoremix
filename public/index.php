@@ -33,8 +33,7 @@ $request = ServerRequest::fromGlobals();
 $queryParams = $request->getQueryParams();
 
 // Get permutation information
-$comicsfiles = Util::removeDots(scandir("panels/topleft"));
-$numComics = sizeof($comicsfiles);
+$numComics = Util::countComics();
 $numPerms = number_format(
         pow($numComics, 6) +
         pow($numComics, 3) +
@@ -44,7 +43,6 @@ $numPerms = number_format(
 $lockClasses = array();
 $imgFileNames = array();
 $posAbbrs = array(0 => "tl", "tm", "tr", "bl", "bm", "br");
-$posNums = array();
 $altText = "";
 
 // Check each panel to see if it's locked
@@ -54,12 +52,10 @@ foreach ($posAbbrs as $key => $pos) {
 		// Panel is locked
 		$imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
 		$lockClasses[$pos] = "locked";
-		$posNums[$pos] = $queryParams[$pos];
 	} else {
 		// Panel is unlocked
 		$imgFileNames[$pos] = Util::getRandomImageForPos($pos);
 		$lockClasses[$pos] = "unlocked";
-		$posNums[$pos] = Util::getComicNumFromImageURL($imgFileNames[$pos]);
 	}
 }
 

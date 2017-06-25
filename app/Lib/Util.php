@@ -21,8 +21,18 @@
 namespace App\Lib;
 
 class Util {
-    public static function removeDots($filelist){
+    private static function getRandomString($strings) {
+        $stringIdx = random_int(0, sizeof($strings) - 1);
+        return $strings[$stringIdx];
+    }
+
+    private static function removeDots($filelist){
         return array_slice($filelist, 2);
+    }
+
+    public static function countComics() {
+        $comicsfiles = self::removeDots(scandir(ROOT_DIR . "/public/panels/topleft"));
+        return sizeof($comicsfiles);
     }
 
     public static function getRandomImageForPos($pos) {
@@ -36,18 +46,6 @@ class Util {
         }
 
         return $filename;
-    }
-
-    public static function getComicNumFromImageURL($url) {
-        // Match the unique part of the filename: what's between
-        // "comic2-" and "-{position}"
-        preg_match_all("/comic2-(.*)-\w+.*\.(png|jpg|gif)/", $url, $out, PREG_PATTERN_ORDER);
-        return $out[1][0];
-    }
-
-    public static function getRandomString($strings){
-        $stringIdx = random_int(0, sizeof($strings) - 1);
-        return $strings[$stringIdx];
     }
 
     public static function posAbbrToFull($abbr) {
