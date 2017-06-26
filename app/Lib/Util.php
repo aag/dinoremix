@@ -75,4 +75,15 @@ class Util
 
         return $fullName;
     }
+
+    public static function renderTemplate(string $templateName, array $templateVars)
+    {
+        extract($templateVars);
+        ob_start();
+        include(TEMPLATES_DIR . "/$templateName.php");
+        $renderedContent = ob_get_contents(); 
+        ob_end_clean();
+
+        return $renderedContent;
+    }
 }

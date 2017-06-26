@@ -26,48 +26,25 @@ define('TEMPLATES_DIR', ROOT_DIR . '/templates');
 
 require ROOT_DIR . '/vendor/autoload.php';
 
+use App\Controllers;
 use App\Lib\Util;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
+use League\Container\Container;
+use League\Route\RouteCollection;
 
-$request = ServerRequest::fromGlobals();
-$queryParams = $request->getQueryParams();
+$container = new Container();
 
-// Get permutation information
-$numComics = Util::countComics();
-$numPerms = number_format(
-    pow($numComics, 6) +
-        pow($numComics, 3) +
-        pow($numComics, 2)
-);
+$container->share('response', Response::class);
+$container->share('request', function () {
+    return ServerRequest::fromGlobals();
+});
 
-$lockClasses = array();
-$imgFileNames = array();
-$posAbbrs = array(0 => "tl", "tm", "tr", "bl", "bm", "br");
-$altText = "";
+$route = new RouteCollection($container);
 
-// Check each panel to see if it's locked
-foreach ($posAbbrs as $key => $pos) {
-    $fullName = Util::posAbbrToFull($pos);
-    if (isset($queryParams[$pos])) {
-        // Panel is locked
-        $imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
-        $lockClasses[$pos] = "locked";
-    } else {
-        // Panel is unlocked
-        $imgFileNames[$pos] = Util::getRandomImageForPos($pos);
-        $lockClasses[$pos] = "unlocked";
-    }
-}
+$route->map('GET', '/', [new Controllers\Home(), 'index']);
 
-// Get the alt text for the panels
-$outAltText = "";
-if (isset($queryParams['alt'])) {
-    $altText = stripslashes($queryParams['alt']);
-    $linkAltText = rawurlencode($altText);
-    $outAltText = htmlspecialchars($altText);
-}
+$response = $route->dispatch($container->get('request'), $container->get('response'));
 
-// Just take the current URL as the permalink, even if it's invalid
-$permaLink = (string) $request->getUriFromGlobals();
+echo $response->getBody();
 
-include(TEMPLATES_DIR . "/pagetemplate.php");
