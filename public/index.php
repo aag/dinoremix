@@ -28,8 +28,9 @@ require ROOT_DIR . '/vendor/autoload.php';
 
 use App\Controllers;
 use App\Lib\Util;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\ServerRequest;
+use Zend\Diactoros\Response;
+use Zend\Diactoros\Response\SapiEmitter;
+use Zend\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Route\RouteCollection;
 
@@ -37,14 +38,16 @@ $container = new Container();
 
 $container->share('response', Response::class);
 $container->share('request', function () {
-    return ServerRequest::fromGlobals();
+    return ServerRequestFactory::fromGlobals(
+        $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+    );
 });
+$container->share('emitter', SapiEmitter::class);
 
 $route = new RouteCollection($container);
 
 $route->map('GET', '/', [new Controllers\Home(), 'index']);
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));
-
-echo $response->getBody();
+$container->get('emitter')->emit($response);
 

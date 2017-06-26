@@ -63,7 +63,7 @@ class Home {
         }
 
         // Just take the current URL as the permalink, even if it's invalid
-        $permaLink = (string) $request->getUriFromGlobals();
+        $permaLink = (string) $request->getUri();
 
         $pageContent = Util::renderTemplate('pagetemplate', [
             'imgFileNames' => $imgFileNames,

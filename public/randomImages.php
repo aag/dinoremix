@@ -27,9 +27,11 @@ define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
 require ROOT_DIR . '/vendor/autoload.php';
 
 use App\Lib\Util;
-use GuzzleHttp\Psr7\ServerRequest;
+use Zend\Diactoros\ServerRequestFactory;
 
-$request = ServerRequest::fromGlobals();
+$request = ServerRequestFactory::fromGlobals(
+    $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+);
 $postData = $request->getParsedBody();
 
 if (!isset($postData["pos"])) {

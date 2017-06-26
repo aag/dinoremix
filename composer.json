@@ -1,7 +1,7 @@
 {
     "require": {
-        "guzzlehttp/psr7": "^1.4",
-        "league/route": "^3.0"
+        "league/route": "^3.0",
+        "zendframework/zend-diactoros": "^1.4"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0"
