@@ -29,9 +29,9 @@
     </noscript>
     <br />
     <?php
-    if (isset($queryParams['numpanels']) && $queryParams['numpanels'] == "2") {
+    if ($numPanels === 2) {
         include("2panels.php");
-    } elseif (isset($queryParams['numpanels']) && $queryParams['numpanels'] == "6") {
+    } elseif ($numPanels === 6) {
         include("6panels.php");
     } else {
         include("3panels.php");

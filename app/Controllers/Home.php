@@ -24,6 +24,9 @@ use Psr\Http\Message\ResponseInterface;
 
 class Home
 {
+    const DEFAULT_NUM_PANELS = 3;
+    const AVAIL_NUM_PANELS = [2, 3, 6];
+
     public function index(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParams = $request->getQueryParams();
@@ -66,10 +69,19 @@ class Home
         // Just take the current URL as the permalink, even if it's invalid
         $permaLink = (string) $request->getUri();
 
+        $numPanels = self::DEFAULT_NUM_PANELS;
+        if (isset($queryParams['numpanels'])) {
+            $queryNumPanels = intval($queryParams['numpanels'], 10);
+            if (in_array($queryNumPanels, self::AVAIL_NUM_PANELS)) {
+                $numPanels = $queryNumPanels;
+            }
+        }
+
         $pageContent = Util::renderTemplate('pagetemplate', [
             'imgFileNames' => $imgFileNames,
             'lockClasses' => $lockClasses,
             'numComics' => $numComics,
+            'numPanels' => $numPanels,
             'numPerms' => $numPerms,
             'outAltText' => $outAltText,
             'permaLink' => $permaLink
