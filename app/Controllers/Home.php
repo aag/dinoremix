@@ -67,7 +67,8 @@ class Home
         }
 
         // Just take the current URL as the permalink, even if it's invalid
-        $permaLink = (string) $request->getUri();
+        $currentUri = (string) $request->getUri();
+        $permaLink = $currentUri;
 
         $numPanels = self::DEFAULT_NUM_PANELS;
         if (isset($queryParams['numpanels'])) {
@@ -78,6 +79,7 @@ class Home
         }
 
         $pageContent = Util::renderTemplate('pagetemplate', [
+            'currentUri' => $currentUri,
             'imgFileNames' => $imgFileNames,
             'lockClasses' => $lockClasses,
             'numComics' => $numComics,
