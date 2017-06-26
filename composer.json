@@ -10,6 +10,6 @@
         "psr-4": {"App\\": "app/"}
     },
     "scripts": {
-        "check-style": "./vendor/bin/phpcs --standard=PSR1,PSR2 --ignore=vendor,templates,assets ."
+        "check-style": "./vendor/bin/phpcs --standard=PSR1,PSR2 --ignore=vendor,assets ."
     }
 }
