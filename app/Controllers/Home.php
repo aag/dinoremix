@@ -22,7 +22,8 @@ use App\Lib\Util;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class Home {
+class Home
+{
     public function index(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParams = $request->getQueryParams();

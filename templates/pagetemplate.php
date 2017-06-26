@@ -23,7 +23,10 @@
         </ol>
     <br />
     <noscript>
-        <div><span style="color: black; background-color: #ffffaf;">Psst!  This page is way more fun with JavaScript enabled.</span></div>
+        <div>
+            <span style="color: black; background-color: #ffffaf;">Psst! This
+                page is way more fun with JavaScript enabled.</span>
+        </div>
         <br />
     </noscript>
     <br />
@@ -39,19 +42,27 @@
     <div>
         <br />
         <div id="permaLinkHolder">
-            <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>"><img src="images/link.png" alt="Link" /> <span style="text-decoration: underline">Permalink to this remix</span></a>
+            <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>">
+                <img src="images/link.png" alt="Link" />
+                <span style="text-decoration: underline">Permalink to this remix</span>
+            </a>
         </div>
         <br />
         <br />
         <br />
         <br />
-        Currently remixing <?= $numComics ?> comics, making for <?= $numPerms ?> possible remixes.
+        Currently remixing <?= $numComics ?> comics, making for
+        <?= $numPerms ?> possible remixes.
         <br />
         <br />
         <br />
         <br />
         <br />
-        <p style="font-size: small; color: gray">The code for this page is available here: <a href="http://github.com/aag/dinoremix/" style="color: gray;">http://github.com/aag/dinoremix/</a></p>
+        <p style="font-size: small; color: gray">The code for this page is
+            available here:
+            <a href="http://github.com/aag/dinoremix/" style="color: gray;">
+                http://github.com/aag/dinoremix/</a>
+        </p>
     </div>
 </div>
 </body>

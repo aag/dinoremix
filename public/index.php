@@ -40,7 +40,11 @@ $container = new Container();
 $container->share('response', Response::class);
 $container->share('request', function () {
     return ServerRequestFactory::fromGlobals(
-        $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+        $_SERVER,
+        $_GET,
+        $_POST,
+        $_COOKIE,
+        $_FILES
     );
 });
 $container->share('emitter', SapiEmitter::class);
@@ -53,4 +57,3 @@ $route->map('GET', '/images/random', [new Controllers\Images(), 'random'])
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));
 $container->get('emitter')->emit($response);
-

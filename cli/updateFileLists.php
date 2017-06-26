@@ -43,4 +43,3 @@ storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topright");
 storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottomleft");
 storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottommiddle");
 storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottomright");
-
