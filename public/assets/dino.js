@@ -187,7 +187,7 @@ function doReloadClick(event) {
 		$("#reloadLink").unbind('click', doReloadClick);
 		$("#reloadLink").click(preventDefault);
 
-		$.post("randomImages.php", { pos: unlockedPanels }, setAllPanelURLs, "json");
+		$.post("/images/random", { pos: unlockedPanels }, setAllPanelURLs, "json");
 	}
 }
 

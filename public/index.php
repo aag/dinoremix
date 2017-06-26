@@ -33,6 +33,7 @@ use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Route\RouteCollection;
+use League\Route\Strategy\JsonStrategy;
 
 $container = new Container();
 
@@ -47,6 +48,8 @@ $container->share('emitter', SapiEmitter::class);
 $route = new RouteCollection($container);
 
 $route->map('GET', '/', [new Controllers\Home(), 'index']);
+$route->map('POST', '/images/random', [new Controllers\Images(), 'random'])
+    ->setStrategy(new JsonStrategy);
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));
 $container->get('emitter')->emit($response);
