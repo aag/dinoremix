@@ -7,8 +7,6 @@
 
     <link rel="stylesheet" title="Default Style" href="assets/reset.css" type="text/css" />
     <link rel="stylesheet" title="Default Style" href="assets/dino.css" type="text/css" />
-    <script type="text/javascript" src="assets/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/dino.js"></script>
 </head>
 <body>
 <div id="content">
@@ -65,5 +63,9 @@
         </p>
     </div>
 </div>
+
+<script defer type="text/javascript" src="assets/jquery.min.js"></script>
+<script defer type="text/javascript" src="assets/dino.js"></script>
+
 </body>
 </html>
