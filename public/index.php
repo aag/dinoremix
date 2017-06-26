@@ -48,7 +48,7 @@ $container->share('emitter', SapiEmitter::class);
 $route = new RouteCollection($container);
 
 $route->map('GET', '/', [new Controllers\Home(), 'index']);
-$route->map('POST', '/images/random', [new Controllers\Images(), 'random'])
+$route->map('GET', '/images/random', [new Controllers\Images(), 'random'])
     ->setStrategy(new JsonStrategy);
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));

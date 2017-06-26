@@ -26,12 +26,12 @@ use Psr\Http\Message\ResponseInterface;
 class Images {
     public function random(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $postData = $request->getParsedBody();
-        if (!isset($postData["pos"])) {
+        $queryParams = $request->getQueryParams();
+        if (!isset($queryParams["pos"])) {
             throw new BadRequestException();
         }
 
-        $posList = explode("-", $postData["pos"]);
+        $posList = explode("-", $queryParams["pos"]);
         $imgDescList = array();
 
         foreach ($posList as $pos) {

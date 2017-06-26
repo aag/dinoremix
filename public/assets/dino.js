@@ -187,7 +187,7 @@ function doReloadClick(event) {
 		$("#reloadLink").unbind('click', doReloadClick);
 		$("#reloadLink").click(preventDefault);
 
-		$.post("/images/random", { pos: unlockedPanels }, setAllPanelURLs, "json");
+		$.getJSON("/images/random", { pos: unlockedPanels }, setAllPanelURLs);
 	}
 }
 
@@ -259,9 +259,9 @@ function setPermaLink() {
 	$("#permaLink").attr("href", fullLink);
 }
 
-function setPanelImgURL() {
-	var pos = this.pos;
-	var imgURL = "panels/" + posAbbrToFull(pos) + "/" + this.file;
+function setPanelImgURL(panelIndex, panelData) {
+	var pos = panelData.pos;
+	var imgURL = "panels/" + posAbbrToFull(pos) + "/" + panelData.file;
 	$("#" + pos + "Image").attr("src", imgURL);
 }
 
