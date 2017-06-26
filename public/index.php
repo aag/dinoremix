@@ -27,7 +27,6 @@ define('TEMPLATES_DIR', ROOT_DIR . '/templates');
 require ROOT_DIR . '/vendor/autoload.php';
 
 use App\Controllers;
-use App\Lib\Util;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
