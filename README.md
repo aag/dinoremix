@@ -13,7 +13,7 @@ If you want to host your own Dinosaur Remix page, just get a copy of the source 
 
 ```
 location / {
-    try_files $uri $uri/ /index.php;
+    try_files $uri $uri/ /index.php$is_args$args;
 }
 ```
 
