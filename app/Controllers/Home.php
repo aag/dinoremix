@@ -19,6 +19,7 @@
 namespace App\Controllers;
 
 use App\Lib\Util;
+use App\Lib\Storage;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -53,7 +54,7 @@ class Home
                 $lockClasses[$pos] = "locked";
             } else {
                 // Panel is unlocked
-                $imgFileNames[$pos] = Util::getRandomImageForPos($pos);
+                $imgFileNames[$pos] = Storage::getRandomImageForPos($pos);
                 $lockClasses[$pos] = "unlocked";
             }
         }

@@ -20,8 +20,22 @@
 
 namespace App\Lib;
 
+use App\Lib\Util;
+
 class Storage
 {
+    private static function getRandomString($strings)
+    {
+        $stringIdx = random_int(0, sizeof($strings) - 1);
+        return $strings[$stringIdx];
+    }
+
+    private static function getImagePaths($dir, $pos)
+    {
+        $serializedPaths = file_get_contents($dir . '/' . $pos . "Paths.txt");
+        return unserialize($serializedPaths);
+    }
+
     public static function storeImagePaths($panelsDir, $outputDir, $pos)
     {
         $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);
@@ -30,5 +44,18 @@ class Storage
         $fp = fopen($outputDir . "/" . $pos . "Paths.txt", "w");
         fwrite($fp, $serializedPaths);
         fclose($fp);
+    }
+
+    public static function getRandomImageForPos($pos)
+    {
+        $fullPosName = Util::posAbbrToFull($pos);
+        $filename = "";
+
+        if ($fullPosName != "") {
+            $allFiles = self::getImagePaths(FILELISTS_DIR, $fullPosName);
+            $filename = self::getRandomString($allFiles);
+        }
+
+        return $filename;
     }
 }
