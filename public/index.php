@@ -20,10 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('ROOT_DIR', dirname(__DIR__));
-define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
-define('TEMPLATES_DIR', ROOT_DIR . '/templates');
-
+require __DIR__ . '/../app/globals.php';
 require ROOT_DIR . '/vendor/autoload.php';
 
 use App\Controllers;

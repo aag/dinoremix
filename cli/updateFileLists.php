@@ -22,24 +22,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('ROOT_DIR', dirname(__DIR__));
-define('FILELISTS_DIR', ROOT_DIR . '/data/filelists');
-define('PANELS_DIR', ROOT_DIR . '/public/panels');
+require __DIR__ . '/../app/globals.php';
+require ROOT_DIR . '/vendor/autoload.php';
 
-function storeImagePathsToDisk($panelsDir, $outputDir, $pos)
-{
-    $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);
-
-    $serializedPaths = serialize($allfiles);
-    $fp = fopen($outputDir . "/" . $pos . "Paths.txt", "w");
-    fwrite($fp, $serializedPaths);
-    fclose($fp);
-}
+use App\Lib\Storage;
 
 print("Rewriting files in " . FILELISTS_DIR . "\n");
-storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topleft");
-storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topmiddle");
-storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "topright");
-storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottomleft");
-storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottommiddle");
-storeImagePathsToDisk(PANELS_DIR, FILELISTS_DIR, "bottomright");
+Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "topleft");
+Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "topmiddle");
+Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "topright");
+Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "bottomleft");
+Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "bottommiddle");
+Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "bottomright");
