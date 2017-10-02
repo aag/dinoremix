@@ -36,6 +36,17 @@ class Storage
         return unserialize($serializedPaths);
     }
 
+    private static function removeDots($filelist)
+    {
+        return array_slice($filelist, 2);
+    }
+
+    public static function countComics()
+    {
+        $comicsfiles = self::removeDots(scandir(ROOT_DIR . "/public/panels/topleft"));
+        return sizeof($comicsfiles);
+    }
+
     public static function storeImagePaths($panelsDir, $outputDir, $pos)
     {
         $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);

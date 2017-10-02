@@ -24,17 +24,6 @@ use App\Lib\Storage;
 
 class Util
 {
-    private static function removeDots($filelist)
-    {
-        return array_slice($filelist, 2);
-    }
-
-    public static function countComics()
-    {
-        $comicsfiles = self::removeDots(scandir(ROOT_DIR . "/public/panels/topleft"));
-        return sizeof($comicsfiles);
-    }
-
     public static function posAbbrToFull($abbr)
     {
         $fullName = "";

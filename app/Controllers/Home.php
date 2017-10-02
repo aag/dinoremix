@@ -33,7 +33,7 @@ class Home
         $queryParams = $request->getQueryParams();
 
         // Get permutation information
-        $numComics = Util::countComics();
+        $numComics = Storage::countComics();
         $numPerms = number_format(
             pow($numComics, 6) +
                 pow($numComics, 3) +
