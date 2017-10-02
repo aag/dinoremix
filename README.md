@@ -19,7 +19,7 @@ location / {
 
 Before the site will work, you will need to run `./composer.phar install` from the command line within the root directory of the repository.
 
-Then, run "python downloadComics.py" to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
+Then, run `python cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
 
 The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
 
