@@ -42,5 +42,4 @@ class Comic
 
         return $fullName;
     }
-
 }
