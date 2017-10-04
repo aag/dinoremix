@@ -20,6 +20,7 @@ namespace App\Controllers;
 
 use App\Lib\Util;
 use App\Lib\Storage;
+use App\Lib\Renderer;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -79,7 +80,7 @@ class Home
             }
         }
 
-        $pageContent = Util::renderTemplate('pagetemplate', [
+        $pageContent = Renderer::renderTemplate('pagetemplate', [
             'currentUri' => $currentUri,
             'imgFileNames' => $imgFileNames,
             'lockClasses' => $lockClasses,

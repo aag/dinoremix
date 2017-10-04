@@ -1,7 +1,5 @@
 <?php
 /* 
- * Utility functions for dino remix.
- *
  * Copyright 2008-2017 Adam Goforth
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,30 +18,16 @@
 
 namespace App\Lib;
 
-use App\Lib\Storage;
-
-class Util
+class Renderer
 {
-    public static function posAbbrToFull($abbr)
+    public static function renderTemplate(string $templateName, array $templateVars)
     {
-        $fullName = "";
+        extract($templateVars);
+        ob_start();
+        include(TEMPLATES_DIR . "/$templateName.php");
+        $renderedContent = ob_get_contents();
+        ob_end_clean();
 
-        $firstChar = substr($abbr, 0, 1);
-        if ($firstChar == "t") {
-            $fullName = "top";
-        } elseif ($firstChar == "b") {
-            $fullName = "bottom";
-        }
-
-        $secondChar = substr($abbr, 1, 1);
-        if ($secondChar == "l") {
-            $fullName .= "left";
-        } elseif ($secondChar == "m") {
-            $fullName .= "middle";
-        } elseif ($secondChar == "r") {
-            $fullName .= "right";
-        }
-
-        return $fullName;
+        return $renderedContent;
     }
 }
