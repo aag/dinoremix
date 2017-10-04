@@ -18,7 +18,7 @@
 
 namespace App\Controllers;
 
-use App\Lib\Util;
+use App\Lib\Comic;
 use App\Lib\Storage;
 use League\Route\Http\Exception\BadRequestException;
 use Psr\Http\Message\ServerRequestInterface;
@@ -37,7 +37,7 @@ class Images
         $imgDescList = array();
 
         foreach ($posList as $pos) {
-            $posdir = Util::posAbbrToFull($pos);
+            $posdir = Comic::posAbbrToFull($pos);
             if ($posdir != "") {
                 $imgFileName = Storage::getRandomImageForPos($pos);
                 $imgDesc = array("pos" => $pos, "file" => $imgFileName);

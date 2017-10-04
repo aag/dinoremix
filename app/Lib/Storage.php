@@ -20,7 +20,7 @@
 
 namespace App\Lib;
 
-use App\Lib\Util;
+use App\Lib\Comic;
 
 class Storage
 {
@@ -59,7 +59,7 @@ class Storage
 
     public static function getRandomImageForPos($pos)
     {
-        $fullPosName = Util::posAbbrToFull($pos);
+        $fullPosName = Comic::posAbbrToFull($pos);
         $filename = "";
 
         if ($fullPosName != "") {

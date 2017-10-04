@@ -1,7 +1,5 @@
 <?php
 /* 
- * Utility functions for dino remix.
- *
  * Copyright 2008-2017 Adam Goforth
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,9 +18,7 @@
 
 namespace App\Lib;
 
-use App\Lib\Storage;
-
-class Util
+class Comic
 {
     public static function posAbbrToFull($abbr)
     {
@@ -46,4 +42,5 @@ class Util
 
         return $fullName;
     }
+
 }

@@ -18,7 +18,7 @@
 
 namespace App\Controllers;
 
-use App\Lib\Util;
+use App\Lib\Comic;
 use App\Lib\Storage;
 use App\Lib\Renderer;
 use Psr\Http\Message\ServerRequestInterface;
@@ -48,7 +48,7 @@ class Home
 
         // Check each panel to see if it's locked
         foreach ($posAbbrs as $key => $pos) {
-            $fullName = Util::posAbbrToFull($pos);
+            $fullName = Comic::posAbbrToFull($pos);
             if (isset($queryParams[$pos])) {
                 // Panel is locked
                 $imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
