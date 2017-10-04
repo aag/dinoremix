@@ -55,7 +55,7 @@ class Storage
 
     public function countComics()
     {
-        $comicsfiles = self::removeDots(
+        $comicsfiles = $this->removeDots(
             scandir($this->paths->getRootPath() . "/public/panels/topleft")
         );
         return sizeof($comicsfiles);
@@ -80,11 +80,11 @@ class Storage
         $filename = "";
 
         if ($fullPosName != "") {
-            $allFiles = self::getImagePaths(
+            $allFiles = $this->getImagePaths(
                 $this->paths->getFilelistsPath(),
                 $fullPosName
             );
-            $filename = self::getRandomString($allFiles);
+            $filename = $this->getRandomString($allFiles);
         }
 
         return $filename;
