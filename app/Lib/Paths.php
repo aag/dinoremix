@@ -52,4 +52,4 @@ class Paths
     {
         return $this->panelsPath;
     }
-} 
+}

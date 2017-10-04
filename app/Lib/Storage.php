@@ -81,7 +81,8 @@ class Storage
 
         if ($fullPosName != "") {
             $allFiles = self::getImagePaths(
-                $this->paths->getFilelistsPath(), $fullPosName
+                $this->paths->getFilelistsPath(),
+                $fullPosName
             );
             $filename = self::getRandomString($allFiles);
         }

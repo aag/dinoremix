@@ -29,7 +29,8 @@ class Images
 
     private $storage;
 
-    public function __construct(Storage $storage = null) {
+    public function __construct(Storage $storage = null)
+    {
         if (is_null($storage)) {
             $storage = new Storage();
         }
