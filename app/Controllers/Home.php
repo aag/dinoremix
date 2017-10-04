@@ -29,6 +29,17 @@ class Home
     const DEFAULT_NUM_PANELS = 3;
     const AVAIL_NUM_PANELS = [2, 3, 6];
 
+    private $renderer;
+
+    public function __construct(Renderer $renderer = null)
+    {
+        if (is_null($renderer)) {
+            $renderer = new Renderer();
+        }
+
+        $this->renderer = $renderer;
+    }
+
     public function index(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParams = $request->getQueryParams();
@@ -80,7 +91,7 @@ class Home
             }
         }
 
-        $pageContent = Renderer::renderTemplate('pagetemplate', [
+        $pageContent = $this->renderer->renderTemplate('pagetemplate', [
             'currentUri' => $currentUri,
             'imgFileNames' => $imgFileNames,
             'lockClasses' => $lockClasses,

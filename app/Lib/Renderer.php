@@ -22,13 +22,22 @@ use App\Lib\Paths;
 
 class Renderer
 {
-    public static function renderTemplate(string $templateName, array $templateVars)
-    {
-        $paths = new Paths();
+    private $paths;
 
+    public function __construct(Paths $paths = null)
+    {
+        if (is_null($paths)) {
+            $paths = new Paths();
+        }
+
+        $this->paths = $paths;
+    }
+
+    public function renderTemplate(string $templateName, array $templateVars)
+    {
         extract($templateVars);
         ob_start();
-        include($paths->getTemplatesPath() . "/$templateName.php");
+        include($this->paths->getTemplatesPath() . "/$templateName.php");
         $renderedContent = ob_get_contents();
         ob_end_clean();
 
