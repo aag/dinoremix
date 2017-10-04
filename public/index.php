@@ -20,8 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require __DIR__ . '/../app/globals.php';
-require ROOT_DIR . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers;
 use Zend\Diactoros\Response;

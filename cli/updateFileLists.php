@@ -22,15 +22,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require __DIR__ . '/../app/globals.php';
-require ROOT_DIR . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use App\Lib\Storage;
+use App\Lib\Paths;
 
-print("Rewriting files in " . FILELISTS_DIR . "\n");
-Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "topleft");
-Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "topmiddle");
-Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "topright");
-Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "bottomleft");
-Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "bottommiddle");
-Storage::storeImagePaths(PANELS_DIR, FILELISTS_DIR, "bottomright");
+$paths = new Paths();
+print("Rewriting files in " . $paths->getFilelistsPath() . "\n");
+Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topleft");
+Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topmiddle");
+Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topright");
+Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomleft");
+Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottommiddle");
+Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomright");

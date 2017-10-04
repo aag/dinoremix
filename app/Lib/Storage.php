@@ -21,6 +21,7 @@
 namespace App\Lib;
 
 use App\Lib\Comic;
+use App\Lib\Paths;
 
 class Storage
 {
@@ -43,7 +44,8 @@ class Storage
 
     public static function countComics()
     {
-        $comicsfiles = self::removeDots(scandir(ROOT_DIR . "/public/panels/topleft"));
+        $paths = new Paths();
+        $comicsfiles = self::removeDots(scandir($paths->getRootPath() . "/public/panels/topleft"));
         return sizeof($comicsfiles);
     }
 
@@ -66,7 +68,8 @@ class Storage
         $filename = "";
 
         if ($fullPosName != "") {
-            $allFiles = self::getImagePaths(FILELISTS_DIR, $fullPosName);
+            $paths = new Paths();
+            $allFiles = self::getImagePaths($paths->getFilelistsPath(), $fullPosName);
             $filename = self::getRandomString($allFiles);
         }
 

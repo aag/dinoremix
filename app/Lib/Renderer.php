@@ -18,13 +18,17 @@
 
 namespace App\Lib;
 
+use App\Lib\Paths;
+
 class Renderer
 {
     public static function renderTemplate(string $templateName, array $templateVars)
     {
+        $paths = new Paths();
+
         extract($templateVars);
         ob_start();
-        include(TEMPLATES_DIR . "/$templateName.php");
+        include($paths->getTemplatesPath() . "/$templateName.php");
         $renderedContent = ob_get_contents();
         ob_end_clean();
 
