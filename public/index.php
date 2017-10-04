@@ -49,7 +49,7 @@ $route = new RouteCollection($container);
 
 $route->map('GET', '/', [new Controllers\Home(), 'index']);
 $route->map('GET', '/images/random', [new Controllers\Images(), 'random'])
-    ->setStrategy(new JsonStrategy);
+    ->setStrategy(new JsonStrategy());
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));
 $container->get('emitter')->emit($response);
