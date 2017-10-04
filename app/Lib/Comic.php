@@ -20,7 +20,7 @@ namespace App\Lib;
 
 class Comic
 {
-    public static function posAbbrToFull($abbr)
+    public static function posAbbrToFull(string $abbr)
     {
         $fullName = "";
 

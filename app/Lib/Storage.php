@@ -24,19 +24,19 @@ use App\Lib\Comic;
 
 class Storage
 {
-    private static function getRandomString($strings)
+    private static function getRandomString(array $strings)
     {
         $stringIdx = random_int(0, sizeof($strings) - 1);
         return $strings[$stringIdx];
     }
 
-    private static function getImagePaths($dir, $pos)
+    private static function getImagePaths(string $dir, string $pos)
     {
         $serializedPaths = file_get_contents($dir . '/' . $pos . "Paths.txt");
         return unserialize($serializedPaths);
     }
 
-    private static function removeDots($filelist)
+    private static function removeDots(array $filelist)
     {
         return array_slice($filelist, 2);
     }
@@ -47,8 +47,11 @@ class Storage
         return sizeof($comicsfiles);
     }
 
-    public static function storeImagePaths($panelsDir, $outputDir, $pos)
-    {
+    public static function storeImagePaths(
+        string $panelsDir,
+        string $outputDir,
+        string $pos
+    ) {
         $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);
 
         $serializedPaths = serialize($allfiles);
@@ -57,7 +60,7 @@ class Storage
         fclose($fp);
     }
 
-    public static function getRandomImageForPos($pos)
+    public static function getRandomImageForPos(string $pos)
     {
         $fullPosName = Comic::posAbbrToFull($pos);
         $filename = "";
