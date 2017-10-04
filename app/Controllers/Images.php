@@ -26,6 +26,18 @@ use Psr\Http\Message\ResponseInterface;
 
 class Images
 {
+
+    private $storage;
+
+    public function __construct(Storage $storage = null) {
+        if (is_null($storage)) {
+            $storage = new Storage();
+        }
+
+        $this->storage = $storage;
+    }
+
+
     public function random(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParams = $request->getQueryParams();
@@ -39,7 +51,7 @@ class Images
         foreach ($posList as $pos) {
             $posdir = Comic::posAbbrToFull($pos);
             if ($posdir != "") {
-                $imgFileName = Storage::getRandomImageForPos($pos);
+                $imgFileName = $this->storage->getRandomImageForPos($pos);
                 $imgDesc = array("pos" => $pos, "file" => $imgFileName);
                 $imgDescList[] = $imgDesc;
             }

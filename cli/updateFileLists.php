@@ -28,10 +28,12 @@ use App\Lib\Storage;
 use App\Lib\Paths;
 
 $paths = new Paths();
+$storage = new Storage();
+
 print("Rewriting files in " . $paths->getFilelistsPath() . "\n");
-Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topleft");
-Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topmiddle");
-Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topright");
-Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomleft");
-Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottommiddle");
-Storage::storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomright");
+$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topleft");
+$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topmiddle");
+$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topright");
+$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomleft");
+$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottommiddle");
+$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomright");

@@ -30,14 +30,22 @@ class Home
     const AVAIL_NUM_PANELS = [2, 3, 6];
 
     private $renderer;
+    private $storage;
 
-    public function __construct(Renderer $renderer = null)
-    {
+    public function __construct(
+        Renderer $renderer = null,
+        Storage $storage = null
+    ) {
         if (is_null($renderer)) {
             $renderer = new Renderer();
         }
 
+        if (is_null($storage)) {
+            $storage = new Storage();
+        }
+
         $this->renderer = $renderer;
+        $this->storage = $storage;
     }
 
     public function index(ServerRequestInterface $request, ResponseInterface $response)
@@ -45,7 +53,7 @@ class Home
         $queryParams = $request->getQueryParams();
 
         // Get permutation information
-        $numComics = Storage::countComics();
+        $numComics = $this->storage->countComics();
         $numPerms = number_format(
             pow($numComics, 6) +
                 pow($numComics, 3) +
@@ -66,7 +74,7 @@ class Home
                 $lockClasses[$pos] = "locked";
             } else {
                 // Panel is unlocked
-                $imgFileNames[$pos] = Storage::getRandomImageForPos($pos);
+                $imgFileNames[$pos] = $this->storage->getRandomImageForPos($pos);
                 $lockClasses[$pos] = "unlocked";
             }
         }

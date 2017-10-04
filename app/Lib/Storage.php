@@ -25,31 +25,43 @@ use App\Lib\Paths;
 
 class Storage
 {
-    private static function getRandomString(array $strings)
+    private $paths;
+
+    public function __construct(Paths $paths = null)
+    {
+        if (is_null($paths)) {
+            $paths = new Paths();
+        }
+
+        $this->paths = $paths;
+    }
+
+    private function getRandomString(array $strings)
     {
         $stringIdx = random_int(0, sizeof($strings) - 1);
         return $strings[$stringIdx];
     }
 
-    private static function getImagePaths(string $dir, string $pos)
+    private function getImagePaths(string $dir, string $pos)
     {
         $serializedPaths = file_get_contents($dir . '/' . $pos . "Paths.txt");
         return unserialize($serializedPaths);
     }
 
-    private static function removeDots(array $filelist)
+    private function removeDots(array $filelist)
     {
         return array_slice($filelist, 2);
     }
 
-    public static function countComics()
+    public function countComics()
     {
-        $paths = new Paths();
-        $comicsfiles = self::removeDots(scandir($paths->getRootPath() . "/public/panels/topleft"));
+        $comicsfiles = self::removeDots(
+            scandir($this->paths->getRootPath() . "/public/panels/topleft")
+        );
         return sizeof($comicsfiles);
     }
 
-    public static function storeImagePaths(
+    public function storeImagePaths(
         string $panelsDir,
         string $outputDir,
         string $pos
@@ -62,14 +74,15 @@ class Storage
         fclose($fp);
     }
 
-    public static function getRandomImageForPos(string $pos)
+    public function getRandomImageForPos(string $pos)
     {
         $fullPosName = Comic::posAbbrToFull($pos);
         $filename = "";
 
         if ($fullPosName != "") {
-            $paths = new Paths();
-            $allFiles = self::getImagePaths($paths->getFilelistsPath(), $fullPosName);
+            $allFiles = self::getImagePaths(
+                $this->paths->getFilelistsPath(), $fullPosName
+            );
             $filename = self::getRandomString($allFiles);
         }
 
