@@ -94,4 +94,4 @@ class StorageTest extends TestCase
         $storage = new Storage();
         $this->assertEquals('bottomright', $storage->posAbbrToFull('br'));
     }
-} 
+}

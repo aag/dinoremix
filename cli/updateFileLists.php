@@ -29,4 +29,4 @@ use App\Lib\Comic;
 print("Rewriting image path files\n");
 
 $comic = new Comic();
-$comic->storeAllImagePaths(); 
+$comic->storeAllImagePaths();

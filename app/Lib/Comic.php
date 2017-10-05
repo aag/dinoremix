@@ -40,7 +40,7 @@ class Comic
     {
         $fullName = $this->storage->posAbbrToFull($pos);
         if (!empty($fullName) && !empty($comicId)) {
-            return "comic2-" . $comicId . "-" . $fullName . ".png"; 
+            return "comic2-" . $comicId . "-" . $fullName . ".png";
         }
 
         return '';
