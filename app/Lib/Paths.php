@@ -25,12 +25,20 @@ class Paths
     private $templatesPath;
     private $panelsPath;
 
-    public function __construct()
+    public function __construct(string $rootPath = null)
     {
-        $this->rootPath = dirname(dirname(__DIR__));
-        $this->filelistsPath = $this->rootPath . '/data/filelists';
-        $this->templatesPath = $this->rootPath . '/templates';
-        $this->panelsPath = $this->rootPath . '/public/panels';
+        if (empty($rootPath)) {
+            $rootPath = dirname(dirname(__DIR__));
+        }
+
+        // Strip whitespace and trailing slashes from the path
+        $rootPath = rtrim($rootPath);
+        $rootPath = rtrim($rootPath, '/');
+
+        $this->rootPath = $rootPath;
+        $this->filelistsPath = $rootPath . '/data/filelists';
+        $this->templatesPath = $rootPath . '/templates';
+        $this->panelsPath = $rootPath . '/public/panels';
     }
 
     public function getRootPath()
