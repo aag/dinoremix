@@ -5,4 +5,5 @@ php:
 install:
   - php composer.phar install
 script: 
+  - php composer.phar check-style
   - php composer.phar test
