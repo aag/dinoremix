@@ -1,4 +1,4 @@
-## Dinosaur Remix [![Build Status](https://travis-ci.org/aag/dinoremix.svg?branch=master)](https://travis-ci.org/aag/dinoremix) [![License](https://img.shields.io/badge/License-GPL-blue.svg)](LICENSE.md)
+## Dinosaur Remix [![Build Status](https://travis-ci.org/aag/dinoremix.svg?branch=master)](https://travis-ci.org/aag/dinoremix) [![License](https://img.shields.io/badge/License-GPLv2-blue.svg)](LICENSE.md)
 
 Dinosaur Remix is a web page that takes Dinosaur Comics and remixes them randomly, hopefully in interesting ways.  It uses PHP, Python, and jQuery to do its remix-o-matic dance.
 
@@ -19,6 +19,10 @@ location / {
 Before the site will work, you will need to run `./composer.phar install` from the command line within the root directory of the repository.
 
 Then, run `python cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
+
+Requirements
+------------
+The code requires PHP 7.0+ and Python 2.7 or 3.
 
 The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
 
