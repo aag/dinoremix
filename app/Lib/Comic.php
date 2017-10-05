@@ -21,41 +21,27 @@ namespace App\Lib;
 class Comic
 {
     const POSITIONS = [
-        "tl", "tm", "tr",
-        "bl", "bm", "br"
+        "tl" => "topleft",
+        "tm" => "topmiddle",
+        "tr" => "topright",
+        "bl" => "bottomleft",
+        "bm" => "bottommiddle",
+        "br" => "bottomright"
     ];
 
-    public function getPositions()
+    public function getPositionAbbrs()
     {
-        return self::POSITIONS;
+        return array_keys(self::POSITIONS);
     }
 
     public function posAbbrToFull(string $abbr)
     {
         $abbr = strtolower($abbr);
 
-        if (!in_array($abbr, self::POSITIONS)) {
+        if (!array_key_exists($abbr, self::POSITIONS)) {
             return '';
         }
 
-        $fullName = '';
-
-        $firstChar = substr($abbr, 0, 1);
-        if ($firstChar == "t") {
-            $fullName = "top";
-        } elseif ($firstChar == "b") {
-            $fullName = "bottom";
-        }
-
-        $secondChar = substr($abbr, 1, 1);
-        if ($secondChar == "l") {
-            $fullName .= "left";
-        } elseif ($secondChar == "m") {
-            $fullName .= "middle";
-        } elseif ($secondChar == "r") {
-            $fullName .= "right";
-        }
-
-        return $fullName;
+        return self::POSITIONS[$abbr];
     }
 }
