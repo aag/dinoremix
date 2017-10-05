@@ -22,7 +22,15 @@ class Comic
 {
     public function posAbbrToFull(string $abbr)
     {
-        $fullName = "";
+        $abbr = strtolower($abbr);
+
+        if (preg_match('/^[tb][lmr]$/', $abbr) !== 1) {
+            // The abbreviation isn't 2 chars long or has an unexpected char in
+            // at least one position.
+            return '';
+        }
+
+        $fullName = '';
 
         $firstChar = substr($abbr, 0, 1);
         if ($firstChar == "t") {

@@ -1,6 +1,5 @@
 *.pyc
 /data/
 /public/panels/
-/test/
 /vendor/
 
