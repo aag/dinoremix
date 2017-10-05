@@ -1,5 +1,4 @@
-Dinosaur Remix
-==============
+## Dinosaur Remix [![Build Status](https://travis-ci.org/aag/dinoremix.svg?branch=master)](https://travis-ci.org/aag/dinoremix) [![License](https://img.shields.io/badge/License-GPL-blue.svg)](LICENSE.md)
 
 Dinosaur Remix is a web page that takes Dinosaur Comics and remixes them randomly, hopefully in interesting ways.  It uses PHP, Python, and jQuery to do its remix-o-matic dance.
 
