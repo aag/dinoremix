@@ -1,0 +1,8 @@
+language: php
+php:
+  - 7.0
+  - 7.1
+install:
+  - php composer.phar install
+script: 
+  - php composer.phar test
