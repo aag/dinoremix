@@ -25,14 +25,20 @@ use App\Lib\Paths;
 
 class Storage
 {
+    private $comic;
     private $paths;
 
-    public function __construct(Paths $paths = null)
+    public function __construct(Comic $comic = null, Paths $paths = null)
     {
+        if (is_null($comic)) {
+            $comic = new Comic();
+        }
+
         if (is_null($paths)) {
             $paths = new Paths();
         }
 
+        $this->comic = $comic;
         $this->paths = $paths;
     }
 
@@ -76,7 +82,7 @@ class Storage
 
     public function getRandomImageForPos(string $pos)
     {
-        $fullPosName = Comic::posAbbrToFull($pos);
+        $fullPosName = $this->comic->posAbbrToFull($pos);
         $filename = "";
 
         if ($fullPosName != "") {

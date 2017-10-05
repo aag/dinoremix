@@ -29,12 +29,17 @@ class Images
 
     private $storage;
 
-    public function __construct(Storage $storage = null)
+    public function __construct(Comic $comic = null, Storage $storage = null)
     {
+        if (is_null($comic)) {
+            $comic = new Comic();
+        }
+
         if (is_null($storage)) {
             $storage = new Storage();
         }
 
+        $this->comic = $comic;
         $this->storage = $storage;
     }
 
@@ -50,7 +55,7 @@ class Images
         $imgDescList = array();
 
         foreach ($posList as $pos) {
-            $posdir = Comic::posAbbrToFull($pos);
+            $posdir = $this->comic->posAbbrToFull($pos);
             if ($posdir != "") {
                 $imgFileName = $this->storage->getRandomImageForPos($pos);
                 $imgDesc = array("pos" => $pos, "file" => $imgFileName);

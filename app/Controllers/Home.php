@@ -29,13 +29,19 @@ class Home
     const DEFAULT_NUM_PANELS = 3;
     const AVAIL_NUM_PANELS = [2, 3, 6];
 
+    private $comic;
     private $renderer;
     private $storage;
 
     public function __construct(
+        Comic $comic = null,
         Renderer $renderer = null,
         Storage $storage = null
     ) {
+        if (is_null($comic)) {
+            $comic = new Comic();
+        }
+ 
         if (is_null($renderer)) {
             $renderer = new Renderer();
         }
@@ -44,6 +50,7 @@ class Home
             $storage = new Storage();
         }
 
+        $this->comic = $comic;
         $this->renderer = $renderer;
         $this->storage = $storage;
     }
@@ -67,9 +74,9 @@ class Home
 
         // Check each panel to see if it's locked
         foreach ($posAbbrs as $key => $pos) {
-            $fullName = Comic::posAbbrToFull($pos);
             if (isset($queryParams[$pos])) {
                 // Panel is locked
+                $fullName = $this->comic->posAbbrToFull($pos);
                 $imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
                 $lockClasses[$pos] = "locked";
             } else {
