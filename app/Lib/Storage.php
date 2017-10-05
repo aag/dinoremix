@@ -48,23 +48,17 @@ class Storage
         return $strings[$stringIdx];
     }
 
-    private function getImagePaths(string $dir, string $pos)
+    private function getImagePaths(string $pos)
     {
+        $dir = $this->paths->getFilelistsPath();
         $serializedPaths = file_get_contents($dir . '/' . $pos . "Paths.txt");
         return unserialize($serializedPaths);
     }
 
-    private function removeDots(array $filelist)
-    {
-        return array_slice($filelist, 2);
-    }
-
     public function countComics()
     {
-        $comicsfiles = $this->removeDots(
-            scandir($this->paths->getRootPath() . "/public/panels/topleft")
-        );
-        return sizeof($comicsfiles);
+        // Take the topleft panel as representative
+        return sizeof($this->getImagePaths('topleft'));
     }
 
     public function storeImagePaths(
@@ -86,10 +80,7 @@ class Storage
         $filename = "";
 
         if ($fullPosName != "") {
-            $allFiles = $this->getImagePaths(
-                $this->paths->getFilelistsPath(),
-                $fullPosName
-            );
+            $allFiles = $this->getImagePaths($fullPosName);
             $filename = $this->getRandomString($allFiles);
         }
 
