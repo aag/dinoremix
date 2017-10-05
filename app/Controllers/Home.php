@@ -69,7 +69,7 @@ class Home
 
         $lockClasses = array();
         $imgFileNames = array();
-        $posAbbrs = array(0 => "tl", "tm", "tr", "bl", "bm", "br");
+        $posAbbrs = $this->comic->getPositions();
         $altText = "";
 
         // Check each panel to see if it's locked

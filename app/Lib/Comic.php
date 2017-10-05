@@ -20,13 +20,21 @@ namespace App\Lib;
 
 class Comic
 {
+    const POSITIONS = [
+        "tl", "tm", "tr",
+        "bl", "bm", "br"
+    ];
+
+    public function getPositions()
+    {
+        return self::POSITIONS;
+    }
+
     public function posAbbrToFull(string $abbr)
     {
         $abbr = strtolower($abbr);
 
-        if (preg_match('/^[tb][lmr]$/', $abbr) !== 1) {
-            // The abbreviation isn't 2 chars long or has an unexpected char in
-            // at least one position.
+        if (!in_array($abbr, self::POSITIONS)) {
             return '';
         }
 
