@@ -74,7 +74,7 @@ class Storage
         return self::POSITIONS[$abbr];
     }
 
-    public function countComics()
+    public function getTotalComicsCount()
     {
         // Take the topleft panel as representative
         return sizeof($this->getImagePaths('topleft'));

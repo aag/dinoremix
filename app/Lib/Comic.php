@@ -52,4 +52,12 @@ class Comic
             $this->storage->storeImagePaths($pos);
         }
     }
+
+    public function getNumComicPermutations()
+    {
+        $numComics = $this->storage->getTotalComicsCount();
+        $numPerms = $numComics ** 6 + $numComics ** 3 + $numComics ** 2;
+
+        return number_format($numPerms);
+    }
 }

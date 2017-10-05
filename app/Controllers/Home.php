@@ -59,13 +59,7 @@ class Home
     {
         $queryParams = $request->getQueryParams();
 
-        // Get permutation information
-        $numComics = $this->storage->countComics();
-        $numPerms = number_format(
-            pow($numComics, 6) +
-                pow($numComics, 3) +
-                pow($numComics, 2)
-        );
+        $numPerms = $this->comic->getNumComicPermutations();
 
         $lockClasses = array();
         $imgFileNames = array();
