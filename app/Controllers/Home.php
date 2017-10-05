@@ -19,7 +19,6 @@
 namespace App\Controllers;
 
 use App\Lib\Comic;
-use App\Lib\Storage;
 use App\Lib\Renderer;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -31,12 +30,10 @@ class Home
 
     private $comic;
     private $renderer;
-    private $storage;
 
     public function __construct(
         Comic $comic = null,
-        Renderer $renderer = null,
-        Storage $storage = null
+        Renderer $renderer = null
     ) {
         if (is_null($comic)) {
             $comic = new Comic();
@@ -46,13 +43,8 @@ class Home
             $renderer = new Renderer();
         }
 
-        if (is_null($storage)) {
-            $storage = new Storage();
-        }
-
         $this->comic = $comic;
         $this->renderer = $renderer;
-        $this->storage = $storage;
     }
 
     public function index(ServerRequestInterface $request, ResponseInterface $response)
@@ -77,7 +69,7 @@ class Home
             
             if (empty($imgFileNames[$pos])) {
                 // Panel is unlocked
-                $imgFileNames[$pos] = $this->storage->getRandomImageForPos($pos);
+                $imgFileNames[$pos] = $this->comic->getRandomImageForPos($pos);
                 $lockClasses[$pos] = "unlocked";
             }
         }

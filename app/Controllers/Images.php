@@ -19,30 +19,22 @@
 namespace App\Controllers;
 
 use App\Lib\Comic;
-use App\Lib\Storage;
 use League\Route\Http\Exception\BadRequestException;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class Images
 {
+    private $comic;
 
-    private $storage;
-
-    public function __construct(Comic $comic = null, Storage $storage = null)
+    public function __construct(Comic $comic = null)
     {
         if (is_null($comic)) {
             $comic = new Comic();
         }
 
-        if (is_null($storage)) {
-            $storage = new Storage();
-        }
-
         $this->comic = $comic;
-        $this->storage = $storage;
     }
-
 
     public function random(ServerRequestInterface $request, ResponseInterface $response)
     {
@@ -55,7 +47,7 @@ class Images
         $imgDescList = array();
 
         foreach ($posList as $pos) {
-            $imgFileName = $this->storage->getRandomImageForPos($pos);
+            $imgFileName = $this->comic->getRandomImageForPos($pos);
             if (!empty($imgFileName)) {
                 $imgDesc = array("pos" => $pos, "file" => $imgFileName);
                 $imgDescList[] = $imgDesc;

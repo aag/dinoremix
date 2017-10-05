@@ -60,4 +60,9 @@ class Comic
 
         return number_format($numPerms);
     }
+
+    public function getRandomImageForPos(string $pos)
+    {
+        return $this->storage->getRandomImageForPos($pos);
+    }
 }
