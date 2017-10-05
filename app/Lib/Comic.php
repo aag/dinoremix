@@ -20,28 +20,36 @@ namespace App\Lib;
 
 class Comic
 {
-    const POSITIONS = [
-        "tl" => "topleft",
-        "tm" => "topmiddle",
-        "tr" => "topright",
-        "bl" => "bottomleft",
-        "bm" => "bottommiddle",
-        "br" => "bottomright"
-    ];
+    private $storage;
+
+    public function __construct(Storage $storage = null)
+    {
+        if (is_null($storage)) {
+            $storage = new Storage();
+        }
+
+        $this->storage = $storage;
+    }
 
     public function getPositionAbbrs()
     {
-        return array_keys(self::POSITIONS);
+        return $this->storage->getPositionAbbrs();
     }
 
-    public function posAbbrToFull(string $abbr)
+    public function getPanelImageFilename(string $comicId, string $pos)
     {
-        $abbr = strtolower($abbr);
-
-        if (!array_key_exists($abbr, self::POSITIONS)) {
-            return '';
+        $fullName = $this->storage->posAbbrToFull($pos);
+        if (!empty($fullName) && !empty($comicId)) {
+            return "comic2-" . $comicId . "-" . $fullName . ".png"; 
         }
 
-        return self::POSITIONS[$abbr];
+        return '';
+    }
+
+    public function storeAllImagePaths()
+    {
+        foreach ($this->getPositionAbbrs() as $pos) {
+            $this->storage->storeImagePaths($pos);
+        }
     }
 }

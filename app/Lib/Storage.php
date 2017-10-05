@@ -25,20 +25,23 @@ use App\Lib\Paths;
 
 class Storage
 {
-    private $comic;
+    const POSITIONS = [
+        "tl" => "topleft",
+        "tm" => "topmiddle",
+        "tr" => "topright",
+        "bl" => "bottomleft",
+        "bm" => "bottommiddle",
+        "br" => "bottomright"
+    ];
+
     private $paths;
 
-    public function __construct(Comic $comic = null, Paths $paths = null)
+    public function __construct(Paths $paths = null)
     {
-        if (is_null($comic)) {
-            $comic = new Comic();
-        }
-
         if (is_null($paths)) {
             $paths = new Paths();
         }
 
-        $this->comic = $comic;
         $this->paths = $paths;
     }
 
@@ -55,28 +58,52 @@ class Storage
         return unserialize($serializedPaths);
     }
 
+    public function getPositionAbbrs()
+    {
+        return array_keys(self::POSITIONS);
+    }
+
+    public function posAbbrToFull(string $abbr)
+    {
+        $abbr = strtolower($abbr);
+
+        if (!array_key_exists($abbr, self::POSITIONS)) {
+            return '';
+        }
+
+        return self::POSITIONS[$abbr];
+    }
+
     public function countComics()
     {
         // Take the topleft panel as representative
         return sizeof($this->getImagePaths('topleft'));
     }
 
-    public function storeImagePaths(
-        string $panelsDir,
-        string $outputDir,
-        string $pos
-    ) {
-        $allfiles = array_slice(scandir($panelsDir . "/" . $pos), 2);
+    public function removeDotEntries(array $entries)
+    {
+        return array_slice($entries, 2);
+    }
 
+    public function storeImagePaths(string $pos)
+    {
+        $panelsDir = $this->paths->getPanelsPath();
+        $fullPosition = $this->posAbbrToFull($pos);
+
+        $allfiles = $this->removeDotEntries(
+            scandir($panelsDir . "/" . $fullPosition)
+        );
         $serializedPaths = serialize($allfiles);
-        $fp = fopen($outputDir . "/" . $pos . "Paths.txt", "w");
+
+        $outputDir = $this->paths->getFilelistsPath();
+        $fp = fopen($outputDir . "/" . $fullPosition . "Paths.txt", "w");
         fwrite($fp, $serializedPaths);
         fclose($fp);
     }
 
     public function getRandomImageForPos(string $pos)
     {
-        $fullPosName = $this->comic->posAbbrToFull($pos);
+        $fullPosName = $this->posAbbrToFull($pos);
         $filename = "";
 
         if ($fullPosName != "") {

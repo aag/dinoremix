@@ -55,9 +55,8 @@ class Images
         $imgDescList = array();
 
         foreach ($posList as $pos) {
-            $posdir = $this->comic->posAbbrToFull($pos);
-            if ($posdir != "") {
-                $imgFileName = $this->storage->getRandomImageForPos($pos);
+            $imgFileName = $this->storage->getRandomImageForPos($pos);
+            if (!empty($imgFileName)) {
                 $imgDesc = array("pos" => $pos, "file" => $imgFileName);
                 $imgDescList[] = $imgDesc;
             }

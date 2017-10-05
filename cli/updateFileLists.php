@@ -24,16 +24,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Lib\Storage;
-use App\Lib\Paths;
+use App\Lib\Comic;
 
-$paths = new Paths();
-$storage = new Storage();
+print("Rewriting image path files\n");
 
-print("Rewriting files in " . $paths->getFilelistsPath() . "\n");
-$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topleft");
-$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topmiddle");
-$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "topright");
-$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomleft");
-$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottommiddle");
-$storage->storeImagePaths($paths->getPanelsPath(), $paths->getFilelistsPath(), "bottomright");
+$comic = new Comic();
+$comic->storeAllImagePaths(); 

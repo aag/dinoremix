@@ -74,12 +74,14 @@ class Home
 
         // Check each panel to see if it's locked
         foreach ($posAbbrs as $key => $pos) {
-            $fullName = $this->comic->posAbbrToFull($pos);
-            if (!empty($fullName) && isset($queryParams[$pos])) {
+            if (isset($queryParams[$pos])) {
                 // Panel is locked
-                $imgFileNames[$pos] = "comic2-" . $queryParams[$pos] . "-" . $fullName . ".png";
+                $imgFileNames[$pos] = $this->comic
+                    ->getPanelImageFilename($queryParams[$pos], $pos);
                 $lockClasses[$pos] = "locked";
-            } else {
+            }
+            
+            if (empty($imgFileNames[$pos])) {
                 // Panel is unlocked
                 $imgFileNames[$pos] = $this->storage->getRandomImageForPos($pos);
                 $lockClasses[$pos] = "unlocked";

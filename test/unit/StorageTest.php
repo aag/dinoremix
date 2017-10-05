@@ -18,80 +18,80 @@
 
 namespace Test\Unit;
 
-use App\Lib\Comic;
+use App\Lib\Storage;
 use PHPUnit\Framework\TestCase;
 
-class ComicTest extends TestCase
+class StorageTest extends TestCase
 {
     public function testPosAbbrToFullEmpty()
     {
-        $comic = new Comic();
-        $this->assertEquals('', $comic->posAbbrToFull(''));
+        $storage = new Storage();
+        $this->assertEquals('', $storage->posAbbrToFull(''));
     }
 
     public function testPosAbbrToFullOneLetter()
     {
-        $comic = new Comic();
-        $this->assertEquals('', $comic->posAbbrToFull('t'));
+        $storage = new Storage();
+        $this->assertEquals('', $storage->posAbbrToFull('t'));
     }
 
     public function testPosAbbrToFullTooLong()
     {
-        $comic = new Comic();
-        $this->assertEquals('', $comic->posAbbrToFull('tlt'));
+        $storage = new Storage();
+        $this->assertEquals('', $storage->posAbbrToFull('tlt'));
     }
 
     public function testPosAbbrToFullWrongFormat()
     {
-        $comic = new Comic();
-        $this->assertEquals('', $comic->posAbbrToFull('tt'));
+        $storage = new Storage();
+        $this->assertEquals('', $storage->posAbbrToFull('tt'));
     }
 
     public function testPosAbbrToFullAllCaps()
     {
-        $comic = new Comic();
-        $this->assertEquals('topleft', $comic->posAbbrToFull('TL'));
+        $storage = new Storage();
+        $this->assertEquals('topleft', $storage->posAbbrToFull('TL'));
     }
 
     public function testPosAbbrToFullOneCap()
     {
-        $comic = new Comic();
-        $this->assertEquals('topleft', $comic->posAbbrToFull('tL'));
+        $storage = new Storage();
+        $this->assertEquals('topleft', $storage->posAbbrToFull('tL'));
     }
 
     public function testPosAbbrToFullTopLeft()
     {
-        $comic = new Comic();
-        $this->assertEquals('topleft', $comic->posAbbrToFull('tl'));
+        $storage = new Storage();
+        $this->assertEquals('topleft', $storage->posAbbrToFull('tl'));
     }
 
     public function testPosAbbrToFullTopMiddle()
     {
-        $comic = new Comic();
-        $this->assertEquals('topmiddle', $comic->posAbbrToFull('tm'));
+        $storage = new Storage();
+        $this->assertEquals('topmiddle', $storage->posAbbrToFull('tm'));
     }
 
     public function testPosAbbrToFullTopRight()
     {
-        $comic = new Comic();
-        $this->assertEquals('topright', $comic->posAbbrToFull('tr'));
+        $storage = new Storage();
+        $this->assertEquals('topright', $storage->posAbbrToFull('tr'));
     }
 
     public function testPosAbbrToFullBottomLeft()
     {
-        $comic = new Comic();
-        $this->assertEquals('bottomleft', $comic->posAbbrToFull('bl'));
+        $storage = new Storage();
+        $this->assertEquals('bottomleft', $storage->posAbbrToFull('bl'));
     }
 
     public function testPosAbbrToFullBottomMiddle()
     {
-        $comic = new Comic();
-        $this->assertEquals('bottommiddle', $comic->posAbbrToFull('bm'));
+        $storage = new Storage();
+        $this->assertEquals('bottommiddle', $storage->posAbbrToFull('bm'));
     }
 
     public function testPosAbbrToFullBottomRight()
     {
-        $comic = new Comic();
-        $this->assertEquals('bottomright', $comic->posAbbrToFull('br'));
+        $storage = new Storage();
+        $this->assertEquals('bottomright', $storage->posAbbrToFull('br'));
     }
-}
+} 
