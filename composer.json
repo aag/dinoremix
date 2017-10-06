@@ -13,6 +13,7 @@
     },
     "scripts": {
         "check-style": "./vendor/bin/phpcs --standard=PSR1,PSR2 --ignore=vendor,assets .",
+        "fix-style": "./vendor/bin/phpcbf --standard=PSR1,PSR2 --ignore=vendor,assets .",
         "test": "./vendor/bin/phpunit --colors=always test"
     }
 }
