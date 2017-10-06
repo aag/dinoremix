@@ -18,22 +18,21 @@
 
 namespace App\Controllers;
 
-use App\Lib\Comic;
+use App\Lib\PanelGenerator;
 use League\Route\Http\Exception\BadRequestException;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class Images
 {
-    private $comic;
+    private $panelGenerator;
 
-    public function __construct(Comic $comic = null)
-    {
-        if (is_null($comic)) {
-            $comic = new Comic();
+    public function __construct(PanelGenerator $panelGenerator = null) {
+        if (is_null($panelGenerator)) {
+            $panelGenerator = new PanelGenerator();
         }
 
-        $this->comic = $comic;
+        $this->panelGenerator = $panelGenerator;
     }
 
     public function random(ServerRequestInterface $request, ResponseInterface $response)
@@ -44,16 +43,9 @@ class Images
         }
 
         $posList = explode("-", $queryParams["pos"]);
-        $imgDescList = array();
+        $panels = $this->panelGenerator->getRandomPanelsForPositions($posList);
 
-        foreach ($posList as $pos) {
-            $imgFileName = $this->comic->getRandomImageForPos($pos);
-            if (!empty($imgFileName)) {
-                $imgDesc = array("pos" => $pos, "file" => $imgFileName);
-                $imgDescList[] = $imgDesc;
-            }
-        }
-        $response->getBody()->write(json_encode($imgDescList));
+        $response->getBody()->write(json_encode($panels));
         return $response->withStatus(200);
     }
 }
