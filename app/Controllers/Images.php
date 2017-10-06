@@ -27,7 +27,8 @@ class Images
 {
     private $panelGenerator;
 
-    public function __construct(PanelGenerator $panelGenerator = null) {
+    public function __construct(PanelGenerator $panelGenerator = null)
+    {
         if (is_null($panelGenerator)) {
             $panelGenerator = new PanelGenerator();
         }
