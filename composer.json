@@ -5,6 +5,7 @@
     },
     "require-dev": {
         "doctrine/instantiator": "1.0.*",
+        "mockery/mockery": "^0.9.9",
         "phpunit/phpunit": "^6.3",
         "squizlabs/php_codesniffer": "^3.0"
     },

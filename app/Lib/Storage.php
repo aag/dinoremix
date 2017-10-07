@@ -47,6 +47,10 @@ class Storage
 
     private function getRandomString(array $strings)
     {
+        if (empty($strings)) {
+            return '';
+        }
+
         $stringIdx = random_int(0, sizeof($strings) - 1);
         return $strings[$stringIdx];
     }
