@@ -42,6 +42,30 @@ The BeautifulSoup module is also required. It can be installed with pip:
 sudo pip install beautifulsoup
 ```
 
+### Development
+
+The PHP code is written to comply with [PSR1](http://www.php-fig.org/psr/psr-1/)
+and [PSR2](http://www.php-fig.org/psr/psr-2/). A composer script to verify
+the conformance to those style guides with PHP\_CodeSniffer can be run with:
+
+```sh
+php composer.phar check-style
+```
+
+If there are any problems that can be fixed automatically by PHPCBF, you can
+fix them with this command:
+
+```sh
+php composer.phar fix-style
+```
+
+There are automated tests in the `test` directory. They can be run with this
+command:
+
+```sh
+php composer.phar test
+```
+
 ### License
 
 This code is free software licensed under the GPL 2. See the [LICENSE.md](LICENSE.md) file for details.
