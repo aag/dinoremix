@@ -25,9 +25,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class Home
 {
-    const DEFAULT_NUM_PANELS = 3;
-    const AVAIL_NUM_PANELS = [2, 3, 6];
-
     private $comic;
     private $renderer;
 
@@ -47,61 +44,67 @@ class Home
         $this->renderer = $renderer;
     }
 
+    private function createLockedPanelInfo(array $queryParams)
+    {
+        $lockedPanels = [];
+
+        $posAbbrs = $this->comic->getPositionAbbrs();
+        foreach ($posAbbrs as $pos) {
+            if (isset($queryParams[$pos])) {
+                $lockedPanels[] = [
+                    'pos' => $pos,
+                    'comic' => $queryParams[$pos],
+                ];
+            }
+        }
+ 
+        return $lockedPanels;
+    }
+
+    private function createImageFilenames(array $panels)
+    {
+        return array_map(function ($panel) {
+            return $panel['filename'];
+        }, $panels);
+    }
+
+    private function createPanelLockClasses(array $panels)
+    {
+        return array_map(function ($panel) {
+            return $panel['isLocked'] ? 'locked' : 'unlocked';
+        }, $panels);
+    }
+
     public function index(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParams = $request->getQueryParams();
 
-        $numPerms = $this->comic->getNumComicPermutations();
+        $this->comic->setLockedPanels($this->createLockedPanelInfo($queryParams));
 
-        $lockClasses = array();
-        $imgFileNames = array();
-        $posAbbrs = $this->comic->getPositionAbbrs();
-        $altText = "";
-
-        // Check each panel to see if it's locked
-        foreach ($posAbbrs as $key => $pos) {
-            if (isset($queryParams[$pos])) {
-                // Panel is locked
-                $imgFileNames[$pos] = $this->comic
-                    ->getPanelImageFilename($queryParams[$pos], $pos);
-                $lockClasses[$pos] = "locked";
-            }
-            
-            if (empty($imgFileNames[$pos])) {
-                // Panel is unlocked
-                $imgFileNames[$pos] = $this->comic->getRandomImageForPos($pos);
-                $lockClasses[$pos] = "unlocked";
-            }
-        }
-
-        // Get the alt text for the panels
-        $outAltText = "";
         if (isset($queryParams['alt'])) {
-            $altText = stripslashes($queryParams['alt']);
-            $linkAltText = rawurlencode($altText);
-            $outAltText = htmlspecialchars($altText);
+            $this->comic->setAltText($queryParams['alt']);
         }
 
-        // Just take the current URL as the permalink, even if it's invalid
+        if (isset($queryParams['numpanels'])) {
+            $queryNumPanels = intval($queryParams['numpanels'], 10);
+            $this->comic->setNumPanels($queryNumPanels);
+        }
+
+        $this->comic->generateRandomPanels();
+        $panels = $this->comic->getPanels();
+
+        // Just take the current URL as the permalink, without validation
         $currentUri = (string) $request->getUri();
         $permaLink = $currentUri;
 
-        $numPanels = self::DEFAULT_NUM_PANELS;
-        if (isset($queryParams['numpanels'])) {
-            $queryNumPanels = intval($queryParams['numpanels'], 10);
-            if (in_array($queryNumPanels, self::AVAIL_NUM_PANELS)) {
-                $numPanels = $queryNumPanels;
-            }
-        }
-
         $pageContent = $this->renderer->renderTemplate('pagetemplate', [
             'currentUri' => $currentUri,
-            'imgFileNames' => $imgFileNames,
-            'lockClasses' => $lockClasses,
-            'numComics' => $numComics,
-            'numPanels' => $numPanels,
-            'numPerms' => $numPerms,
-            'outAltText' => $outAltText,
+            'imgFileNames' => $this->createImageFilenames($panels),
+            'lockClasses' => $this->createPanelLockClasses($panels),
+            'numComics' => $this->comic->getNumComics(),
+            'numPanels' => $this->comic->getNumPanels(),
+            'numPerms' => $this->comic->getNumComicPermutations(),
+            'outAltText' => $this->comic->getAltTextForHtmlAttribute(),
             'permaLink' => $permaLink
         ]);
 

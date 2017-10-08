@@ -33,6 +33,16 @@ class PanelGenerator
         $this->storage = $storage;
     }
 
+    private function getComicNumFromFilename(string $filename)
+    {
+        $comic = -1;
+        if (preg_match('/^comic2-(\d+)-/', $filename, $matches)) {
+            $comic = intval($matches[1], 10);
+        }
+
+        return $comic;
+    }
+
     public function getRandomPanelsForPositions(array $positions)
     {
         $panels = [];
@@ -46,5 +56,16 @@ class PanelGenerator
         }
 
         return $panels;
+    }
+
+    public function getRandomPanelForPosition(string $pos)
+    {
+        $filename = $this->storage->getRandomImageForPos($pos);
+        $comic = $this->getComicNumFromFilename($filename);
+
+        return [
+            'comic' => $comic,
+            'filename' => $filename,
+        ];
     }
 }

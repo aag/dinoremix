@@ -20,23 +20,48 @@ namespace App\Lib;
 
 class Comic
 {
-    private $storage;
+    const DEFAULT_NUM_PANELS = 3;
+    const AVAIL_NUM_PANELS = [2, 3, 6];
 
-    public function __construct(Storage $storage = null)
+    private $storage;
+    private $panelGenerator;
+
+    private $altText = '';
+    private $lockedPanels = [];
+    private $numPanels = self::DEFAULT_NUM_PANELS;
+    private $panels = [];
+    private $positions = [];
+
+    public function __construct(Storage $storage = null, PanelGenerator $panelGenerator = null)
     {
         if (is_null($storage)) {
             $storage = new Storage();
         }
 
+        if (is_null($panelGenerator)) {
+            $panelGenerator = new PanelGenerator($storage);
+        }
+
         $this->storage = $storage;
+        $this->panelGenerator = $panelGenerator;
+
+        $this->positions = $this->storage->getPositionAbbrs();
+        $this->initializePanels();
     }
 
-    public function getPositionAbbrs()
+    private function initializePanels()
     {
-        return $this->storage->getPositionAbbrs();
+        foreach ($this->positions as $pos) {
+            $this->panels[$pos] = [
+                'comic' => -1,
+                'filename' => '',
+                'isLocked' => false,
+                'pos' => $pos,
+            ];
+        }
     }
 
-    public function getPanelImageFilename(string $comicId, string $pos)
+    private function getPanelImageFilename(string $comicId, string $pos)
     {
         $fullName = $this->storage->posAbbrToFull($pos);
         if (!empty($fullName) && !empty($comicId)) {
@@ -46,11 +71,14 @@ class Comic
         return '';
     }
 
-    public function storeAllImagePaths()
+    public function getAltTextForHtmlAttribute()
     {
-        foreach ($this->getPositionAbbrs() as $pos) {
-            $this->storage->storeImagePaths($pos);
-        }
+        return htmlspecialchars($this->altText);
+    }
+
+    public function getNumComics()
+    {
+        return $this->storage->getTotalComicsCount();
     }
 
     public function getNumComicPermutations()
@@ -61,8 +89,67 @@ class Comic
         return number_format($numPerms);
     }
 
-    public function getRandomImageForPos(string $pos)
+    public function getNumPanels()
     {
-        return $this->storage->getRandomImageForPos($pos);
+        return $this->numPanels;
+    }
+
+    public function getPanels()
+    {
+        return $this->panels;
+    }
+
+    public function getPositionAbbrs()
+    {
+        return $this->storage->getPositionAbbrs();
+    }
+
+    public function storeAllImagePaths()
+    {
+        foreach ($this->getPositionAbbrs() as $pos) {
+            $this->storage->storeImagePaths($pos);
+        }
+    }
+
+    public function setAltText(string $altText)
+    {
+        $this->altText = stripslashes($altText);
+        return $this;
+    }
+
+    public function setLockedPanels(array $lockedPanels)
+    {
+        foreach ($lockedPanels as $panelLockInfo) {
+            $pos = $panelLockInfo['pos'];
+            $comic = $panelLockInfo['comic'];
+
+            $this->panels[$pos]['isLocked'] = true;
+            $this->panels[$pos]['comic'] = $comic;
+            $this->panels[$pos]['filename'] = $this->getPanelImageFilename($comic, $pos);
+        }
+
+        return $this;
+    }
+
+    public function setNumPanels(int $numPanels)
+    {
+        if (in_array($numPanels, self::AVAIL_NUM_PANELS)) {
+            $this->numPanels = $numPanels;
+        }
+        return $this;
+    }
+
+    public function generateRandomPanels()
+    {
+        foreach ($this->panels as $pos => $panel) {
+            if (!$panel['isLocked']) {
+                $randomPanel = $this->panelGenerator->getRandomPanelForPosition($pos);
+
+                $this->panels[$pos]['comic'] = $randomPanel['comic'];
+                $this->panels[$pos]['filename'] = $randomPanel['filename'];
+            }
+        }
+
+        return $this;
     }
 }
