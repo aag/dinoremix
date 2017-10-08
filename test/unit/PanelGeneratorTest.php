@@ -79,4 +79,4 @@ class PanelGeneratorTest extends TestCase
         ];
         $this->assertEquals($panelInfo, $panels);
     }
-} 
+}
