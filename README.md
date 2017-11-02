@@ -16,13 +16,14 @@ location / {
 }
 ```
 
-Before the site will work, you will need to run `./composer.phar install` from the command line within the root directory of the repository.
+Before the site will work, you will need to run `./composer.phar install --no-dev` from the command line within the root directory of the repository.
 
 Then, run `python cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
 
 ### Requirements
 
 The code requires PHP 7.0+ and Python 2.7 or 3.
+
 
 The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
 
@@ -43,6 +44,9 @@ sudo pip install beautifulsoup
 ```
 
 ### Development
+
+The PHP extensions `dom` and `simplexml` are required for the development
+scripts. After installing them, you should run `php composer.phar install`.
 
 The PHP code is written to comply with [PSR1](http://www.php-fig.org/psr/psr-1/)
 and [PSR2](http://www.php-fig.org/psr/psr-2/). A composer script to verify
