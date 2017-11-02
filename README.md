@@ -3,7 +3,7 @@
 Dinosaur Remix is a web page that takes Dinosaur Comics and remixes them randomly, hopefully in interesting ways.  It uses PHP, Python, and jQuery to do its remix-o-matic dance.
 
 You can see it here:
-http://definingterms.com/dinoremix/
+http://dinoremix.definingterms.com/
 
 
 ### Using
