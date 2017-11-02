@@ -10,7 +10,7 @@ set('application', 'dinoremix');
 set('repository', 'git@github.com:aag/dinoremix.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
 // Shared files/dirs between deploys 
 set('shared_files', [
@@ -38,12 +38,12 @@ host('dinoremix.definingterms.com')
     ->user('deployer')
     ->forwardAgent(true)
     ->stage('production')
-    ->set('deploy_path', '/var/www/dinoremix');    
+    ->set('deploy_path', '/var/www/dinoremix');
     
 
 // Tasks
 
-task('deploy:writable_cron', function() {
+task('deploy:writable_cron', function () {
     $user = get('cron_user');
     $dirs = join(' ', get('cron_writable_dirs'));
 
@@ -59,7 +59,7 @@ task('deploy:writable_cron', function() {
     run("sudo chown -RL $user $dirs");
 });
 
-task('deploy:fpm_restart', function() {
+task('deploy:fpm_restart', function () {
     $output = run('sudo service php7.0-fpm restart');
 })->desc('Restart PHP-FPM');
 
