@@ -43,6 +43,18 @@ The BeautifulSoup module is also required. It can be installed with pip:
 sudo pip install beautifulsoup
 ```
 
+### Deploying
+
+A deploy script is already set up to use [Deployer](http://deployer.org/), but
+you will need to customize it for your server. First, edit `deploy.php` and
+change the `server()` details and the `cron_user` setting. The `cron_user`
+is the user on the server that will run the `cli/downloadComics.py` script.
+Once you have customized the configuration, run this command to deploy:
+
+```
+$ php deployer.phar deploy production
+```
+
 ### Development
 
 The PHP extensions `dom` and `simplexml` are required for the development
