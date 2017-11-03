@@ -24,14 +24,6 @@ set('shared_dirs', [
 ]);
 
 
-// Writable dirs by cron user 
-set('cron_user', 'adam');
-set('cron_writable_dirs', [
-    'data',
-    'public/panels',
-]);
-
-
 // Hosts
 
 host('dinoremix.definingterms.com')
@@ -42,22 +34,6 @@ host('dinoremix.definingterms.com')
     
 
 // Tasks
-
-task('deploy:writable_cron', function () {
-    $user = get('cron_user');
-    $dirs = join(' ', get('cron_writable_dirs'));
-
-    if (empty($dirs)) {
-        return;
-    }
-
-    cd('{{release_path}}');
-
-    // Change owner.
-    // -R   operate on files and directories recursively
-    // -L   traverse every symbolic link to a directory encountered
-    run("sudo chown -RL $user $dirs");
-});
 
 task('deploy:fpm_restart', function () {
     $output = run('sudo service php7.0-fpm restart');
@@ -72,7 +48,6 @@ task('deploy', [
     'deploy:update_code',
     'deploy:shared',
     'deploy:writable',
-    'deploy:writable_cron',
     'deploy:vendors',
     'deploy:clear_paths',
     'deploy:symlink',
