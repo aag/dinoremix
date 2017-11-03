@@ -1,5 +1,7 @@
 *.pyc
 /data/
+/node_modules/
+/public/assets/dist/
 /public/panels/
 /vendor/
 

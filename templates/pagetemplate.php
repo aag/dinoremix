@@ -5,8 +5,8 @@
 
     <title>Dinosaur Remix</title>
 
-    <link rel="stylesheet" title="Default Style" href="assets/reset.css" type="text/css" />
-    <link rel="stylesheet" title="Default Style" href="assets/dino.css" type="text/css" />
+    <link rel="stylesheet" title="Default Style" href="<?= $assets->getUrl('reset.css') ?>" type="text/css" />
+    <link rel="stylesheet" title="Default Style" href="<?= $assets->getUrl('dino.css') ?>" type="text/css" />
 </head>
 <body>
 <div id="content">
@@ -64,8 +64,8 @@
     </div>
 </div>
 
-<script defer type="text/javascript" src="assets/dist/jquery.min.js"></script>
-<script defer type="text/javascript" src="assets/dino.js"></script>
+<script defer type="text/javascript" src="<?= $assets->getUrl('jquery.min.js') ?>"></script>
+<script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>
 
 </body>
 </html>

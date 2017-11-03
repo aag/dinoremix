@@ -20,10 +20,12 @@ namespace App\Lib;
 
 class Paths
 {
-    private $rootPath;
+    private $assetsPath;
+    private $assetsDistPath;
     private $filelistsPath;
-    private $templatesPath;
     private $panelsPath;
+    private $rootPath;
+    private $templatesPath;
 
     public function __construct(string $rootPath = null)
     {
@@ -36,14 +38,21 @@ class Paths
         $rootPath = rtrim($rootPath, '/');
 
         $this->rootPath = $rootPath;
+        $this->assetsPath = $rootPath . '/public/assets';
+        $this->assetsDistPath = $rootPath . '/public/assets/dist';
         $this->filelistsPath = $rootPath . '/data/filelists';
-        $this->templatesPath = $rootPath . '/templates';
         $this->panelsPath = $rootPath . '/public/panels';
+        $this->templatesPath = $rootPath . '/templates';
     }
 
-    public function getRootPath()
+    public function getAssetsPath()
     {
-        return $this->rootPath;
+        return $this->assetsPath;
+    }
+
+    public function getAssetsDistPath()
+    {
+        return $this->assetsDistPath;
     }
 
     public function getFilelistsPath()
@@ -51,13 +60,18 @@ class Paths
         return $this->filelistsPath;
     }
 
-    public function getTemplatesPath()
-    {
-        return $this->templatesPath;
-    }
-
     public function getPanelsPath()
     {
         return $this->panelsPath;
+    }
+
+    public function getRootPath()
+    {
+        return $this->rootPath;
+    }
+
+    public function getTemplatesPath()
+    {
+        return $this->templatesPath;
     }
 }

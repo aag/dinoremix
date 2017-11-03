@@ -18,6 +18,7 @@
 
 namespace App\Controllers;
 
+use App\Lib\AssetManager;
 use App\Lib\Comic;
 use App\Lib\Renderer;
 use Psr\Http\Message\ServerRequestInterface;
@@ -25,13 +26,19 @@ use Psr\Http\Message\ResponseInterface;
 
 class Home
 {
+    private $assetManager;
     private $comic;
     private $renderer;
 
     public function __construct(
+        AssetManager $assetManager = null,
         Comic $comic = null,
         Renderer $renderer = null
     ) {
+        if (is_null($assetManager)) {
+            $assetManager = new AssetManager();
+        }
+
         if (is_null($comic)) {
             $comic = new Comic();
         }
@@ -40,6 +47,7 @@ class Home
             $renderer = new Renderer();
         }
 
+        $this->assetManager = $assetManager;
         $this->comic = $comic;
         $this->renderer = $renderer;
     }
@@ -98,6 +106,7 @@ class Home
         $permaLink = $currentUri;
 
         $pageContent = $this->renderer->renderTemplate('pagetemplate', [
+            'assets' => $this->assetManager,
             'currentUri' => $currentUri,
             'imgFileNames' => $this->createImageFilenames($panels),
             'lockClasses' => $this->createPanelLockClasses($panels),
