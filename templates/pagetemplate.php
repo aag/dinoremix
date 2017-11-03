@@ -64,7 +64,7 @@
     </div>
 </div>
 
-<script defer type="text/javascript" src="assets/jquery.min.js"></script>
+<script defer type="text/javascript" src="assets/dist/jquery.min.js"></script>
 <script defer type="text/javascript" src="assets/dino.js"></script>
 
 </body>
