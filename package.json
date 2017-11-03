@@ -8,6 +8,6 @@
     "minifier": "^0.8.1"
   },
   "scripts": {
-    "build": "minify --template {{filename}}-{{md5}}.min.{{ext}} --clean public/assets/ && rm -f public/assets/dist/* && mv public/assets/*-*.min.* public/assets/dist/"
+    "build": "minify --no-comments --template {{filename}}-{{md5}}.min.{{ext}} --clean public/assets/ && rm -f public/assets/dist/* && mv public/assets/*-*.min.* public/assets/dist/"
   }
 }
