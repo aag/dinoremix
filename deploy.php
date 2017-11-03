@@ -35,6 +35,16 @@ host('dinoremix.definingterms.com')
 
 // Tasks
 
+task('deploy:npm_install', function() {
+    cd('{{release_path}}');
+    $output = run('npm install');
+})->desc('Install npm modules');
+
+task('deploy:npm_build', function() {
+    cd('{{release_path}}');
+    $output = run('npm run build');
+})->desc('Build frontend assets');
+
 task('deploy:fpm_restart', function () {
     $output = run('sudo service php7.0-fpm restart');
 })->desc('Restart PHP-FPM');
@@ -49,6 +59,8 @@ task('deploy', [
     'deploy:shared',
     'deploy:writable',
     'deploy:vendors',
+    'deploy:npm_install',
+    'deploy:npm_build',
     'deploy:clear_paths',
     'deploy:symlink',
     'deploy:fpm_restart',
