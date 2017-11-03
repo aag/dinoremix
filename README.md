@@ -82,6 +82,10 @@ command:
 php composer.phar test
 ```
 
+Minification of the frontend assets happens during deploy. To run it locally,
+run `npm run build`. If there are minified files in `public/assets/dist`, then
+those will be served to the browser instead of the source files.
+
 ### License
 
 This code is free software licensed under the GPL 2. See the [LICENSE.md](LICENSE.md) file for details.
