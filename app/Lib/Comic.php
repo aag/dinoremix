@@ -104,6 +104,20 @@ class Comic
         return $this->storage->getPositionAbbrs();
     }
 
+    public function getPermalink()
+    {
+        $queryParams = array_column($this->panels, 'comic', 'pos');
+        $queryParams = array_filter($queryParams, function ($comic) {
+            return $comic !== -1;
+        });
+
+        if ($this->numPanels !== self::DEFAULT_NUM_PANELS) {
+            $queryParams['numPanels'] = $this->numPanels;
+        }
+
+        return '?' . http_build_query($queryParams);
+    }
+
     public function storeAllImagePaths()
     {
         foreach ($this->getPositionAbbrs() as $pos) {

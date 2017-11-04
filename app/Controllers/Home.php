@@ -103,7 +103,6 @@ class Home
 
         // Just take the current URL as the permalink, without validation
         $currentUri = (string) $request->getUri();
-        $permaLink = $currentUri;
 
         $pageContent = $this->renderer->renderTemplate('pagetemplate', [
             'assets' => $this->assetManager,
@@ -114,7 +113,7 @@ class Home
             'numPanels' => $this->comic->getNumPanels(),
             'numPerms' => $this->comic->getNumComicPermutations(),
             'outAltText' => $this->comic->getAltTextForHtmlAttribute(),
-            'permaLink' => $permaLink
+            'permaLink' => $this->comic->getPermalink(),
         ]);
 
         $response->getBody()->write($pageContent);

@@ -194,4 +194,56 @@ class ComicTest extends TestCase
         $panels = $comic->getPanels();
         $this->assertEquals(1, $panels['tl']['comic']);
     }
+
+    public function testGetPermalinkThreePanels()
+    {
+        $storage = m::mock(Storage::class);
+        $storage->shouldReceive('getPositionAbbrs')
+            ->andReturn(['tl', 'tm', 'br']);
+        $storage->shouldReceive('posAbbrToFull')
+            ->andReturnUsing(function ($pos) {
+                if ($pos === 'tl') {
+                    return 'topleft';
+                }
+
+                if ($pos === 'tm') {
+                    return 'topmiddle';
+                }
+
+                return 'bottomright';
+            });
+
+        $comic = new Comic($storage);
+        $comic->setLockedPanels([
+            ['pos' => 'tl', 'comic' => 1],
+            ['pos' => 'tm', 'comic' => 2],
+            ['pos' => 'br', 'comic' => 3],
+        ]);
+
+        $this->assertEquals('?tl=1&tm=2&br=3', $comic->getPermalink());
+    }
+
+    public function testGetPermalinkTwoPanels()
+    {
+        $storage = m::mock(Storage::class);
+        $storage->shouldReceive('getPositionAbbrs')
+            ->andReturn(['tl', 'tm', 'br']);
+        $storage->shouldReceive('posAbbrToFull')
+            ->andReturnUsing(function ($pos) {
+                if ($pos === 'tl') {
+                    return 'topleft';
+                }
+
+                return 'bottomright';
+            });
+
+        $comic = new Comic($storage);
+        $comic->setNumPanels(2);
+        $comic->setLockedPanels([
+            ['pos' => 'tl', 'comic' => 1],
+            ['pos' => 'br', 'comic' => 3],
+        ]);
+
+        $this->assertEquals('?tl=1&br=3&numPanels=2', $comic->getPermalink());
+    }
 }
