@@ -47,9 +47,8 @@ sudo pip install beautifulsoup
 
 A deploy script is already set up to use [Deployer](http://deployer.org/), but
 you will need to customize it for your server. First, edit `deploy.php` and
-change the `server()` details and the `cron_user` setting. The `cron_user`
-is the user on the server that will run the `cli/downloadComics.py` script.
-Once you have customized the configuration, run this command to deploy:
+change the `server()` details. Once you have customized the configuration,
+run this command to deploy:
 
 ```
 $ php deployer.phar deploy production
@@ -83,8 +82,9 @@ php composer.phar test
 ```
 
 Minification of the frontend assets happens during deploy. To run it locally,
-run `npm run build`. If there are minified files in `public/assets/dist`, then
-those will be served to the browser instead of the source files.
+run `npm install` and `npm run build`. If there are minified files in
+`public/assets/dist`, then those will be served to the browser instead of the
+source files.
 
 ### License
 
