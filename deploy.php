@@ -35,12 +35,12 @@ host('dinoremix.definingterms.com')
 
 // Tasks
 
-task('deploy:npm_install', function() {
+task('deploy:npm_install', function () {
     cd('{{release_path}}');
     $output = run('npm install');
 })->desc('Install npm modules');
 
-task('deploy:npm_build', function() {
+task('deploy:npm_build', function () {
     cd('{{release_path}}');
     $output = run('npm run build');
 })->desc('Build frontend assets');
