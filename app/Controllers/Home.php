@@ -110,6 +110,9 @@ class Home
             'numPerms' => $this->comic->getNumComicPermutations(),
             'outAltText' => $this->comic->getAltTextForHtmlAttribute(),
             'permaLink' => $this->comic->getPermalink(),
+            'permaLink2Panels' => $this->comic->getPermalink(2),
+            'permaLink3Panels' => $this->comic->getPermalink(3),
+            'permaLink6Panels' => $this->comic->getPermalink(6),
             'reloadUri' => $this->comic->getReloadUri(),
         ]);
 

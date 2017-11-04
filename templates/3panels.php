@@ -1,7 +1,7 @@
     <div id="linksBar" style="width: 618px;">
         <a id="reloadLink" href="<?= $reloadUri ?>"><span id="reloadButton" class="unpressedReloadButton"><img src="images/reload.png" alt="" />&nbsp;<span id="reloadText">Reload the panels</span></span></a>
 
-    <div id="numPanelsHolder">Number of panels: <span id="panelNumSwitcher"><a id="twoPanelsLink" href="./?numpanels=2" class="panelNumLink unchosenPanelNumLink">2</a> <a id="threePanelsLink" href="./?numpanels=3" class="panelNumLink chosenPanelNumLink">3</a> <a id="sixPanelsLink" href="./?numpanels=6" class="panelNumLink unchosenPanelNumLink">6</a></span></div>
+    <div id="numPanelsHolder">Number of panels: <span id="panelNumSwitcher"><a id="twoPanelsLink" href="<?= $permaLink2Panels ?>" class="panelNumLink unchosenPanelNumLink">2</a> <a id="threePanelsLink" href="<?= $permaLink3Panels ?>" class="panelNumLink chosenPanelNumLink">3</a> <a id="sixPanelsLink" href="<?= $permaLink6Panels ?>" class="panelNumLink unchosenPanelNumLink">6</a></span></div>
 <br />
 <br />
 <br />

@@ -71,6 +71,16 @@ class Comic
         return '';
     }
 
+    private function getComics()
+    {
+        $comics = array_column($this->panels, 'comic', 'pos');
+        $comics = array_filter($comics, function ($comic) {
+            return $comic !== -1;
+        });
+
+        return $comics;
+    }
+
     public function getAltTextForHtmlAttribute()
     {
         return htmlspecialchars($this->altText);
@@ -104,15 +114,16 @@ class Comic
         return $this->storage->getPositionAbbrs();
     }
 
-    public function getPermalink()
+    public function getPermalink(int $numPanels = null)
     {
-        $queryParams = array_column($this->panels, 'comic', 'pos');
-        $queryParams = array_filter($queryParams, function ($comic) {
-            return $comic !== -1;
-        });
+        $queryParams = $this->getComics();
 
-        if ($this->numPanels !== self::DEFAULT_NUM_PANELS) {
-            $queryParams['numpanels'] = $this->numPanels;
+        if (is_null($numPanels)) {
+            $numPanels = $this->numPanels;
+        }
+
+        if ($numPanels !== self::DEFAULT_NUM_PANELS) {
+            $queryParams['numpanels'] = $numPanels;
         }
 
         return '?' . http_build_query($queryParams);
