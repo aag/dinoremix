@@ -112,10 +112,15 @@ class Comic
         });
 
         if ($this->numPanels !== self::DEFAULT_NUM_PANELS) {
-            $queryParams['numPanels'] = $this->numPanels;
+            $queryParams['numpanels'] = $this->numPanels;
         }
 
         return '?' . http_build_query($queryParams);
+    }
+
+    public function getReloadUri()
+    {
+        return '?numpanels=' . $this->numPanels;
     }
 
     public function storeAllImagePaths()

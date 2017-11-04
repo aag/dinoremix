@@ -244,6 +244,6 @@ class ComicTest extends TestCase
             ['pos' => 'br', 'comic' => 3],
         ]);
 
-        $this->assertEquals('?tl=1&br=3&numPanels=2', $comic->getPermalink());
+        $this->assertEquals('?tl=1&br=3&numpanels=2', $comic->getPermalink());
     }
 }

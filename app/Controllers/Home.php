@@ -101,12 +101,8 @@ class Home
         $this->comic->generateRandomPanels();
         $panels = $this->comic->getPanels();
 
-        // Just take the current URL as the permalink, without validation
-        $currentUri = (string) $request->getUri();
-
         $pageContent = $this->renderer->renderTemplate('pagetemplate', [
             'assets' => $this->assetManager,
-            'currentUri' => $currentUri,
             'imgFileNames' => $this->createImageFilenames($panels),
             'lockClasses' => $this->createPanelLockClasses($panels),
             'numComics' => $this->comic->getNumComics(),
@@ -114,6 +110,7 @@ class Home
             'numPerms' => $this->comic->getNumComicPermutations(),
             'outAltText' => $this->comic->getAltTextForHtmlAttribute(),
             'permaLink' => $this->comic->getPermalink(),
+            'reloadUri' => $this->comic->getReloadUri(),
         ]);
 
         $response->getBody()->write($pageContent);
