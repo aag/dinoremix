@@ -10,7 +10,8 @@
 </head>
 <body>
 <div id="content">
-    <h1>Dinosaur Remix!</h1>
+    <h1 class="pageTitle">Dinosaur Remix!</h1>
+    <div class="description">
         <ol>
             <li>Take a bunch of <a href="http://qwantz.com">Dinosaur Comics</a>.</li>
             <li>Cut out all of the panels.</li>
@@ -19,49 +20,46 @@
             <li>Add a funny alt text.</li>
             <li>Send links of the good ones to your friends and enemies.</li>
         </ol>
-    <br />
+    </div>
+
     <noscript>
-        <div>
+        <div class="nojs-notice">
             <span style="color: black; background-color: #ffffaf;">Psst! This
                 page is way more fun with JavaScript enabled.</span>
         </div>
-        <br />
     </noscript>
-    <br />
-    <?php
-    if ($numPanels === 2) {
-        include("2panels.php");
-    } elseif ($numPanels === 6) {
-        include("6panels.php");
-    } else {
-        include("3panels.php");
-    }
-    ?>
-    <div>
-        <br />
+
+    <div class="comic">
+        <?php
+        if ($numPanels === 2) {
+            include("2panels.php");
+        } elseif ($numPanels === 6) {
+            include("6panels.php");
+        } else {
+            include("3panels.php");
+        }
+        ?>
+
         <div id="permaLinkHolder">
             <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>">
                 <img src="images/link.png" alt="Link" />
                 <span style="text-decoration: underline">Permalink to this remix</span>
             </a>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
+    </div>
+
+    <div class="comicCount">
         Currently remixing <?= $numComics ?> comics, making for
         <?= $numPerms ?> possible remixes.
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p style="font-size: small; color: gray">The code for this page is
-            available here:
-            <a href="http://github.com/aag/dinoremix/" style="color: gray;">
-                http://github.com/aag/dinoremix/</a>
-        </p>
     </div>
+</div>
+
+<div class="credits">
+    <p style="font-size: small; color: gray">The code for this page is
+        available here:
+        <a href="http://github.com/aag/dinoremix/" style="color: gray;">
+            http://github.com/aag/dinoremix/</a>
+    </p>
 </div>
 
 <script defer type="text/javascript" src="<?= $assets->getUrl('jquery.min.js') ?>"></script>

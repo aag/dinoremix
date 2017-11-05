@@ -29,8 +29,24 @@ body {
 	position: relative;
 }
 
+.comic {
+    margin-bottom: 30px;
+}
+
+.comicCount {
+    margin-bottom: 100px;
+}
+
 .panelImage {
 	position: relative;
+}
+
+#permaLinkHolder {
+    margin-top: 20px;
+}
+
+.credits {
+    margin-bottom: 50px;
 }
 
 .creditsImage {
@@ -52,6 +68,12 @@ body {
 
 .clearBR {
 	clear: both;
+}
+
+.clearfix:after {
+    content:"";
+    display:block;
+    clear:both;
 }
 
 .unlockedLock:hover {
