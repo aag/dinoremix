@@ -56,8 +56,9 @@ $ php deployer.phar deploy production
 
 ### Development
 
-The PHP extensions `dom` and `simplexml` are required for the development
-scripts. After installing them, you should run `php composer.phar install`.
+The PHP extensions `dom`, `simplexml`, and `mbstring` are required for the 
+development scripts. After installing them, you should run
+`php composer.phar install`.
 
 The PHP code is written to comply with [PSR1](http://www.php-fig.org/psr/psr-1/)
 and [PSR2](http://www.php-fig.org/psr/psr-2/). A composer script to verify
