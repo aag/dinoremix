@@ -10,17 +10,7 @@
 </head>
 <body>
 <div id="content">
-    <h1 class="pageTitle">Dinosaur Remix!</h1>
-    <div class="description">
-        <ol>
-            <li>Take a bunch of <a href="http://qwantz.com">Dinosaur Comics</a>.</li>
-            <li>Cut out all of the panels.</li>
-            <li>Randomly pick panels from different comics and hook them up.</li>
-            <li>Lock the panels you like and reload the ones you don't.</li>
-            <li>Add a funny alt text.</li>
-            <li>Send links of the good ones to your friends and enemies.</li>
-        </ol>
-    </div>
+    <h1 class="pageTitle">Dinosaur Remix</h1>
 
     <noscript>
         <div class="nojs-notice">
