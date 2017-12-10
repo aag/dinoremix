@@ -60,7 +60,7 @@ class AssetManagerTest extends TestCase
     {
         $paths = new Paths(self::$fixturesPath);
         $am = new AssetManager($paths);
-        $minifiedPath = 'assets/missing.js';
+        $minifiedPath = 'assets/dist/missing.js';
         $this->assertEquals($minifiedPath, $am->getUrl('missing.js'));
     }
 }

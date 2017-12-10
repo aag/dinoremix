@@ -4,11 +4,24 @@
   "author": "Adam Goforth",
   "description": "A web app for remixing Dinosaur Comics",
   "license": "GPL-2.0",
-  "dependencies": {
-    "minifier": "^0.8.1"
+  "homepage": "http://dinoremix.definingterms.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aag/dinoremix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aag/dinoremix/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.10.0"
   },
   "scripts": {
-    "build": "minify --no-comments --template {{filename}}-{{md5}}.min.{{ext}} --clean public/assets/ && rm -f public/assets/dist/* && mv public/assets/*-*.min.* public/assets/dist/",
-    "clean": "rm -f public/assets/dist/*"
+    "build": "npm run clean && webpack --env.prod --optimize-minimize",
+    "clean": "rm -f public/assets/dist/*",
+    "start": "webpack --env.dev --watch"
   }
 }

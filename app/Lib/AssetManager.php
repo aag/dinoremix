@@ -20,7 +20,6 @@ namespace App\Lib;
 
 class AssetManager
 {
-    const ASSETS_URL_PATH = 'assets/';
     const DIST_URL_PATH = 'assets/dist/';
 
     private $paths;
@@ -47,7 +46,7 @@ class AssetManager
 
     public function getUrl(string $filename)
     {
-        $path = self::ASSETS_URL_PATH . $filename;
+        $path = self::DIST_URL_PATH . $filename;
 
         $fileGlobPattern = $this->getGlobPatternForFilename($filename);
         $distDirGlobPattern = $this->paths->getAssetsDistPath() . '/' . $fileGlobPattern;
