@@ -51,6 +51,14 @@ body {
     margin-top: 20px;
 }
 
+#permaLink {
+	text-decoration: none;
+}
+
+.permaLinkText {
+	text-decoration: underline;
+}
+
 .credits {
     margin-bottom: 50px;
 }

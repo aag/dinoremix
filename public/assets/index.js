@@ -1,6 +1,8 @@
-import reset from './reset.css'
-import style from './dino.css'
+import reset from './reset.css';
+import style from './dino.css';
 
-import init from './dino.js'
+import m from 'mithril';
 
-init();
+import ComicUI from './components/ComicUI';
+
+m.mount(document.querySelector('.comic'), ComicUI);

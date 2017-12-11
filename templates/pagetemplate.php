@@ -51,7 +51,6 @@
     </p>
 </div>
 
-<script defer type="text/javascript" src="/assets/jquery.min.js"></script>
 <script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>
 
 </body>
