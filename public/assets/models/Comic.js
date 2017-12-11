@@ -1,8 +1,8 @@
-
+import m from 'mithril';
 
 const Comic = {
   unlockedPanels: [
-    'tl', 'tm', 'tr', 'bl', 'bm', 'br'
+    'tl', 'tm', 'tr', 'bl', 'bm', 'br',
   ],
   numPanels: 3,
   panels: {
@@ -16,15 +16,15 @@ const Comic = {
 
   getPermalink: () => {
     const panelsQueryString = Comic.getAllPanelsQueryString();
-    return `?numPanels=${Comic.numPanels}${panelsQueryString}`
+    return `?numPanels=${Comic.numPanels}${panelsQueryString}`;
   },
 
-  getAllPanelsQueryString: () => {
-    return Object.entries(Comic.panels).reduce((queryString, panel) => {
+  getAllPanelsQueryString: () => (
+    Object.entries(Comic.panels).reduce((queryString, panel) => {
       const comicNum = Comic.getCurrentComicForPanel(panel[0]);
       return `${queryString}&${panel[0]}=${comicNum}`;
-    }, '');
-  },
+    }, '')
+  ),
 
   getCurrentComicForPanel: (panel) => {
     const filename = Comic.panels[panel];
@@ -37,16 +37,15 @@ const Comic = {
     const posList = Comic.unlockedPanels.join('-');
 
     return m.request({
-      method: "GET",
+      method: 'GET',
       url: `/images/random?pos=${posList}`,
     })
-      .then(function (result) {
-        User.list = result.data
-        for (panel of result.data) {
+      .then((result) => {
+        result.data.forEach((panel) => {
           Comic.panels[panel.pos] = panel.file;
-        }
-      })
-  }
+        });
+      });
+  },
 };
 
 export default Comic;

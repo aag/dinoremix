@@ -1,7 +1,9 @@
+import m from 'mithril';
+
+/* eslint-disable no-unused-vars */
 import reset from './reset.css';
 import style from './dino.css';
-
-import m from 'mithril';
+/* eslint-enable no-unused-vars */
 
 import ComicUI from './components/ComicUI';
 
