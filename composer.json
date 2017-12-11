@@ -13,8 +13,8 @@
         "psr-4": {"App\\": "app/"}
     },
     "scripts": {
-        "check-style": "./vendor/bin/phpcs --standard=PSR1,PSR2 --ignore=vendor,assets,node_modules .",
-        "fix-style": "./vendor/bin/phpcbf --standard=PSR1,PSR2 --ignore=vendor,assets,node_modules .",
+        "check-style": "./vendor/bin/phpcs --extensions=php --standard=PSR1,PSR2 --ignore=vendor,assets,node_modules .",
+        "fix-style": "./vendor/bin/phpcbf --extensions=php --standard=PSR1,PSR2 --ignore=vendor,assets,node_modules .",
         "test": "./vendor/bin/phpunit --colors=always test"
     }
 }
