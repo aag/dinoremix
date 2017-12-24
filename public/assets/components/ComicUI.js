@@ -1,6 +1,6 @@
-import m from 'mithril';
+const m = require('mithril');
 
-import Permalink from './Permalink';
+const Permalink = require('./Permalink');
 
 const ComicUI = {
   view: () =>
@@ -9,4 +9,4 @@ const ComicUI = {
     ]),
 };
 
-export default ComicUI;
+module.exports = ComicUI;

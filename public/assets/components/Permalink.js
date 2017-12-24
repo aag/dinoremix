@@ -1,6 +1,6 @@
-import m from 'mithril';
+const m = require('mithril');
 
-import Comic from '../models/Comic';
+const Comic = require('../models/Comic');
 
 const Permalink = {
   view: () =>
@@ -14,4 +14,4 @@ const Permalink = {
     ),
 };
 
-export default Permalink;
+module.exports = Permalink;

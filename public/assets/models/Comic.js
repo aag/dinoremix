@@ -1,4 +1,4 @@
-import m from 'mithril';
+const m = require('mithril');
 
 const Comic = {
   unlockedPanels: [
@@ -48,4 +48,4 @@ const Comic = {
   },
 };
 
-export default Comic;
+module.exports = Comic;

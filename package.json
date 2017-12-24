@@ -28,6 +28,7 @@
     "build": "npm run clean && webpack --env.prod --optimize-minimize",
     "check-style": "eslint public/assets",
     "clean": "rm -f public/assets/dist/*",
-    "start": "npm run clean && webpack --env.dev --watch"
+    "start": "npm run clean && webpack --env.dev --watch",
+    "test": "ospec"
   }
 }
