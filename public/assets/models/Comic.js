@@ -16,13 +16,14 @@ const Comic = {
 
   getPermalink: () => {
     const panelsQueryString = Comic.getAllPanelsQueryString();
-    return `?numPanels=${Comic.numPanels}${panelsQueryString}`;
+    return `?numPanels=${Comic.numPanels}&${panelsQueryString}`;
   },
 
   getAllPanelsQueryString: () => (
     Object.entries(Comic.panels).reduce((queryString, panel) => {
+      const prefix = queryString === '' ? '' : `${queryString}&`;
       const comicNum = Comic.getCurrentComicForPanel(panel[0]);
-      return `${queryString}&${panel[0]}=${comicNum}`;
+      return `${prefix}${panel[0]}=${comicNum}`;
     }, '')
   ),
 
