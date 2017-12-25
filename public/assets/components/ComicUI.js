@@ -2,11 +2,12 @@ const m = require('mithril');
 
 const Permalink = require('./Permalink');
 
-const ComicUI = {
-  view: () =>
-    m('.comic', [
+class ComicUI {
+  static view() {
+    return m('.comic', [
       m(Permalink),
-    ]),
-};
+    ]);
+  }
+}
 
 module.exports = ComicUI;
