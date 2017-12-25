@@ -25,6 +25,11 @@ module.exports = function(env, argv) {
                             }
                         ]
                     })
+                },
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: 'babel-loader'
                 }
             ]
         },
