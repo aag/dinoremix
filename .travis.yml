@@ -2,8 +2,13 @@ language: php
 php:
   - 7.0
   - 7.1
+before_install:
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install "8.9.3"
 install:
   - php composer.phar install
+  - npm install
 script: 
   - php composer.phar check-style
   - php composer.phar test
+  - npm run check-style
+  - npm test
