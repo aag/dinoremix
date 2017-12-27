@@ -1,0 +1,20 @@
+global.window = require('mithril/test-utils/browserMock.js')();
+
+global.document = window.document;
+
+const o = require('mithril/ospec/ospec');
+const mq = require('mithril-query');
+const ComicUI = require('../ComicUI');
+
+o.spec('The ComicUI component', () => {
+  o('renders the comic', () => {
+    const output = mq(ComicUI);
+    output.should.have('.comic');
+  });
+
+  o('renders a permalink', () => {
+    const output = mq(ComicUI);
+    output.should.have('#permaLink');
+  });
+});
+
