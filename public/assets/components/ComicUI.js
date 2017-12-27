@@ -4,10 +4,9 @@ const Permalink = require('./Permalink');
 
 const ComicUI = {
   view: () =>
-    m(
-      '.comic', [
-        m(Permalink),
-      ]),
-}
+    m('.comic', [
+      m(Permalink),
+    ]),
+};
 
 module.exports = ComicUI;
