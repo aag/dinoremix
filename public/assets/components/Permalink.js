@@ -1,7 +1,7 @@
 const m = require('mithril');
 
 const Permalink = {
-  view: (vnode) =>
+  view: vnode =>
     m(
       '#permalinkHolder',
       m('a', { id: 'permaLink', href: vnode.attrs.url }, [

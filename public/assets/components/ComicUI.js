@@ -11,7 +11,7 @@ const ComicUI = {
       m('#linksBar', { class: 'clearfix' }, [
         m(NumPanelsSwitcher, { numPanels: Comic.numPanels }),
       ]),
-      m(Permalink, { url: Comic.getPermalink() } ),
+      m(Permalink, { url: Comic.getPermalink() }),
     ]),
 };
 
