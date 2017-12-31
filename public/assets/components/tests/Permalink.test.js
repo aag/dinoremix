@@ -8,9 +8,9 @@ const Permalink = require('../Permalink');
 
 o.spec('The Permalink component', () => {
   o('renders correctly', () => {
-    const output = mq(Permalink);
+    const output = mq(Permalink, { url: '/link/to/comic' } );
     output.should.have('#permalinkHolder');
-    output.should.have('a#permaLink');
+    output.should.have('a#permaLink[href="/link/to/comic"]');
     output.should.have('img[src="/images/link.png"]');
     output.should.contain('Permalink to this remix');
   });
