@@ -12,6 +12,11 @@ o.spec('The ComicUI component', () => {
     output.should.have('.comic');
   });
 
+  o('renders the num panels switcher permalink', () => {
+    const output = mq(ComicUI);
+    output.should.have('#panelNumSwitcher');
+  });
+
   o('renders a permalink', () => {
     const output = mq(ComicUI);
     output.should.have('#permaLink');
