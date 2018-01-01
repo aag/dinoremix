@@ -3,6 +3,7 @@ const m = require('mithril');
 const Comic = require('../models/Comic');
 
 const ReloadButton = require('./ReloadButton');
+const LocksRow = require('./LocksRow');
 const NumPanelsSwitcher = require('./NumPanelsSwitcher');
 const Permalink = require('./Permalink');
 
@@ -13,6 +14,8 @@ const ComicUI = {
         m(ReloadButton),
         m(NumPanelsSwitcher, { numPanels: Comic.numPanels }),
       ]),
+      m(LocksRow, { position: 'top', numPanels: Comic.numPanels }),
+      m(LocksRow, { position: 'bottom', numPanels: Comic.numPanels }),
       m(Permalink, { url: Comic.getPermalink() }),
     ]),
 };

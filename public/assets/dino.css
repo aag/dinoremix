@@ -67,17 +67,42 @@ body {
 	position: relative;
 }
 
-.lockSpan {
-	display: none;
-	text-align: center;
+.lockHolder {
+    display: inline;
+	float: left;
 	padding: 2px 0px;
+
+	text-align: center;
+
+	cursor: pointer;
 }
 
 .unlockedLock {
-	text-align: center;
-	cursor: pointer;
-	float: left;
 	background-color: #ddffdd;
+}
+
+.tlLock {
+    width: 244px;
+}
+
+.tmLock {
+    width: 129px;
+}
+
+.trLock {
+    width: 362px;
+}
+
+.blLock {
+    width: 194px;
+}
+
+.bmLock {
+    width: 298px;
+}
+
+.brLock {
+    width: 243px;
 }
 
 .clearBR {
