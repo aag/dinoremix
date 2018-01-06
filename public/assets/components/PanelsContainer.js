@@ -2,7 +2,7 @@ const m = require('mithril');
 
 const Panel = require('./Panel');
 
-const Panels = {
+const PanelsContainer = {
   view: (vnode) => {
     const { images, altText } = vnode.attrs;
 
@@ -17,4 +17,4 @@ const Panels = {
   },
 };
 
-module.exports = Panels;
+module.exports = PanelsContainer;

@@ -4,11 +4,11 @@ global.document = window.document;
 
 const o = require('mithril/ospec/ospec');
 const mq = require('mithril-query');
-const Panels = require('../Panels');
+const PanelsContainer = require('../PanelsContainer');
 
-o.spec('The Panels component', () => {
+o.spec('The PanelsContainer component', () => {
   o('renders correctly', () => {
-    const output = mq(Panels, {
+    const output = mq(PanelsContainer, {
       images: {
         tl: 'comic2-100-topleft.png',
         tm: 'comic2-101-topmiddle.png',
