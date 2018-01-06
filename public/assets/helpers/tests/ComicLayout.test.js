@@ -23,3 +23,39 @@ o.spec('ComicLayout.getVisibleLocks()', () => {
   });
 });
 
+o.spec('ComicLayout.getVisiblePanels()', () => {
+  o('returns an empty array for invalid inputs', () => {
+    o(ComicLayout.getVisiblePanels()).deepEquals([]);
+    o(ComicLayout.getVisiblePanels('')).deepEquals([]);
+    o(ComicLayout.getVisiblePanels(0)).deepEquals([]);
+    o(ComicLayout.getVisiblePanels(1)).deepEquals([]);
+    o(ComicLayout.getVisiblePanels(5)).deepEquals([]);
+  });
+
+  o('returns the correct values for 2 panels', () => {
+    o(ComicLayout.getVisiblePanels(2)).deepEquals([
+      { position: 'tl', directory: 'topleft' },
+      { position: 'br', directory: 'bottomright' },
+    ]);
+  });
+
+  o('returns the correct values for 3 panels', () => {
+    o(ComicLayout.getVisiblePanels(3)).deepEquals([
+      { position: 'tl', directory: 'topleft' },
+      { position: 'tm', directory: 'topmiddle' },
+      { position: 'br', directory: 'bottomright' },
+    ]);
+  });
+
+  o('returns the correct values for 6 panels', () => {
+    o(ComicLayout.getVisiblePanels(6)).deepEquals([
+      { position: 'tl', directory: 'topleft' },
+      { position: 'tm', directory: 'topmiddle' },
+      { position: 'tr', directory: 'topright' },
+      { position: 'bl', directory: 'bottomleft' },
+      { position: 'bm', directory: 'bottommiddle' },
+      { position: 'br', directory: 'bottomright' },
+    ]);
+  });
+});
+

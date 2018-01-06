@@ -9,6 +9,7 @@ const PanelsContainer = require('../PanelsContainer');
 o.spec('The PanelsContainer component', () => {
   o('renders correctly', () => {
     const output = mq(PanelsContainer, {
+      altText: '',
       images: {
         tl: 'comic2-100-topleft.png',
         tm: 'comic2-101-topmiddle.png',
@@ -17,6 +18,7 @@ o.spec('The PanelsContainer component', () => {
         bm: 'comic2-104-bottommiddle.png',
         br: 'comic2-105-bottomright.png',
       },
+      numPanels: 6,
     });
     output.should.have('#panelContainer');
     output.should.have('#tlImage[src="/panels/topleft/comic2-100-topleft.png"]');

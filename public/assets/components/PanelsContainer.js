@@ -1,19 +1,24 @@
 const m = require('mithril');
 
+const ComicLayout = require('../helpers/ComicLayout');
 const Panel = require('./Panel');
 
 const PanelsContainer = {
   view: (vnode) => {
-    const { images, altText } = vnode.attrs;
+    const { altText, images, numPanels } = vnode.attrs;
 
-    return m('#panelContainer', [
-      m(Panel, { position: 'tl', src: `/panels/topleft/${images.tl}`, altText }),
-      m(Panel, { position: 'tm', src: `/panels/topmiddle/${images.tm}`, altText }),
-      m(Panel, { position: 'tr', src: `/panels/topright/${images.tr}`, altText }),
-      m(Panel, { position: 'bl', src: `/panels/bottomleft/${images.bl}`, altText }),
-      m(Panel, { position: 'bm', src: `/panels/bottommiddle/${images.bm}`, altText }),
-      m(Panel, { position: 'br', src: `/panels/bottomright/${images.br}`, altText }),
-    ]);
+    const panels = ComicLayout
+      .getVisiblePanels(numPanels)
+      .map((panel) => {
+        const { position, directory } = panel;
+        return m(Panel, {
+          altText,
+          position,
+          src: `/panels/${directory}/${images[position]}`,
+        });
+      });
+
+    return m('#panelContainer', panels);
   },
 };
 

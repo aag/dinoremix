@@ -4,7 +4,7 @@ const Comic = {
   unlockedPanels: [
     'tl', 'tm', 'tr', 'bl', 'bm', 'br',
   ],
-  numPanels: 6,
+  numPanels: 3,
   panels: {
     tl: 'comic2-100-topleft.png',
     tm: 'comic2-100-topmiddle.png',
