@@ -8,15 +8,8 @@ const NumPanelsSwitcher = require('../NumPanelsSwitcher');
 
 o.spec('The NumPanelsSwitcher component', () => {
   o('renders the switcher', () => {
-    const output = mq(NumPanelsSwitcher);
+    const output = mq(NumPanelsSwitcher, { numPanels: 3 });
     output.should.have('#panelNumSwitcher');
-  });
-
-  o('defaults to selecting 3 panels', () => {
-    const output = mq(NumPanelsSwitcher);
-    output.should.have('.unchosenPanelNumLink:contains(2)');
-    output.should.have('.chosenPanelNumLink:contains(3)');
-    output.should.have('.unchosenPanelNumLink:contains(6)');
   });
 
   o('allows selecting 2 panels', () => {

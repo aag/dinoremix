@@ -4,7 +4,7 @@ const NumPanelsButton = require('./NumPanelsButton');
 
 const NumPanelsSwitcher = {
   view: (vnode) => {
-    const numPanels = vnode.attrs.numPanels ? vnode.attrs.numPanels : 3;
+    const { numPanels } = vnode.attrs;
 
     return m('#numPanelsHolder', [
       'Number of panels: ',

@@ -1,16 +1,19 @@
 const m = require('mithril');
 
 const Panel = {
-  view: vnode =>
-    m(
+  view: (vnode) => {
+    const { position, src, altText } = vnode.attrs;
+
+    return m(
       'img.panelImage',
       {
-        id: `${vnode.attrs.position}Image`,
-        src: vnode.attrs.src,
-        alt: vnode.attrs.altText,
-        title: vnode.attrs.altText,
+        src,
+        id: `${position}Image`,
+        alt: altText,
+        title: altText,
       },
-    ),
+    );
+  },
 };
 
 module.exports = Panel;
