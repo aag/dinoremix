@@ -7,15 +7,6 @@ const mq = require('mithril-query');
 const LocksRow = require('../LocksRow');
 
 o.spec('The LocksRow component', () => {
-  o('renders the top row locks for the default number of panels', () => {
-    const output = mq(LocksRow, { position: 'top' });
-    output.should.have(['.topLocks', '.tlLock', '.tmLock', '.brLock']);
-
-    output.should.not.have('.trLock');
-    output.should.not.have('.blLock');
-    output.should.not.have('.bmLock');
-  });
-
   o('renders the top row locks for 2 panels', () => {
     const output = mq(LocksRow, { position: 'top', numPanels: 2 });
     output.should.have(['.topLocks', '.tlLock', '.brLock']);

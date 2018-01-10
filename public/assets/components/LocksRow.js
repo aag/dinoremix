@@ -4,8 +4,7 @@ const ComicLayout = require('../helpers/ComicLayout');
 
 const LocksRow = {
   view: (vnode) => {
-    const numPanels = vnode.attrs.numPanels ? vnode.attrs.numPanels : 3;
-    const { position } = vnode.attrs;
+    const { position, numPanels } = vnode.attrs;
 
     const children = ComicLayout.getVisibleLocks(position, numPanels)
       .map(pos => m(
