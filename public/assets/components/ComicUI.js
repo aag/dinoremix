@@ -9,22 +9,17 @@ const PanelsContainer = require('./PanelsContainer');
 const Permalink = require('./Permalink');
 
 const ComicUI = {
-  handleNumPanelsChanged(numPanels) {
-    Comic.numPanels = numPanels;
-  },
-
   view() {
+    const numPanels = +m.route.param('numpanels') || 3;
+
     return m('.comic', [
       m('#linksBar', { class: 'clearfix' }, [
         m(ReloadButton),
-        m(NumPanelsSwitcher, {
-          numPanels: Comic.numPanels,
-          onNumPanelsChanged: this.handleNumPanelsChanged,
-        }),
+        m(NumPanelsSwitcher, { numPanels }),
       ]),
-      m(LocksRow, { position: 'top', numPanels: Comic.numPanels }),
-      m(PanelsContainer, { numPanels: Comic.numPanels, images: Comic.panels, altText: '' }),
-      m(LocksRow, { position: 'bottom', numPanels: Comic.numPanels }),
+      m(LocksRow, { position: 'top', numPanels }),
+      m(PanelsContainer, { numPanels, images: Comic.panels, altText: '' }),
+      m(LocksRow, { position: 'bottom', numPanels }),
       m(Permalink, { url: Comic.getPermalink() }),
     ]);
   },
