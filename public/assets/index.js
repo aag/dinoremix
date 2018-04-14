@@ -7,4 +7,8 @@ import style from './dino.css';
 
 import ComicUI from './components/ComicUI';
 
-m.mount(document.querySelector('.comic'), ComicUI);
+m.route.prefix('');
+
+m.route(document.querySelector('.comic'), '/', {
+  '/': ComicUI,
+});
