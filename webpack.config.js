@@ -5,7 +5,7 @@ module.exports = function(env, argv) {
     return {
         entry: './public/assets/index.js',
         output: {
-            filename: env.prod ? 'dino-[chunkhash:8].min.js' : 'dino.js',
+            filename: argv.mode === 'production' ? 'dino-[chunkhash:8].min.js' : 'dino.js',
             path: path.resolve(__dirname, 'public/assets/dist'),
             publicPath: '/assets/dist/'
         },
@@ -19,7 +19,7 @@ module.exports = function(env, argv) {
                             {
                                 loader: 'css-loader',
                                 options: {
-                                    minimize: env.prod,
+                                    minimize: argv.mode === 'production',
                                     sourceMap: true
                                 }
                             }
@@ -35,7 +35,7 @@ module.exports = function(env, argv) {
         },
         plugins: [
             new ExtractTextPlugin({
-                filename: env.prod ? 'dino-[chunkhash:8].min.css' : 'dino.css'
+                filename: argv.mode === 'production' ? 'dino-[chunkhash:8].min.css' : 'dino.css'
             })
         ]
     };
