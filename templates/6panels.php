@@ -17,7 +17,10 @@
     <br id="rowDivider" class="clearBR" />
     <img id="blImage" class="<?=$lockClasses["bl"] ?>Image panelImage" src="panels/bottomleft/<?=$imgFileNames["bl"] ?>" alt="<?=$outAltText?>" title="<?=$outAltText?>" /><img id="bmImage" class="<?=$lockClasses["bm"] ?>Image panelImage" src="panels/bottommiddle/<?=$imgFileNames["bm"] ?>" alt="<?=$outAltText?>" title="<?=$outAltText?>" /><img id="brImage" class="<?=$lockClasses["br"] ?>Image panelImage twoPanelImage threePanelImage flushTop" src="panels/bottomright/<?=$imgFileNames["br"] ?>" alt="<?=$outAltText?>" title="<?=$outAltText?>" />
     <br  class="clearBR" />
-    <img id="lCredit" src="panels/credits_left.png" alt="" class="creditsImage twoPanelImage threePanelImage" /><img id="TwoPanelCreditsSpacer" class="creditsSpacer twoPanelImage hidden" src="panels/2panel_credits_spacer.gif" alt="" /><img id="ThreePanelCreditsSpacer" class="creditsSpacer threePanelImage hidden" src="panels/3panel_credits_spacer.gif" alt="" /><img id="mCredit" src="panels/credits_middle.png" alt="" class="creditsImage" /><img id="rCredit" src="panels/credits_right.png" alt="" class="creditsImage twoPanelImage threePanelImage" />
+    <div class="creditsRow">
+        <img src="panels/credits_left.png" alt="" class="lCredit" />
+        <img src="panels/credits_right.png" alt="" class="rCredit" />
+    </div>
     <a id="setAltTextLink" class="hidden" href="./"><img src="images/edit_alt_text.png" alt="" /></a>
     <div id="altTextInputControls" class="hidden">
         <form id="altTextForm" action="./">
