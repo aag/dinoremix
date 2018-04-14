@@ -21,5 +21,10 @@ o.spec('The ComicUI component', () => {
     const output = mq(ComicUI);
     output.should.have('#permaLink');
   });
+
+  o('renders the credits', () => {
+    const output = mq(ComicUI);
+    output.should.have('.creditsRow');
+  });
 });
 

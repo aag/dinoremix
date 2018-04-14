@@ -6,6 +6,7 @@ const ReloadButton = require('./ReloadButton');
 const LocksRow = require('./LocksRow');
 const NumPanelsSwitcher = require('./NumPanelsSwitcher');
 const PanelsContainer = require('./PanelsContainer');
+const CreditsRow = require('./CreditsRow');
 const Permalink = require('./Permalink');
 
 const ComicUI = {
@@ -19,6 +20,7 @@ const ComicUI = {
       ]),
       m(LocksRow, { position: 'top', numPanels }),
       m(PanelsContainer, { numPanels, images: Comic.panels, altText: '' }),
+      m(CreditsRow),
       m(LocksRow, { position: 'bottom', numPanels }),
       m(Permalink, { url: Comic.getPermalink() }),
     ]);
