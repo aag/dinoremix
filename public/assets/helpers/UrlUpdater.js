@@ -16,7 +16,7 @@ const UrlUpdater = {
     qsObject[name] = value;
 
     return m.buildQueryString(qsObject);
-  }
+  },
 };
 
 module.exports = UrlUpdater;

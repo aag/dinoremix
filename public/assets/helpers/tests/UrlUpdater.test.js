@@ -4,9 +4,9 @@ const UrlUpdater = require('../UrlUpdater');
 
 o.spec('UrlUpdater', () => {
   o.beforeEach(() => {
-      window = window || {};
-      window.location = window.location || {};
-      window.location.search = '';
+    window = window || {};
+    window.location = window.location || {};
+    window.location.search = '';
   });
 
   o.spec('.getQueryString()', () => {
