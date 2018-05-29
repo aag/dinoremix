@@ -1,11 +1,10 @@
+global.window = require('mithril/test-utils/browserMock.js')();
 const o = require('mithril/ospec/ospec');
 
 const UrlUpdater = require('../UrlUpdater');
 
 o.spec('UrlUpdater', () => {
   o.beforeEach(() => {
-    window = window || {};
-    window.location = window.location || {};
     window.location.search = '';
   });
 
