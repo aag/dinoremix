@@ -1,5 +1,5 @@
 const m = require('mithril');
-const UrlUpdater = require('../helpers/UrlUpdater');
+const Url = require('../helpers/Url');
 
 const NumPanelsButton = {
   view: (vnode) => {
@@ -7,7 +7,7 @@ const NumPanelsButton = {
 
     const chosenClass = chosen ? 'chosenPanelNumLink' : 'unchosenPanelNumLink';
     return m('a', {
-      href: UrlUpdater.updateQueryParam('numpanels', num),
+      href: Url.setQueryParam('numpanels', num),
       class: `panelNumLink ${chosenClass}`,
       oncreate: m.route.link,
     }, num);

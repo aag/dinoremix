@@ -1,6 +1,6 @@
 const m = require('mithril');
 
-const UrlUpdater = {
+const Url = {
   getQueryString: () => {
     if (window && window.location && window.location.search) {
       return window.location.search;
@@ -9,8 +9,8 @@ const UrlUpdater = {
     return '';
   },
 
-  updateQueryParam: (name, value) => {
-    const currentQueryString = UrlUpdater.getQueryString();
+  setQueryParam: (name, value) => {
+    const currentQueryString = Url.getQueryString();
 
     const qsObject = m.parseQueryString(currentQueryString);
     qsObject[name] = value;
@@ -19,5 +19,5 @@ const UrlUpdater = {
   },
 };
 
-module.exports = UrlUpdater;
+module.exports = Url;
 
