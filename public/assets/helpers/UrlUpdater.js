@@ -15,7 +15,7 @@ const UrlUpdater = {
     const qsObject = m.parseQueryString(currentQueryString);
     qsObject[name] = value;
 
-    return m.buildQueryString(qsObject);
+    return `?${m.buildQueryString(qsObject)}`;
   },
 };
 
