@@ -27,9 +27,10 @@ import os
 import sys
 
 scriptDir = sys.path[0]
-guestComicsPath = os.path.join(scriptDir, "../data/GuestComicsURLs.txt")
-visitedPagesPath = os.path.join(scriptDir, "../data/AlreadyDownloaded.txt")
-downloadDirPath = os.path.join(scriptDir, "../data/comics/")
+dataDir = os.path.join(scriptDir, "../data")
+guestComicsPath = os.path.join(dataDir, "GuestComicsURLs.txt")
+visitedPagesPath = os.path.join(dataDir, "AlreadyDownloaded.txt")
+downloadDirPath = os.path.join(dataDir, "comics/")
 
 def getImageOnArchivePage(url, downloadDir):
 	"""Accepts the url of a Dinosaur Comics archive page and saves the contained comic image to disk."""
@@ -47,14 +48,18 @@ def getImageOnArchivePage(url, downloadDir):
 		guestListFile.close()
 	else:
 		print "\tDownloading " + comicImg['src']
-		filename = comicImg['src'].replace("http://www.qwantz.com/comics/", "")
-		urllib.urlretrieve(comicImg['src'], os.path.join(downloadDir, filename))
+		filename = comicImg['src'].replace("comics/", "")
+                imageUrl = "http://www.qwantz.com/{}".format(comicImg['src'])
+		urllib.urlretrieve(imageUrl, os.path.join(downloadDir, filename))
 		
 		"""Add the page url to a list of already downloaded comics"""
 		dlListFile = open(visitedPagesPath, 'a')
 		dlListFile.write(url + "\n")
 		dlListFile.close()
 
+""" Create missing directories."""
+if not os.path.exists(dataDir):
+    os.makedirs(downloadDirPath)
 
 """ Get a list of the archive pages we've already visited."""
 visitedPages = []
