@@ -27,4 +27,3 @@ o.spec('The ComicUI component', () => {
     output.should.have('.creditsRow');
   });
 });
-

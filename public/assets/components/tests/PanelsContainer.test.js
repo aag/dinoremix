@@ -24,4 +24,3 @@ o.spec('The PanelsContainer component', () => {
     output.should.have('#tlImage[src="/panels/topleft/comic2-100-topleft.png"]');
   });
 });
-

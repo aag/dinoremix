@@ -33,4 +33,3 @@ o.spec('The NumPanelsSwitcher component', () => {
     output.should.have('.chosenPanelNumLink:contains(6)');
   });
 });
-

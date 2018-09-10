@@ -14,4 +14,3 @@ o.spec('The ReloadButton component', () => {
     output.should.contain('Reload the unlocked panels');
   });
 });
-

@@ -58,4 +58,3 @@ o.spec('ComicLayout.getVisiblePanels()', () => {
     ]);
   });
 });
-

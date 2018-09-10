@@ -45,4 +45,3 @@ const ComicLayout = {
 };
 
 module.exports = ComicLayout;
-

@@ -13,4 +13,3 @@ o.spec('The NumPanelsButton component', () => {
     output.should.contain('3');
   });
 });
-

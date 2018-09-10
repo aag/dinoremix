@@ -68,4 +68,3 @@ o.spec('The LocksRow component', () => {
     output.should.not.have('.trLock');
   });
 });
-

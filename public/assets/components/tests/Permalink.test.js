@@ -15,4 +15,3 @@ o.spec('The Permalink component', () => {
     output.should.contain('Permalink to this remix');
   });
 });
-

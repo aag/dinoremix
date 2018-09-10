@@ -18,4 +18,3 @@ o.spec('The Panel component', () => {
     output.should.have('.panelImage[title="alt text"]');
   });
 });
-
