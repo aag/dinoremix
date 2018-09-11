@@ -12,7 +12,7 @@ set('repository', 'git@github.com:aag/dinoremix.git');
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 set('shared_files', [
     'data/AlreadyDownloaded.txt',
     'data/GuestComicsURLs.txt',
