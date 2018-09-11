@@ -22,7 +22,7 @@ Then, run `python cli/downloadComics.py` to download the comics from the Dinosau
 
 ### Requirements
 
-The code requires PHP 7.0+ and Python 2.7 or 3.
+The code requires PHP 7.1+ and Python 2.7 or 3.
 
 
 The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
@@ -83,8 +83,8 @@ php composer.phar test
 ```
 
 Minification of the frontend assets happens during deploy. To run it locally,
-run `npm install` and `npm run build`. If there are minified files in
-`public/assets/dist`, then those will be served to the browser instead of the
+run `npm install` and either `npm run build` or `npm start`. The output files
+in `public/assets/dist` will be served to the browser instead of the
 source files.
 
 ### License
