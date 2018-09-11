@@ -48,7 +48,7 @@ class AssetManager
             return '';
         }
 
-        usort($filepaths, function($a, $b) {
+        usort($filepaths, function ($a, $b) {
             return filemtime($b) - filemtime($a);
         });
 

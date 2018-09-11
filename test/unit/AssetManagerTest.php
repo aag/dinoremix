@@ -73,7 +73,7 @@ class AssetManagerTest extends TestCase
         $paths = new Paths(self::$filesPath);
         $am = new AssetManager($paths);
         $this->assertEquals('assets/dist/' . $newestFilename, $am->getUrl('dino.js'));
-     }
+    }
 
     public function testBasicCssFile()
     {
