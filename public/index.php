@@ -3,7 +3,7 @@
  * This script will put together panels from a bunch
  * of Dinosaur Comics and make a new one!
  *
- * Copyright 2008-2017 Adam Goforth
+ * Copyright 2008-2018 Adam Goforth
  * Started on: 2008.04.18
  *
  * This program is free software: you can redistribute it and/or modify

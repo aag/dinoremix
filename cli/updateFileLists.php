@@ -5,7 +5,7 @@
  * files, instead of doing a directory listing.  This gives a 3-4x
  * speedup.
  *
- * Copyright 2008-2017 Adam Goforth
+ * Copyright 2008-2018 Adam Goforth
  * Started on: 2008.07.31
  *
  * This program is free software: you can redistribute it and/or modify
