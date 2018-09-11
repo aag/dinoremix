@@ -35,13 +35,24 @@ class AssetManager
 
     private function getGlobPatternForFilename(string $filename)
     {
-        $globPattern = $filename;
-
         $lastDotPos = strrpos($filename, '.');
         $namePart = substr($filename, 0, $lastDotPos);
         $extPart = substr($filename, $lastDotPos);
 
-        return $namePart . '-*.min' . $extPart;
+        return $namePart . '-[0-9a-f]*.{dev,min}' . $extPart;
+    }
+
+    private function getLastModifiedPath(array $filepaths)
+    {
+        if (empty($filepaths)) {
+            return '';
+        }
+
+        usort($filepaths, function($a, $b) {
+            return filemtime($b) - filemtime($a);
+        });
+
+        return $filepaths[0];
     }
 
     public function getUrl(string $filename)
@@ -50,10 +61,10 @@ class AssetManager
 
         $fileGlobPattern = $this->getGlobPatternForFilename($filename);
         $distDirGlobPattern = $this->paths->getAssetsDistPath() . '/' . $fileGlobPattern;
-        $minifiedFiles = glob($distDirGlobPattern);
+        $minifiedFiles = glob($distDirGlobPattern, GLOB_BRACE);
 
         if (!empty($minifiedFiles)) {
-            $path = $minifiedFiles[0];
+            $path = $this->getLastModifiedPath($minifiedFiles);
             $path = substr($path, strrpos($path, self::DIST_URL_PATH));
         }
 

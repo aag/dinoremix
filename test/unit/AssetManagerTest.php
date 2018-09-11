@@ -25,40 +25,68 @@ use PHPUnit\Framework\TestCase;
 
 class AssetManagerTest extends TestCase
 {
-    private static $fixturesPath;
+    private static $filesPath;
+    private static $assetPath;
 
     public static function setupBeforeClass()
     {
-        self::$fixturesPath = dirname(__DIR__) . '/fixtures';
+        self::$filesPath = dirname(__DIR__) . '/files';
+        self::$assetPath = self::$filesPath . '/public/assets/dist';
+
+        if (!file_exists(self::$assetPath)) {
+            mkdir(self::$assetPath, 0755, true);
+        }
+    }
+
+    protected function setUp()
+    {
+        $this->clearFiles();
+    }
+
+    protected function tearDown()
+    {
+        $this->clearFiles();
+    }
+
+    private function clearFiles()
+    {
+        array_map('unlink', glob(self::$assetPath . "/*"));
     }
 
     public function testBasicJSFile()
     {
-        $paths = new Paths(self::$fixturesPath);
+        $paths = new Paths(self::$filesPath);
         $am = new AssetManager($paths);
-        $minifiedPath = 'assets/dist/dino-b4d51e3271.min.js';
-        $this->assertEquals($minifiedPath, $am->getUrl('dino.js'));
+        $minifiedFilename = 'dino-b4d51e3271.min.js';
+        touch(self::$assetPath . '/' . $minifiedFilename);
+        $this->assertEquals('assets/dist/' . $minifiedFilename, $am->getUrl('dino.js'));
     }
+
+    public function testMultipleJSFiles()
+    {
+        touch(self::$assetPath . '/dino-a3582d7428.min.js', time() - 10);
+        touch(self::$assetPath . '/dino-c3582d7428.min.js', time() - 10);
+
+        $newestFilename = 'dino-b4d51e3271.min.js';
+        touch(self::$assetPath . '/' . $newestFilename, time());
+
+        $paths = new Paths(self::$filesPath);
+        $am = new AssetManager($paths);
+        $this->assertEquals('assets/dist/' . $newestFilename, $am->getUrl('dino.js'));
+     }
 
     public function testBasicCssFile()
     {
-        $paths = new Paths(self::$fixturesPath);
+        $paths = new Paths(self::$filesPath);
         $am = new AssetManager($paths);
-        $minifiedPath = 'assets/dist/dino-35e268eb2b.min.css';
-        $this->assertEquals($minifiedPath, $am->getUrl('dino.css'));
-    }
-
-    public function testPreMinifiedJsFile()
-    {
-        $paths = new Paths(self::$fixturesPath);
-        $am = new AssetManager($paths);
-        $minifiedPath = 'assets/dist/jquery.min-f635d8f19f.min.js';
-        $this->assertEquals($minifiedPath, $am->getUrl('jquery.min.js'));
+        $minifiedFilename = 'dino-35e268eb2b.min.css';
+        touch(self::$assetPath . '/' . $minifiedFilename);
+        $this->assertEquals('assets/dist/' . $minifiedFilename, $am->getUrl('dino.css'));
     }
 
     public function testMissingJsFile()
     {
-        $paths = new Paths(self::$fixturesPath);
+        $paths = new Paths(self::$filesPath);
         $am = new AssetManager($paths);
         $minifiedPath = 'assets/dist/missing.js';
         $this->assertEquals($minifiedPath, $am->getUrl('missing.js'));
