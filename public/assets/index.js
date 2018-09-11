@@ -9,6 +9,6 @@ import ComicUI from './components/ComicUI';
 
 m.route.prefix('');
 
-m.route(document.querySelector('.comic'), '/', {
+m.route(document.querySelector('.comic-wrapper'), '/', {
   '/': ComicUI,
 });

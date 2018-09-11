@@ -18,22 +18,24 @@
         </div>
     </noscript>
 
-    <div class="comic">
-        <?php
-        if ($numPanels === 2) {
-            include("2panels.php");
-        } elseif ($numPanels === 6) {
-            include("6panels.php");
-        } else {
-            include("3panels.php");
-        }
-        ?>
+    <div class="comic-wrapper">
+        <div class="comic">
+            <?php
+            if ($numPanels === 2) {
+                include("2panels.php");
+            } elseif ($numPanels === 6) {
+                include("6panels.php");
+            } else {
+                include("3panels.php");
+            }
+            ?>
 
-        <div id="permaLinkHolder">
-            <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>">
-                <img src="images/link.png" alt="Link" />
-                <span style="text-decoration: underline">Permalink to this remix</span>
-            </a>
+            <div id="permaLinkHolder">
+                <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>">
+                    <img src="images/link.png" alt="Link" />
+                    <span style="text-decoration: underline">Permalink to this remix</span>
+                </a>
+            </div>
         </div>
     </div>
 

@@ -13,7 +13,7 @@ const ComicUI = {
   view() {
     const numPanels = +m.route.param('numpanels') || 3;
 
-    return m('.comic', [
+    return m('.comic', { class: `numpanels-${numPanels}` }, [
       m('#linksBar', { class: 'clearfix' }, [
         m(ReloadButton),
         m(NumPanelsSwitcher, { numPanels }),
