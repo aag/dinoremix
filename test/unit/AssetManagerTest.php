@@ -36,7 +36,7 @@ class AssetManagerTest extends TestCase
     {
         $paths = new Paths(self::$fixturesPath);
         $am = new AssetManager($paths);
-        $minifiedPath = 'assets/dist/dino-b4d51e3271646657d46b2ecf89192e74.min.js';
+        $minifiedPath = 'assets/dist/dino-b4d51e3271.min.js';
         $this->assertEquals($minifiedPath, $am->getUrl('dino.js'));
     }
 
@@ -44,7 +44,7 @@ class AssetManagerTest extends TestCase
     {
         $paths = new Paths(self::$fixturesPath);
         $am = new AssetManager($paths);
-        $minifiedPath = 'assets/dist/dino-35e268eb2bd58b7ee085f6d749221a63.min.css';
+        $minifiedPath = 'assets/dist/dino-35e268eb2b.min.css';
         $this->assertEquals($minifiedPath, $am->getUrl('dino.css'));
     }
 
@@ -52,7 +52,7 @@ class AssetManagerTest extends TestCase
     {
         $paths = new Paths(self::$fixturesPath);
         $am = new AssetManager($paths);
-        $minifiedPath = 'assets/dist/jquery.min-f635d8f19ffd998cc86c4fd0a6e595a1.min.js';
+        $minifiedPath = 'assets/dist/jquery.min-f635d8f19f.min.js';
         $this->assertEquals($minifiedPath, $am->getUrl('jquery.min.js'));
     }
 
