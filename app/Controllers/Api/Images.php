@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
+use App\Lib\HttpResponse;
 use App\Lib\PanelGenerator;
 use League\Route\Http\Exception\BadRequestException;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 class Images
 {
@@ -36,7 +36,7 @@ class Images
         $this->panelGenerator = $panelGenerator;
     }
 
-    public function random(ServerRequestInterface $request, ResponseInterface $response)
+    public function random(ServerRequestInterface $request) : array
     {
         $queryParams = $request->getQueryParams();
         if (!isset($queryParams["pos"])) {
@@ -46,7 +46,6 @@ class Images
         $posList = explode("-", $queryParams["pos"]);
         $panels = $this->panelGenerator->getRandomPanelsForPositions($posList);
 
-        $response->getBody()->write(json_encode($panels));
-        return $response->withStatus(200);
+        return $panels;
     }
 }

@@ -23,32 +23,33 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers;
-use Zend\Diactoros\Response;
+use Http\Factory\Diactoros\ResponseFactory;
+use League\Route\Router;
+use League\Route\Strategy\JsonStrategy;
 use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
-use League\Container\Container;
-use League\Route\RouteCollection;
-use League\Route\Strategy\JsonStrategy;
 
-$container = new Container();
+$responseFactory = new ResponseFactory();
 
-$container->share('response', Response::class);
-$container->share('request', function () {
-    return ServerRequestFactory::fromGlobals(
-        $_SERVER,
-        $_GET,
-        $_POST,
-        $_COOKIE,
-        $_FILES
-    );
-});
-$container->share('emitter', SapiEmitter::class);
+$request = ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
 
-$route = new RouteCollection($container);
+$router = new Router();
+$router->map('GET', '/', [new Controllers\Home(), 'index']);
 
-$route->map('GET', '/', [new Controllers\Home(), 'index']);
-$route->map('GET', '/images/random', [new Controllers\Images(), 'random'])
-    ->setStrategy(new JsonStrategy());
+// The group is not needed here, but it's a workaround for a bug in League Route
+// where a strategy cannot be set on an individual route.
+$router->group('/api', function ($router) {
+        $router->map('GET', '/images/random', [new Controllers\Api\Images(), 'random']);
+    })
+    ->setStrategy(new JsonStrategy($responseFactory));
 
-$response = $route->dispatch($container->get('request'), $container->get('response'));
-$container->get('emitter')->emit($response);
+$response = $router->dispatch($request);
+
+// send the response to the browser
+(new SapiEmitter())->emit($response);

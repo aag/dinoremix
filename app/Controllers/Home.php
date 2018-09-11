@@ -20,6 +20,7 @@ namespace App\Controllers;
 
 use App\Lib\AssetManager;
 use App\Lib\Comic;
+use App\Lib\HtmlResponse;
 use App\Lib\Renderer;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -83,7 +84,7 @@ class Home
         }, $panels);
     }
 
-    public function index(ServerRequestInterface $request, ResponseInterface $response)
+    public function index(ServerRequestInterface $request) : ResponseInterface
     {
         $queryParams = $request->getQueryParams();
 
@@ -116,7 +117,6 @@ class Home
             'reloadUri' => $this->comic->getReloadUri(),
         ]);
 
-        $response->getBody()->write($pageContent);
-        return $response;
+        return HtmlResponse::ok($pageContent);
     }
 }
