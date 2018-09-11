@@ -7,6 +7,10 @@ const mq = require('mithril-query');
 const LocksRow = require('../LocksRow');
 
 o.spec('The LocksRow component', () => {
+  o.beforeEach(() => {
+    window.location.search = '';
+  });
+
   o('renders the top row locks for 2 panels', () => {
     const output = mq(LocksRow, { position: 'top', numPanels: 2 });
     output.should.have(['.topLocks', '.tlLock', '.brLock']);
@@ -66,5 +70,20 @@ o.spec('The LocksRow component', () => {
     output.should.not.have('.tlLock');
     output.should.not.have('.tmLock');
     output.should.not.have('.trLock');
+  });
+
+  o('renders locked top panels as locked', () => {
+    window.location.search = 'locked=tl-tm-bm';
+    const output = mq(LocksRow, { position: 'top', numPanels: 6 });
+    output.should.have(['.tlLock.lockedLock', '.tmLock.lockedLock']);
+    output.should.not.have('.trLock.lockedLock');
+  });
+
+  o('renders locked bottom panels as locked', () => {
+    window.location.search = 'locked=tl-tm-bm';
+    const output = mq(LocksRow, { position: 'bottom', numPanels: 6 });
+    output.should.have('.bmLock.lockedLock');
+    output.should.not.have('.blLock.lockedLock');
+    output.should.not.have('.brLock.lockedLock');
   });
 });

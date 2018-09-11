@@ -13,9 +13,52 @@ const Url = {
     const currentQueryString = Url.getQueryString();
 
     const qsObject = m.parseQueryString(currentQueryString);
-    qsObject[name] = value;
+    if (value) {
+      qsObject[name] = value;
+    } else {
+      delete qsObject[name];
+    }
 
-    return `?${m.buildQueryString(qsObject)}`;
+    const queryString = m.buildQueryString(qsObject);
+    if (queryString) {
+      return `?${queryString}`;
+    }
+
+    return '';
+  },
+
+  getQueryParam: (name) => {
+    const currentQueryString = Url.getQueryString();
+
+    const qsObject = m.parseQueryString(currentQueryString);
+    return qsObject[name];
+  },
+
+  togglePanel: (pos) => {
+    const lockedPanelsString = Url.getQueryParam('locked');
+    if (!lockedPanelsString) {
+      return Url.setQueryParam('locked', pos);
+    }
+
+    let lockedPanels = lockedPanelsString.split('-');
+    if (lockedPanels.includes(pos)) {
+      lockedPanels = lockedPanels.filter(panel => panel !== pos);
+    } else {
+      lockedPanels.push(pos);
+    }
+
+    lockedPanels.sort();
+
+    return Url.setQueryParam('locked', lockedPanels.join('-'));
+  },
+
+  isPanelLocked: (pos) => {
+    const lockedPanelsString = Url.getQueryParam('locked');
+    if (!lockedPanelsString) {
+      return false;
+    }
+
+    return lockedPanelsString.split('-').includes(pos);
   },
 };
 
