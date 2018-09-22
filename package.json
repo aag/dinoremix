@@ -22,7 +22,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mini-css-extract-plugin": "^0.4.3",
-    "mithril-query": "^2.4.0",
+    "mithril-query": "^2.5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0",
