@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa9a2c4d2f0ccaeed27ef66a1b7bbd6c",
+    "content-hash": "a5623e174cb563bc3c0a837fc161cf38",
     "packages": [
         {
             "name": "http-interop/http-factory-diactoros",
@@ -58,16 +58,16 @@
         },
         {
             "name": "league/route",
-            "version": "4.0.1",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/route.git",
-                "reference": "c3d173daeba8ae9d8087003f09dc7d24928fb120"
+                "reference": "4895b5f5a5a35a521d9c22ab195d974cb3da09a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/route/zipball/c3d173daeba8ae9d8087003f09dc7d24928fb120",
-                "reference": "c3d173daeba8ae9d8087003f09dc7d24928fb120",
+                "url": "https://api.github.com/repos/thephpleague/route/zipball/4895b5f5a5a35a521d9c22ab195d974cb3da09a0",
+                "reference": "4895b5f5a5a35a521d9c22ab195d974cb3da09a0",
                 "shasum": ""
             },
             "require": {
@@ -124,7 +124,7 @@
                 "route",
                 "router"
             ],
-            "time": "2018-08-13T10:52:32+00:00"
+            "time": "2018-09-21T14:17:21+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1093,20 +1093,23 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c"
+                "reference": "050bedf145a257b1ff02746c31894800e5122946"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/cecbc684605bb0cc288828eb5d65d93d5c676d3c",
-                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/050bedf145a257b1ff02746c31894800e5122946",
+                "reference": "050bedf145a257b1ff02746c31894800e5122946",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
             },
             "type": "library",
             "extra": {
@@ -1136,7 +1139,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2018-06-11T11:44:00+00:00"
+            "time": "2018-09-13T20:33:42+00:00"
         },
         {
             "name": "phpunit/php-text-template",
