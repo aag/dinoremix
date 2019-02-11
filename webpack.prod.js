@@ -14,7 +14,21 @@ module.exports = merge(common, {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true
+        sourceMap: true,
+        minify(file, sourceMap) {
+          // https://github.com/mishoo/UglifyJS2#minify-options
+          const uglifyJsOptions = {
+            /* your `uglify-js` package options */
+          };
+
+          if (sourceMap) {
+            uglifyJsOptions.sourceMap = {
+              content: sourceMap,
+            };
+          }
+
+          return require('terser').minify(file, uglifyJsOptions);
+        },
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
