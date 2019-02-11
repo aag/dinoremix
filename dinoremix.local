@@ -1,0 +1,22 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name dinoremix.local;
+
+    access_log  /var/log/nginx/dinoremix.local/access.log;
+    error_log   /var/log/nginx/dinoremix.local/error.log;
+
+    root        /var/www/dinoremix/public;
+    index       index.php index.html;
+    client_body_buffer_size 32k;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
+    }
+}
+

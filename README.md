@@ -16,6 +16,16 @@ location / {
 }
 ```
 
+The file dinoremix.local is an example nginx configuration file for local
+development.  Copy it to `/etc/nginx/sites-available` and customize the paths
+in the file for your environment. Then create a softlink to it with the command
+
+```sh
+sudo ln -s /etc/nginx/sites-available/dinoremix.local /etc/nginx/sites-enabled/dinoremix.local
+```
+
+Add dinoremix.local to your hosts file and then restart nginx.
+
 Before the site will work, you will need to run `./composer.phar install --no-dev` from the command line within the root directory of the repository.
 
 Then, run `python cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
