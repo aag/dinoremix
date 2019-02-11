@@ -23,11 +23,11 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers;
-use Http\Factory\Diactoros\ResponseFactory;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
-use Zend\Diactoros\Response\SapiEmitter;
+use Zend\Diactoros\ResponseFactory;
 use Zend\Diactoros\ServerRequestFactory;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 $responseFactory = new ResponseFactory();
 

@@ -1,8 +1,8 @@
 {
     "require": {
         "league/route": "^4.2",
-        "zendframework/zend-diactoros": "^1.8",
-        "http-interop/http-factory-diactoros": "^1.0"
+        "zendframework/zend-diactoros": "^2.1",
+        "zendframework/zend-httphandlerrunner": "^1.0"
     },
     "require-dev": {
         "doctrine/instantiator": "^1.1",
