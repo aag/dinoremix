@@ -27,7 +27,7 @@ use PHPUnit\Framework\TestCase;
 
 class ComicTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
@@ -137,7 +137,8 @@ class ComicTest extends TestCase
             ],
         ];
         $panels = $comic->getPanels();
-        $this->assertArraySubset($expectedPanel, $panels);
+        $this->assertEquals($expectedPanel['tl'], $panels['tl']);
+        $this->assertEquals($expectedPanel['tr'], $panels['tr']);
     }
 
     public function testGenerateRandomPanelsSetsComicNumber()

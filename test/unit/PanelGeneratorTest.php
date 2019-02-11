@@ -26,7 +26,7 @@ use PHPUnit\Framework\TestCase;
 
 class PanelGeneratorTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

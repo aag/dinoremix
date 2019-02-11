@@ -28,7 +28,7 @@ class AssetManagerTest extends TestCase
     private static $filesPath;
     private static $assetPath;
 
-    public static function setupBeforeClass()
+    public static function setupBeforeClass(): void
     {
         self::$filesPath = dirname(__DIR__) . '/files';
         self::$assetPath = self::$filesPath . '/public/assets/dist';
@@ -38,12 +38,12 @@ class AssetManagerTest extends TestCase
         }
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clearFiles();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->clearFiles();
     }
