@@ -12,6 +12,7 @@ const Permalink = require('./Permalink');
 const ComicUI = {
   view() {
     const numPanels = +m.route.param('numpanels') || 3;
+    Comic.loadPanelsFromUrl();
 
     return m('.comic', { class: `numpanels-${numPanels}` }, [
       m('#linksBar', { class: 'clearfix' }, [

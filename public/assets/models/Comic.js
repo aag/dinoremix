@@ -1,50 +1,73 @@
 const m = require('mithril');
 
+const Url = require('../helpers/Url');
+
 const Comic = {
-  unlockedPanels: [
-    'tl', 'tm', 'tr', 'bl', 'bm', 'br',
-  ],
   numPanels: 3,
   panels: {
-    tl: 'comic2-100-topleft.png',
-    tm: 'comic2-100-topmiddle.png',
-    tr: 'comic2-100-topright.png',
-    bl: 'comic2-100-bottomleft.png',
-    bm: 'comic2-100-bottommiddle.png',
-    br: 'comic2-100-bottomright.png',
+    tl: '100',
+    tm: '100',
+    tr: '100',
+    bl: '100',
+    bm: '100',
+    br: '100',
+  },
+  nextPanels: {},
+  areNextPanelsLoading: false,
+
+  getLockedPanelsFromUrl: () => {
+    const lockedPanelsString = Url.getQueryParam('locked');
+    let lockedPanels = [];
+    if (lockedPanelsString) {
+      lockedPanels = lockedPanelsString.split('-');
+    }
+
+    return lockedPanels;
   },
 
-  getPermalink: () => {
-    const panelsQueryString = Comic.getAllPanelsQueryString();
-    return `?numPanels=${Comic.numPanels}&${panelsQueryString}`;
+  getPermalink: () => Url.setPanels(Comic.panels),
+
+  getNextPanelsLink: () => {
+    const lockedPanels = Comic.getLockedPanelsFromUrl();
+
+    const panels = {};
+    Object.keys(Comic.panels).forEach((pos) => {
+      if (!lockedPanels.includes(pos) && Comic.nextPanels[pos]) {
+        panels[pos] = Comic.nextPanels[pos];
+      } else {
+        panels[pos] = Comic.panels[pos];
+      }
+    });
+
+    return Url.setPanels(panels);
   },
 
-  getAllPanelsQueryString: () => (
-    Object.entries(Comic.panels).reduce((queryString, panel) => {
-      const prefix = queryString === '' ? '' : `${queryString}&`;
-      const comicNum = Comic.getCurrentComicForPanel(panel[0]);
-      return `${prefix}${panel[0]}=${comicNum}`;
-    }, '')
-  ),
-
-  getCurrentComicForPanel: (panel) => {
-    const filename = Comic.panels[panel];
-    const start = filename.indexOf('-') + 1;
-    const end = filename.lastIndexOf('-');
-    return filename.substr(start, end - start);
+  loadPanelsFromUrl: () => {
+    Object.keys(Comic.panels).forEach((panel) => {
+      const comicId = m.route.param(panel);
+      if (comicId) {
+        Comic.panels[panel] = comicId;
+      }
+    });
   },
 
-  reloadUnlocked: () => {
-    const posList = Comic.unlockedPanels.join('-');
+  loadNextPanels: () => {
+    if (Comic.areNextPanelsLoading) {
+      return undefined;
+    }
+
+    Comic.areNextPanelsLoading = true;
 
     return m.request({
       method: 'GET',
-      url: `/images/random?pos=${posList}`,
+      url: '/api/images/random',
     })
       .then((result) => {
-        result.data.forEach((panel) => {
-          Comic.panels[panel.pos] = panel.file;
+        result.forEach((panel) => {
+          Comic.nextPanels[panel.pos] = panel.id;
         });
+
+        Comic.areNextPanelsLoading = false;
       });
   },
 };

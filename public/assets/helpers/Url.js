@@ -1,5 +1,7 @@
 const m = require('mithril');
 
+const PanelPositions = require('./PanelPositions');
+
 const Url = {
   getQueryString: () => {
     if (window && window.location && window.location.search) {
@@ -9,8 +11,8 @@ const Url = {
     return '';
   },
 
-  setQueryParam: (name, value) => {
-    const currentQueryString = Url.getQueryString();
+  setQueryParam: (name, value, queryString) => {
+    const currentQueryString = queryString || Url.getQueryString();
 
     const qsObject = m.parseQueryString(currentQueryString);
     if (value) {
@@ -19,12 +21,22 @@ const Url = {
       delete qsObject[name];
     }
 
-    const queryString = m.buildQueryString(qsObject);
-    if (queryString) {
-      return `?${queryString}`;
+    const newQueryString = m.buildQueryString(qsObject);
+    if (newQueryString) {
+      return `?${newQueryString}`;
     }
 
     return '';
+  },
+
+  setPanels: (panels) => {
+    let queryString = Url.getQueryString();
+
+    Object.entries(panels).forEach((entry) => {
+      queryString = Url.setQueryParam(entry[0], entry[1], queryString);
+    });
+
+    return queryString;
   },
 
   getQueryParam: (name) => {
@@ -59,6 +71,15 @@ const Url = {
     }
 
     return lockedPanelsString.split('-').includes(pos);
+  },
+
+  getImageUrl: (pos, id) => {
+    if (!pos || !id) {
+      return '';
+    }
+
+    const { directory } = PanelPositions[pos];
+    return `/panels/${directory}/comic2-${id}-${directory}.png`;
   },
 };
 

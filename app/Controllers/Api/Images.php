@@ -38,14 +38,6 @@ class Images
 
     public function random(ServerRequestInterface $request) : array
     {
-        $queryParams = $request->getQueryParams();
-        if (!isset($queryParams["pos"])) {
-            throw new BadRequestException();
-        }
-
-        $posList = explode("-", $queryParams["pos"]);
-        $panels = $this->panelGenerator->getRandomPanelsForPositions($posList);
-
-        return $panels;
+        return $this->panelGenerator->getRandomPanels();
     }
 }

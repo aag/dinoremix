@@ -1,6 +1,7 @@
 const m = require('mithril');
 
 const ComicLayout = require('../helpers/ComicLayout');
+const Url = require('../helpers/Url');
 const Panel = require('./Panel');
 
 const PanelsContainer = {
@@ -10,11 +11,11 @@ const PanelsContainer = {
     const panels = ComicLayout
       .getVisiblePanels(numPanels)
       .map((panel) => {
-        const { position, directory } = panel;
+        const { position } = panel;
         return m(Panel, {
           altText,
           position,
-          src: `/panels/${directory}/${images[position]}`,
+          src: Url.getImageUrl(position, images[position]),
         });
       });
 

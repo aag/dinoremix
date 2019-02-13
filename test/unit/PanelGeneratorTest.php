@@ -31,51 +31,23 @@ class PanelGeneratorTest extends TestCase
         m::close();
     }
 
-    public function testGetRandomPanelsForNoPositions()
-    {
-        $storage = m::mock(Storage::class);
-        $storage->shouldNotReceive('getRandomImageForPos');
-
-        $panelGenerator = new PanelGenerator($storage);
-        $panels = $panelGenerator->getRandomPanelsForPositions([]);
-        $this->assertEmpty($panels);
-    }
-
-    public function testGetRandomPanelsNoFiles()
+    public function testGetRandomPanels()
     {
         $storage = m::mock(Storage::class);
         $storage->shouldReceive('getRandomImageForPos')
-            ->andReturn([]);
+            ->andReturnUsing(function ($pos) {
+                return "comic2-100-$pos-a-$pos.png";
+            });
 
         $panelGenerator = new PanelGenerator($storage);
-        $panels = $panelGenerator->getRandomPanelsForPositions(['tl']);
-        $this->assertEmpty($panels);
-    }
-
-    public function testGetRandomPanelsOnePanel()
-    {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getRandomImageForPos')
-            ->andReturn('testfile.png');
-
-        $panelGenerator = new PanelGenerator($storage);
-        $panels = $panelGenerator->getRandomPanelsForPositions(['tl']);
-        $panelInfo = ['pos' => 'tl', 'file' => 'testfile.png'];
-        $this->assertEquals([$panelInfo], $panels);
-    }
-
-    public function testGetRandomPanelsThreePanels()
-    {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getRandomImageForPos')
-            ->andReturn('testfile_tl.png', 'testfile_tr.png', 'testfile_bm.png');
-
-        $panelGenerator = new PanelGenerator($storage);
-        $panels = $panelGenerator->getRandomPanelsForPositions(['tl', 'tr', 'bm']);
+        $panels = $panelGenerator->getRandomPanels();
         $panelInfo = [
-            ['pos' => 'tl', 'file' => 'testfile_tl.png'],
-            ['pos' => 'tr', 'file' => 'testfile_tr.png'],
-            ['pos' => 'bm', 'file' => 'testfile_bm.png']
+            ['pos' => 'tl', 'id' => '100-tl-a'],
+            ['pos' => 'tm', 'id' => '100-tm-a'],
+            ['pos' => 'tr', 'id' => '100-tr-a'],
+            ['pos' => 'bl', 'id' => '100-bl-a'],
+            ['pos' => 'bm', 'id' => '100-bm-a'],
+            ['pos' => 'br', 'id' => '100-br-a'],
         ];
         $this->assertEquals($panelInfo, $panels);
     }

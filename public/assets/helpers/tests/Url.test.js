@@ -100,4 +100,14 @@ o.spec('Url', () => {
       o(Url.isPanelLocked('tm')).equals(true);
     });
   });
+
+  o.spec('.getImageUrl()', () => {
+    o('returns an empty string for an empty argument', () => {
+      o(Url.getImageUrl('', '')).equals('');
+    });
+
+    o('returns the correct path for a typical comic ID', () => {
+      o(Url.getImageUrl('bl', '100')).equals('/panels/bottomleft/comic2-100-bottomleft.png');
+    });
+  });
 });

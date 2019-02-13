@@ -1,11 +1,4 @@
-const panels = {
-  tl: { position: 'tl', directory: 'topleft' },
-  tm: { position: 'tm', directory: 'topmiddle' },
-  tr: { position: 'tr', directory: 'topright' },
-  bl: { position: 'bl', directory: 'bottomleft' },
-  bm: { position: 'bm', directory: 'bottommiddle' },
-  br: { position: 'br', directory: 'bottomright' },
-};
+const panels = require('./PanelPositions');
 
 const ComicLayout = {
   getVisibleLocks: (position, numPanels) => {

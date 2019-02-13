@@ -11,12 +11,12 @@ o.spec('The PanelsContainer component', () => {
     const output = mq(PanelsContainer, {
       altText: '',
       images: {
-        tl: 'comic2-100-topleft.png',
-        tm: 'comic2-101-topmiddle.png',
-        tr: 'comic2-102-topright.png',
-        bl: 'comic2-103-bottomleft.png',
-        bm: 'comic2-104-bottommiddle.png',
-        br: 'comic2-105-bottomright.png',
+        tl: '100',
+        tm: '101',
+        tr: '102',
+        bl: '103',
+        bm: '104',
+        br: '105',
       },
       numPanels: 6,
     });

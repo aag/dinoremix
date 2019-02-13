@@ -5,6 +5,10 @@ global.document = window.document;
 const o = require('mithril/ospec/ospec');
 const mq = require('mithril-query');
 const ReloadButton = require('../ReloadButton');
+const Comic = require('../../models/Comic');
+
+// Stub out the XHR request
+Comic.loadNextPanels = () => {};
 
 o.spec('The ReloadButton component', () => {
   o('renders correctly', () => {

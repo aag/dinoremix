@@ -6,33 +6,82 @@ const o = require('mithril/ospec/ospec');
 const Comic = require('../Comic');
 
 o.spec('The Comic model', () => {
-  o.spec('getCurrentComicForPanel', () => {
-    o('returns the correct comic number', () => {
-      Comic.panels.tl = 'comic2-101-topleft.png';
+  o.beforeEach(() => {
+    window.location.search = '';
+  });
 
-      o(Comic.getCurrentComicForPanel('tl')).equals('101');
+  o('getPermalink() works', () => {
+    Comic.panels = {
+      tl: '101',
+      tm: '102',
+      tr: '103',
+      bl: '104',
+      bm: '105',
+      br: '106',
+    };
+
+    o(Comic.getPermalink()).equals('?tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
+  });
+
+  o.spec('getNextPanelsLink works', () => {
+    o.beforeEach(() => {
+      Comic.panels = {
+        tl: '101',
+        tm: '102',
+        tr: '103',
+        bl: '104',
+        bm: '105',
+        br: '106',
+      };
+
+      Comic.nextPanels = {
+        tl: '201',
+        tm: '202',
+        tr: '203',
+        bl: '204',
+        bm: '205',
+        br: '206',
+      };
     });
 
-    o('returns the correct comic number after updates', () => {
-      Comic.panels.tr = 'comic2-111-topright.png';
-      o(Comic.getCurrentComicForPanel('tr')).equals('111');
+    o('with all locked panels', () => {
+      window.location.search = '?locked=tl-tm-tr-bl-bm-br';
+      o(Comic.getNextPanelsLink())
+        .equals('?locked=tl-tm-tr-bl-bm-br&tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
+    });
 
-      Comic.panels.tr = 'comic2-999-topright.png';
-      o(Comic.getCurrentComicForPanel('tr')).equals('999');
+    o('with no locked panels', () => {
+      o(Comic.getNextPanelsLink())
+        .equals('?tl=201&tm=202&tr=203&bl=204&bm=205&br=206');
+    });
+
+    o('with some locked panels', () => {
+      window.location.search = '?locked=tm-bl-br';
+      o(Comic.getNextPanelsLink())
+        .equals('?locked=tm-bl-br&tl=201&tm=102&tr=203&bl=104&bm=205&br=106');
+    });
+
+    o('with missing nextPanel entries', () => {
+      Comic.nextPanels = {};
+      o(Comic.getNextPanelsLink())
+        .equals('?tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
     });
   });
 
-  o('getPermalink works', () => {
-    Comic.numPanels = 3;
-    Comic.panels = {
-      tl: 'comic2-101-topleft.png',
-      tm: 'comic2-102-topmiddle.png',
-      tr: 'comic2-103-topright.png',
-      bl: 'comic2-104-bottomleft.png',
-      bm: 'comic2-105-bottommiddle.png',
-      br: 'comic2-106-bottomright.png',
-    };
+  o.spec('loadPanelsFromUrl works', () => {
+    o.beforeEach(() => {
+      Comic.panels = {
+        tl: '101',
+        tm: '102',
+        tr: '103',
+        bl: '104',
+        bm: '105',
+        br: '106',
+      };
+    });
 
-    o(Comic.getPermalink()).equals('?numPanels=3&tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
+    o('with no panels in the URL', () => {
+      o(Comic.getNextPanelsLink()).equals('?tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
+    });
   });
 });
