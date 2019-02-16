@@ -3,6 +3,7 @@ const m = require('mithril');
 const Url = require('../helpers/Url');
 
 const Comic = {
+  lockedPanels: [],
   numPanels: 3,
   panels: {
     tl: '100',
@@ -25,13 +26,16 @@ const Comic = {
 
   getPermalink: () => Url.setPanels(Comic.panels),
 
-  loadPanelsFromUrl: () => {
+  loadFromUrl: () => {
     Object.keys(Comic.panels).forEach((panel) => {
       const comicId = m.route.param(panel);
       if (comicId) {
         Comic.panels[panel] = comicId;
       }
     });
+
+    Comic.numPanels = +m.route.param('numpanels') || Comic.numPanels;
+    Comic.lockedPanels = Url.getLockedPanels();
   },
 };
 

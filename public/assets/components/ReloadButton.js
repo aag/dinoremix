@@ -25,11 +25,9 @@ const ReloadButton = {
   ),
 
   getNextPanelsUrl: () => {
-    const lockedPanels = Comic.getLockedPanelsFromUrl();
-
     const panels = {};
     Object.keys(Comic.panels).forEach((pos) => {
-      if (!lockedPanels.includes(pos) && RandomPanels.panels[pos]) {
+      if (!Comic.lockedPanels.includes(pos) && RandomPanels.panels[pos]) {
         panels[pos] = RandomPanels.panels[pos];
       } else {
         panels[pos] = Comic.panels[pos];

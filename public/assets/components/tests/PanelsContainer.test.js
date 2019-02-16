@@ -10,7 +10,7 @@ o.spec('The PanelsContainer component', () => {
   o('renders correctly', () => {
     const output = mq(PanelsContainer, {
       altText: '',
-      images: {
+      panels: {
         tl: '100',
         tm: '101',
         tr: '102',

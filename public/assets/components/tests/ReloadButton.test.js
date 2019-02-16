@@ -14,6 +14,7 @@ RandomPanels.fetchFromServer = () => {};
 o.spec('The ReloadButton component', () => {
   o.beforeEach(() => {
     window.location.search = '';
+    Comic.lockedPanels = [];
   });
 
   o('renders correctly', () => {
@@ -46,6 +47,7 @@ o.spec('The ReloadButton component', () => {
 
     o('with all locked panels', () => {
       window.location.search = '?locked=tl-tm-tr-bl-bm-br';
+      Comic.lockedPanels = ['tl', 'tm', 'tr', 'bl', 'bm', 'br'];
       o(ReloadButton.getNextPanelsUrl())
         .equals('?locked=tl-tm-tr-bl-bm-br&tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
     });
@@ -57,6 +59,7 @@ o.spec('The ReloadButton component', () => {
 
     o('with some locked panels', () => {
       window.location.search = '?locked=tm-bl-br';
+      Comic.lockedPanels = ['tm', 'bl', 'br'];
       o(ReloadButton.getNextPanelsUrl())
         .equals('?locked=tm-bl-br&tl=201&tm=102&tr=203&bl=104&bm=205&br=106');
     });

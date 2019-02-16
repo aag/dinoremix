@@ -73,6 +73,17 @@ const Url = {
     return lockedPanelsString.split('-').includes(pos);
   },
 
+  getLockedPanels: () => {
+    let lockedPanels = [];
+
+    const lockedPanelsString = Url.getQueryParam('locked');
+    if (lockedPanelsString) {
+      lockedPanels = lockedPanelsString.split('-');
+    }
+
+    return lockedPanels;
+  },
+
   getImageUrl: (pos, id) => {
     if (!pos || !id) {
       return '';
