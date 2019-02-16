@@ -4,11 +4,11 @@ global.document = window.document;
 
 const o = require('mithril/ospec/ospec');
 const mq = require('mithril-query');
-const Comic = require('../../models/Comic');
 const ComicUI = require('../ComicUI');
+const RandomPanels = require('../../models/RandomPanels');
 
 // Stub out the XHR request
-Comic.loadNextPanels = () => {};
+RandomPanels.load = () => {};
 
 o.spec('The ComicUI component', () => {
   o('renders the comic', () => {

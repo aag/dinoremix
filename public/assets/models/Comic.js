@@ -12,8 +12,6 @@ const Comic = {
     bm: '100',
     br: '100',
   },
-  nextPanels: {},
-  areNextPanelsLoading: false,
 
   getLockedPanelsFromUrl: () => {
     const lockedPanelsString = Url.getQueryParam('locked');
@@ -27,21 +25,6 @@ const Comic = {
 
   getPermalink: () => Url.setPanels(Comic.panels),
 
-  getNextPanelsLink: () => {
-    const lockedPanels = Comic.getLockedPanelsFromUrl();
-
-    const panels = {};
-    Object.keys(Comic.panels).forEach((pos) => {
-      if (!lockedPanels.includes(pos) && Comic.nextPanels[pos]) {
-        panels[pos] = Comic.nextPanels[pos];
-      } else {
-        panels[pos] = Comic.panels[pos];
-      }
-    });
-
-    return Url.setPanels(panels);
-  },
-
   loadPanelsFromUrl: () => {
     Object.keys(Comic.panels).forEach((panel) => {
       const comicId = m.route.param(panel);
@@ -49,26 +32,6 @@ const Comic = {
         Comic.panels[panel] = comicId;
       }
     });
-  },
-
-  loadNextPanels: () => {
-    if (Comic.areNextPanelsLoading) {
-      return undefined;
-    }
-
-    Comic.areNextPanelsLoading = true;
-
-    return m.request({
-      method: 'GET',
-      url: '/api/images/random',
-    })
-      .then((result) => {
-        result.forEach((panel) => {
-          Comic.nextPanels[panel.pos] = panel.id;
-        });
-
-        Comic.areNextPanelsLoading = false;
-      });
   },
 };
 

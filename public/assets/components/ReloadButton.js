@@ -1,22 +1,43 @@
 const m = require('mithril');
 
 const Comic = require('../models/Comic');
+const RandomPanels = require('../models/RandomPanels');
+const Url = require('../helpers/Url');
 
 const ReloadButton = {
-  oninit: () => Comic.loadNextPanels(),
+  oninit: () => RandomPanels.load(),
+
   onupdate: () => {
-    if (Comic.getPermalink() === Comic.getNextPanelsLink()) {
-      Comic.loadNextPanels();
+    if (Comic.getPermalink() === ReloadButton.getNextPanelsUrl()) {
+      return RandomPanels.load();
     }
+
+    return undefined;
   },
+
   view: () => m(
-    'a#reloadLink', { href: Comic.getNextPanelsLink(), oncreate: m.route.link },
+    'a#reloadLink', { href: ReloadButton.getNextPanelsUrl(), oncreate: m.route.link },
     m('span#reloadButton', { class: 'unpressedReloadButton' }, [
       m('img', { src: '/images/reload.png', alt: 'Reload' }),
       ' ',
       m('span#reloadText', 'Reload the unlocked panels'),
     ]),
   ),
+
+  getNextPanelsUrl: () => {
+    const lockedPanels = Comic.getLockedPanelsFromUrl();
+
+    const panels = {};
+    Object.keys(Comic.panels).forEach((pos) => {
+      if (!lockedPanels.includes(pos) && RandomPanels.panels[pos]) {
+        panels[pos] = RandomPanels.panels[pos];
+      } else {
+        panels[pos] = Comic.panels[pos];
+      }
+    });
+
+    return Url.setPanels(panels);
+  },
 };
 
 module.exports = ReloadButton;
