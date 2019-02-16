@@ -9,7 +9,7 @@ const ReloadButton = require('../ReloadButton');
 const Comic = require('../../models/Comic');
 
 // Stub out the XHR request
-RandomPanels.load = () => {};
+RandomPanels.fetchFromServer = () => {};
 
 o.spec('The ReloadButton component', () => {
   o.beforeEach(() => {

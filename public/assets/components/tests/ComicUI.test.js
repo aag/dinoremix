@@ -8,7 +8,7 @@ const ComicUI = require('../ComicUI');
 const RandomPanels = require('../../models/RandomPanels');
 
 // Stub out the XHR request
-RandomPanels.load = () => {};
+RandomPanels.fetchFromServer = () => {};
 
 o.spec('The ComicUI component', () => {
   o('renders the comic', () => {
