@@ -5,7 +5,7 @@ const RandomPanels = require('../models/RandomPanels');
 const Url = require('../helpers/Url');
 
 const ReloadButton = {
-  oninit: () => RandomPanels.fetchFromServer(),
+  oninit: () => RandomPanels.loadFromGlobal(),
 
   onupdate: () => {
     if (Comic.getPermalink() === ReloadButton.getNextPanelsUrl()) {

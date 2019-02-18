@@ -20,7 +20,8 @@
 
     <script>
         var dr = dr || {};
-        dr.initialComic = <?= json_encode($jsBootstrap) ?>;
+        dr.initialComic = <?= json_encode($jsBootstrap['initialComic']) ?>;
+        dr.nextPanels = <?= json_encode($jsBootstrap['nextPanels']) ?>;
     </script>
 
     <div class="comic-wrapper">

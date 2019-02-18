@@ -192,10 +192,17 @@ class Comic
 
     public function getJsBootstrap()
     {
+        foreach ($this->storage->getPositionAbbrs() as $pos) {
+            $randomPanels[$pos] = $this->panelGenerator->getRandomPanelForPosition($pos)['comic'];
+        }
+        
         return [
-            'lockedPanels' => $this->getLockedPanels(),
-            'numPanels' => $this->getNumPanels(),
-            'panels' => $this->getComics(),
+            'initialComic' => [
+                'lockedPanels' => $this->getLockedPanels(),
+                'numPanels' => $this->getNumPanels(),
+                'panels' => $this->getComics(),
+            ],
+            'nextPanels' => $randomPanels,
         ];
     }
 }
