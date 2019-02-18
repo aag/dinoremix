@@ -147,6 +147,11 @@ class Comic
         return $this;
     }
 
+    public function getLockedPanels()
+    {
+        return $this->lockedPanels;
+    }
+
     public function setLockedPanels(array $lockedPanels)
     {
         foreach ($lockedPanels as $panelLockInfo) {
@@ -156,6 +161,8 @@ class Comic
             $this->panels[$pos]['isLocked'] = true;
             $this->panels[$pos]['comic'] = $comic;
             $this->panels[$pos]['filename'] = $this->getPanelImageFilename($comic, $pos);
+
+            $this->lockedPanels[] = $pos;
         }
 
         return $this;
@@ -181,5 +188,14 @@ class Comic
         }
 
         return $this;
+    }
+
+    public function getJsBootstrap()
+    {
+        return [
+            'lockedPanels' => $this->getLockedPanels(),
+            'numPanels' => $this->getNumPanels(),
+            'panels' => $this->getComics(),
+        ];
     }
 }

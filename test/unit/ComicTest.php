@@ -247,4 +247,70 @@ class ComicTest extends TestCase
 
         $this->assertEquals('?tl=1&br=3&numpanels=2', $comic->getPermalink());
     }
+
+    public function testGetJsBootstrapContainsNumPanels()
+    {
+        $storage = m::mock(Storage::class);
+        $storage->shouldReceive('getPositionAbbrs')
+            ->andReturn(['tl', 'tm', 'br']);
+         
+        $comic = new Comic($storage);
+        $comic->setNumPanels(2);
+
+        $this->assertEquals(2, $comic->getJsBootstrap()['numPanels']);
+    }
+
+    public function testGetJsBootstrapContainsLockedPanels()
+    {
+        $storage = m::mock(Storage::class);
+        $storage->shouldReceive('getPositionAbbrs')
+            ->andReturn(['tl', 'tm', 'br']);
+        $storage->shouldReceive('posAbbrToFull')
+            ->andReturnUsing(function ($pos) {
+                if ($pos === 'tl') {
+                    return 'topleft';
+                }
+
+                return 'bottomright';
+            });
+
+        $comic = new Comic($storage);
+        $comic->setLockedPanels([
+            ['pos' => 'tl', 'comic' => '101'],
+            ['pos' => 'br', 'comic' => '102'],
+        ]);
+
+        $this->assertEquals(['tl', 'br'], $comic->getJsBootstrap()['lockedPanels']);
+    }
+
+    public function testGetJsBootstrapContainsPanels()
+    {
+        $storage = m::mock(Storage::class);
+        $storage->shouldReceive('getPositionAbbrs')
+            ->andReturn(['tl', 'tm', 'br']);
+        $storage->shouldReceive('posAbbrToFull')
+            ->andReturnUsing(function ($pos) {
+                if ($pos === 'tl') {
+                    return 'topleft';
+                } elseif ($pos === 'tm') {
+                    return 'topmiddle';
+                }
+
+                return 'bottomright';
+            });
+
+        $comic = new Comic($storage);
+        $comic->setLockedPanels([
+            ['pos' => 'tl', 'comic' => '101'],
+            ['pos' => 'tm', 'comic' => '102'],
+            ['pos' => 'br', 'comic' => '103'],
+        ]);
+
+        $expectedPanels = [
+            'tl' => '101',
+            'tm' => '102',
+            'br' => '103',
+        ];
+        $this->assertEquals($expectedPanels, $comic->getJsBootstrap()['panels']);
+    }
 }

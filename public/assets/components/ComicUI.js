@@ -10,7 +10,9 @@ const CreditsRow = require('./CreditsRow');
 const Permalink = require('./Permalink');
 
 const ComicUI = {
-  view() {
+  oninit: () => Comic.loadFromGlobal(),
+
+  view: () => {
     Comic.loadFromUrl();
     const { numPanels, panels } = Comic;
 

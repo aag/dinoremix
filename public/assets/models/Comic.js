@@ -26,7 +26,19 @@ const Comic = {
 
   getPermalink: () => Url.setPanels(Comic.panels),
 
+  // The backend writes a global JS object into the page HTML so we
+  // can bootstrap from it.
+  loadFromGlobal: () => {
+    if (window.dr && window.dr.initialComic) {
+      Object.assign(Comic, window.dr.initialComic);
+    }
+  },
+
   loadFromUrl: () => {
+    if (m.route.get() === '/') {
+      return;
+    }
+
     Object.keys(Comic.panels).forEach((panel) => {
       const comicId = m.route.param(panel);
       if (comicId) {

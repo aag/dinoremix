@@ -18,6 +18,11 @@
         </div>
     </noscript>
 
+    <script>
+        var dr = dr || {};
+        dr.initialComic = <?= json_encode($jsBootstrap) ?>;
+    </script>
+
     <div class="comic-wrapper">
         <div class="comic">
             <?php

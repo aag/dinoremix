@@ -115,6 +115,7 @@ class Home
             'permaLink3Panels' => $this->comic->getPermalink(3),
             'permaLink6Panels' => $this->comic->getPermalink(6),
             'reloadUri' => $this->comic->getReloadUri(),
+            'jsBootstrap' => $this->comic->getJsBootstrap(),
         ]);
 
         return HtmlResponse::ok($pageContent);
