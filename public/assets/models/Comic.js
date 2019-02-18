@@ -3,6 +3,7 @@ const m = require('mithril');
 const Url = require('../helpers/Url');
 
 const Comic = {
+  altText: '',
   lockedPanels: [],
   numPanels: 3,
   panels: {

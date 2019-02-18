@@ -198,6 +198,7 @@ class Comic
         
         return [
             'initialComic' => [
+                'altText' => $this->altText,
                 'lockedPanels' => $this->getLockedPanels(),
                 'numPanels' => $this->getNumPanels(),
                 'panels' => $this->getComics(),

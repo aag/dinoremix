@@ -198,6 +198,14 @@ class ComicTest extends TestCase
         $this->assertEquals('?tl=1&br=3&numpanels=2', $comic->getPermalink());
     }
 
+    public function testGetJsBootstrapContainsAltText()
+    {
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $comic->setAltText('Alt Text!');
+
+        $this->assertEquals('Alt Text!', $comic->getJsBootstrap()['initialComic']['altText']);
+    }
+
     public function testGetJsBootstrapContainsNumPanels()
     {
         $comic = new Comic($this->storageMock, $this->panelGeneratorMock);

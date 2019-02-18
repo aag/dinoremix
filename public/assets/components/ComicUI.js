@@ -14,7 +14,7 @@ const ComicUI = {
 
   view: () => {
     Comic.loadFromUrl();
-    const { numPanels, panels } = Comic;
+    const { numPanels, panels, altText } = Comic;
 
     return m('.comic', { class: `numpanels-${numPanels}` }, [
       m('#linksBar', { class: 'clearfix' }, [
@@ -22,7 +22,7 @@ const ComicUI = {
         m(NumPanelsSwitcher, { numPanels }),
       ]),
       m(LocksRow, { position: 'top', numPanels }),
-      m(PanelsContainer, { numPanels, panels, altText: '' }),
+      m(PanelsContainer, { numPanels, panels, altText }),
       m(CreditsRow),
       m(LocksRow, { position: 'bottom', numPanels }),
       m(Permalink, { url: Comic.getPermalink() }),
