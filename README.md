@@ -100,3 +100,8 @@ source files.
 ### License
 
 This code is free software licensed under the GPL 2. See the [LICENSE.md](LICENSE.md) file for details.
+
+### Assets
+
+This repository includes icons from the [Silk Icon Set](http://www.famfamfam.com/lab/icons/silk/).
+
