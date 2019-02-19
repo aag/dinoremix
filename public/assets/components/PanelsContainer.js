@@ -19,7 +19,7 @@ const PanelsContainer = {
         });
       });
 
-    return m('#panelContainer', panelElements);
+    return m('.PanelsContainer', panelElements);
   },
 };
 

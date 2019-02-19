@@ -6,9 +6,9 @@ const NumPanelsSwitcher = {
   view: (vnode) => {
     const { numPanels } = vnode.attrs;
 
-    return m('#numPanelsHolder', [
+    return m('.NumPanelsWrapper', [
       'Number of panels: ',
-      m('span#panelNumSwitcher', [
+      m('span.NumPanelsSwitcher', [
         m(NumPanelsButton, { num: 2, chosen: numPanels === 2 }),
         ' ',
         m(NumPanelsButton, { num: 3, chosen: numPanels === 3 }),

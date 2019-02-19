@@ -5,11 +5,11 @@ const Permalink = {
     const { url } = vnode.attrs;
 
     return m(
-      '#permalinkHolder',
-      m('a', { id: 'permaLink', href: url }, [
+      '.Permalink',
+      m('a', { class: 'Permalink__link', href: url }, [
         m('img', { src: '/images/link.png', alt: 'Link' }),
         ' ',
-        m('span', { class: 'permaLinkText' }, 'Permalink to this remix'),
+        m('span', { class: 'Permalink__text' }, 'Permalink to this remix'),
       ]),
     );
   },

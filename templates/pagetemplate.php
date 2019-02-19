@@ -8,8 +8,9 @@
     <link rel="stylesheet" title="Default Style" href="<?= $assets->getUrl('dino.css') ?>" type="text/css" />
 </head>
 <body>
-<div id="content">
-    <h1 class="pageTitle">Dinosaur Remix</h1>
+
+<div id="Content">
+    <header class="Header">Dinosaur Remix</header>
 
     <noscript>
         <div class="nojs-notice">
@@ -24,8 +25,8 @@
         dr.nextPanels = <?= json_encode($jsBootstrap['nextPanels']) ?>;
     </script>
 
-    <div class="comic-wrapper">
-        <div class="comic">
+    <main class="ComicWrapper">
+        <div class="Comic Comic--<?= $numPanels ?>_panels">
             <?php
             if ($numPanels === 2) {
                 include("2panels.php");
@@ -36,27 +37,26 @@
             }
             ?>
 
-            <div id="permaLinkHolder">
-                <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>">
+            <div class="Permalink">
+                <a class="Permalink__link" href="<?= $permaLink ?>">
                     <img src="images/link.png" alt="Link" />
-                    <span style="text-decoration: underline">Permalink to this remix</span>
+                    <span class="Permalink__text">Permalink to this remix</span>
                 </a>
             </div>
         </div>
-    </div>
+    </main>
 
-    <div class="comicCount">
+    <div class="ComicCount">
         Currently remixing <?= $numComics ?> comics, making for
         <?= $numPerms ?> possible remixes.
     </div>
-</div>
 
-<div class="credits">
-    <p style="font-size: small; color: gray">The code for this page is
-        available here:
-        <a href="http://github.com/aag/dinoremix/" style="color: gray;">
-            http://github.com/aag/dinoremix/</a>
-    </p>
+    <div class="CodeLink">
+        <p>The code for this page is available here:
+            <a class="CodeLink__link" href="http://github.com/aag/dinoremix/">
+                http://github.com/aag/dinoremix/</a>
+        </p>
+    </div>
 </div>
 
 <script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>

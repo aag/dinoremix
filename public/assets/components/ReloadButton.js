@@ -16,11 +16,11 @@ const ReloadButton = {
   },
 
   view: () => m(
-    'a#reloadLink', { href: ReloadButton.getNextPanelsUrl(), oncreate: m.route.link },
-    m('span#reloadButton', { class: 'unpressedReloadButton' }, [
+    'a', { href: ReloadButton.getNextPanelsUrl(), oncreate: m.route.link },
+    m('span.ReloadButton', { class: 'ReloadButton--unpressed' }, [
       m('img', { src: '/images/reload.png', alt: 'Reload' }),
       ' ',
-      m('span#reloadText', 'Reload the unlocked panels'),
+      m('span', 'Reload the unlocked panels'),
     ]),
   ),
 

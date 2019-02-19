@@ -5,10 +5,10 @@ const Panel = {
     const { position, src, altText } = vnode.attrs;
 
     return m(
-      'img.panelImage',
+      'img.Panel',
       {
         src,
-        id: `${position}Image`,
+        class: `Panel--${position}`,
         alt: altText,
         title: altText,
       },

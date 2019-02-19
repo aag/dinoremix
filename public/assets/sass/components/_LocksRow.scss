@@ -1,0 +1,54 @@
+.Lock {
+  &__button {
+    display: inline;
+    float: left;
+    padding: 2px 0;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    &--unlocked {
+      background-color: #dfd;
+    }
+
+    &--unlocked:hover {
+      background-color: #bdb;
+    }
+
+    &--locked {
+      text-align: center;
+      cursor: pointer;
+      float: left;
+      background-color: #fdd;
+    }
+
+    &--locked:hover {
+      background-color: #dbb;
+    }
+
+    &--tl {
+      width: 244px;
+    }
+
+    &--tm {
+      width: 129px;
+    }
+
+    &--tr {
+      width: 362px;
+    }
+
+    &--bl {
+      width: 194px;
+    }
+
+    &--bm {
+      width: 298px;
+    }
+
+    &--br {
+      width: 243px;
+    }
+  }
+}

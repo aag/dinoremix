@@ -10,14 +10,14 @@ const LocksRow = {
     const children = ComicLayout.getVisibleLocks(position, numPanels)
       .map(pos => LocksRow.createLockNode(pos));
 
-    return m('div', { class: `${position}Locks clearfix` }, children);
+    return m('div', { class: 'clearfix' }, children);
   },
 
   createLockNode: (pos) => {
-    const lockedClass = Url.isPanelLocked(pos) ? 'lockedLock' : 'unlockedLock';
+    const lockedClass = Url.isPanelLocked(pos) ? 'Lock__button--locked' : 'Lock__button--unlocked';
 
-    return m('a', { href: Url.togglePanel(pos), oncreate: m.route.link },
-      m('div', { class: `${pos}Lock ${lockedClass} lockHolder` },
+    return m('a.Lock', { href: Url.togglePanel(pos), oncreate: m.route.link },
+      m('div', { class: `Lock__button Lock__button--${pos} ${lockedClass}` },
         m('img', { src: 'images/lock_open.png', alt: 'Click to lock' })));
   },
 };

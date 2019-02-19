@@ -20,7 +20,7 @@ o.spec('The PanelsContainer component', () => {
       },
       numPanels: 6,
     });
-    output.should.have('#panelContainer');
-    output.should.have('#tlImage[src="/panels/topleft/comic2-100-topleft.png"]');
+    output.should.have('.PanelsContainer');
+    output.should.have('.Panel--tl[src="/panels/topleft/comic2-100-topleft.png"]');
   });
 });

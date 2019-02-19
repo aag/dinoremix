@@ -13,8 +13,8 @@ o.spec('The Panel component', () => {
       src: '/images/comic-1.png',
       altText: 'alt text',
     });
-    output.should.have('img#tlImage.panelImage[src="/images/comic-1.png"]');
-    output.should.have('.panelImage[alt="alt text"]');
-    output.should.have('.panelImage[title="alt text"]');
+    output.should.have('img.Panel.Panel--tl[src="/images/comic-1.png"]');
+    output.should.have('.Panel[alt="alt text"]');
+    output.should.have('.Panel[title="alt text"]');
   });
 });
