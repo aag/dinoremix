@@ -1,9 +1,7 @@
-<div class="ButtonsRow clearfix">
-    <a href="<?= htmlspecialchars($reloadUri) ?>">
-        <span class="ReloadButton ReloadButton--unpressed">
-            <img src="images/reload.png" alt="" />
-            <span id="reloadText">Reload the unlocked panels</span>
-        </span>
+<div class="ButtonsRow">
+    <a href="<?= htmlspecialchars($reloadUri) ?>" class="ReloadButton ReloadButton--unpressed">
+        <img src="images/reload.png" alt="" />
+        <span class="ReloadButton__text">Reload the unlocked panels</span>
     </a>
 
     <div class="NumPanelsWrapper">
@@ -15,16 +13,9 @@
     </div>
 </div>
 
-<div class="clearfix">
-    <a class="Lock">
-        <div class="Lock__button Lock__button--tl <?=$lockClasses["tl"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
-    </a>
-    <a class="Lock">
-        <div class="Lock__button Lock__button--br <?=$lockClasses["br"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
+<div class="LocksRow">
+    <a class="Lock Lock--tl <?=$lockClasses["tl"] ?>">
+    </a><a class="Lock Lock--br <?=$lockClasses["br"] ?>">
     </a>
 </div>
 

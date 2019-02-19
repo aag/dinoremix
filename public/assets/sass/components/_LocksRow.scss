@@ -1,49 +1,47 @@
 .Lock {
-  &__button {
-    display: inline-block;
-    padding: 2px 0;
-    height: 20px;
+  display: inline-block;
+  padding: 2px 0;
+  height: 20px;
 
-    text-align: center;
+  text-align: center;
 
-    &--unlocked {
-      background: no-repeat center #dfd url("../../images/lock_open.png");
-    }
+  &--unlocked {
+    background: no-repeat center #dfd url("../../images/lock_open.png");
+  }
 
-    &--unlocked:hover {
-      background-color: #bdb;
-    }
+  &--unlocked:hover {
+    background-color: #bdb;
+  }
 
-    &--locked {
-      background: no-repeat center #fdd url("../../images/lock.png");
-    }
+  &--locked {
+    background: no-repeat center #fdd url("../../images/lock.png");
+  }
 
-    &--locked:hover {
-      background-color: #dbb;
-    }
+  &--locked:hover {
+    background-color: #dbb;
+  }
 
-    &--tl {
-      width: 244px;
-    }
+  &--tl {
+    width: 244px;
+  }
 
-    &--tm {
-      width: 129px;
-    }
+  &--tm {
+    width: 129px;
+  }
 
-    &--tr {
-      width: 362px;
-    }
+  &--tr {
+    width: 362px;
+  }
 
-    &--bl {
-      width: 194px;
-    }
+  &--bl {
+    width: 194px;
+  }
 
-    &--bm {
-      width: 298px;
-    }
+  &--bm {
+    width: 298px;
+  }
 
-    &--br {
-      width: 243px;
-    }
+  &--br {
+    width: 243px;
   }
 }

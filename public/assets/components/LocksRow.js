@@ -14,11 +14,13 @@ const LocksRow = {
   },
 
   createLockNode: (pos) => {
-    const lockedClass = Url.isPanelLocked(pos) ? 'Lock__button--locked' : 'Lock__button--unlocked';
+    const lockedClass = Url.isPanelLocked(pos) ? 'Lock--locked' : 'Lock--unlocked';
 
-    return m('a.Lock', { href: Url.togglePanel(pos), oncreate: m.route.link },
-      m('div', { class: `Lock__button Lock__button--${pos} ${lockedClass}` } )
-    );
+    return m('a.Lock', {
+      href: Url.togglePanel(pos),
+      oncreate: m.route.link,
+      class: `Lock--${pos} ${lockedClass}`,
+    });
   },
 };
 

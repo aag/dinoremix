@@ -80,7 +80,7 @@ class Home
     private function createPanelLockClasses(array $panels)
     {
         return array_map(function ($panel) {
-            return $panel['isLocked'] ? 'Lock__button--locked' : 'Lock__button--unlocked';
+            return $panel['isLocked'] ? 'Lock--locked' : 'Lock--unlocked';
         }, $panels);
     }
 

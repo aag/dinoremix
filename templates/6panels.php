@@ -1,9 +1,7 @@
-<div class="ButtonsRow clearfix">
-    <a href="<?= htmlspecialchars($reloadUri) ?>">
-        <span class="ReloadButton ReloadButton--unpressed">
-            <img src="images/reload.png" alt="" />
-            <span id="reloadText">Reload the unlocked panels</span>
-        </span>
+<div class="ButtonsRow">
+    <a href="<?= htmlspecialchars($reloadUri) ?>" class="ReloadButton ReloadButton--unpressed">
+        <img src="images/reload.png" alt="" />
+        <span class="ReloadButton__text">Reload the unlocked panels</span>
     </a>
 
     <div class="NumPanelsWrapper">
@@ -15,21 +13,10 @@
     </div>
 </div>
 
-<div class="clearfix">
-    <a class="Lock">
-        <div class="Lock__button Lock__button--tl <?=$lockClasses["tl"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
-    </a>
-    <a class="Lock">
-        <div class="Lock__button Lock__button--tm <?=$lockClasses["tm"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
-    </a>
-    <a class="Lock">
-        <div class="Lock__button Lock__button--tr <?=$lockClasses["tr"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
+<div class="LocksRow">
+    <a class="Lock Lock--tl <?=$lockClasses["tl"] ?>">
+    </a><a class="Lock Lock--tm <?=$lockClasses["tm"] ?>">
+    </a><a class="Lock Lock--tr <?=$lockClasses["tr"] ?>">
     </a>
 </div>
 
@@ -55,21 +42,10 @@
     </div>
 </div>
 
-<div>
-    <a class="Lock">
-        <div class="Lock__button Lock__button--bl <?=$lockClasses["bl"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
-    </a>
-    <a class="Lock">
-        <div class="Lock__button Lock__button--bm <?=$lockClasses["bm"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
-    </a>
-    <a class="Lock">
-        <div class="Lock__button Lock__button--br <?=$lockClasses["br"] ?>">
-            <img src="images/lock_open.png" alt="Click to lock" />
-        </div>
+<div class="LocksRow">
+    <a class="Lock Lock--bl <?=$lockClasses["bl"] ?>">
+    </a><a class="Lock Lock--bm <?=$lockClasses["bm"] ?>">
+    </a><a class="Lock Lock--br <?=$lockClasses["br"] ?>">
     </a>
 </div>
 

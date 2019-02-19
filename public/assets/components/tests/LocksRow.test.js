@@ -13,75 +13,75 @@ o.spec('The LocksRow component', () => {
 
   o('renders the top row locks for 2 panels', () => {
     const output = mq(LocksRow, { position: 'top', numPanels: 2 });
-    output.should.have(['.Lock__button--tl', '.Lock__button--br']);
+    output.should.have(['.Lock--tl', '.Lock--br']);
 
-    output.should.not.have('.Lock__button--tr');
-    output.should.not.have('.Lock__button--tm');
-    output.should.not.have('.Lock__button--bl');
-    output.should.not.have('.Lock__button--bm');
+    output.should.not.have('.Lock--tr');
+    output.should.not.have('.Lock--tm');
+    output.should.not.have('.Lock--bl');
+    output.should.not.have('.Lock--bm');
   });
 
   o('renders the top row locks for 3 panels', () => {
     const output = mq(LocksRow, { position: 'top', numPanels: 3 });
-    output.should.have(['.Lock__button--tl', '.Lock__button--tm', '.Lock__button--br']);
+    output.should.have(['.Lock--tl', '.Lock--tm', '.Lock--br']);
 
-    output.should.not.have('.Lock__button--tr');
-    output.should.not.have('.Lock__button--bl');
-    output.should.not.have('.Lock__button--bm');
+    output.should.not.have('.Lock--tr');
+    output.should.not.have('.Lock--bl');
+    output.should.not.have('.Lock--bm');
   });
 
   o('renders the top row locks for 6 panels', () => {
     const output = mq(LocksRow, { position: 'top', numPanels: 6 });
-    output.should.have(['.Lock__button--tl', '.Lock__button--tm', '.Lock__button--tr']);
+    output.should.have(['.Lock--tl', '.Lock--tm', '.Lock--tr']);
 
-    output.should.not.have('.Lock__button--bl');
-    output.should.not.have('.Lock__button--bm');
-    output.should.not.have('.Lock__button--br');
+    output.should.not.have('.Lock--bl');
+    output.should.not.have('.Lock--bm');
+    output.should.not.have('.Lock--br');
   });
 
   o('renders no bottom row locks for 2 panels', () => {
     const output = mq(LocksRow, { position: 'bottom', numPanels: 2 });
 
-    output.should.not.have('.Lock__button--tl');
-    output.should.not.have('.Lock__button--tm');
-    output.should.not.have('.Lock__button--tr');
-    output.should.not.have('.Lock__button--bl');
-    output.should.not.have('.Lock__button--bm');
-    output.should.not.have('.Lock__button--br');
+    output.should.not.have('.Lock--tl');
+    output.should.not.have('.Lock--tm');
+    output.should.not.have('.Lock--tr');
+    output.should.not.have('.Lock--bl');
+    output.should.not.have('.Lock--bm');
+    output.should.not.have('.Lock--br');
   });
 
   o('renders the bottom row locks for 3 panels', () => {
     const output = mq(LocksRow, { position: 'bottom', numPanels: 3 });
 
-    output.should.not.have('.Lock__button--tl');
-    output.should.not.have('.Lock__button--tm');
-    output.should.not.have('.Lock__button--tr');
-    output.should.not.have('.Lock__button--bl');
-    output.should.not.have('.Lock__button--bm');
-    output.should.not.have('.Lock__button--br');
+    output.should.not.have('.Lock--tl');
+    output.should.not.have('.Lock--tm');
+    output.should.not.have('.Lock--tr');
+    output.should.not.have('.Lock--bl');
+    output.should.not.have('.Lock--bm');
+    output.should.not.have('.Lock--br');
   });
 
   o('renders the bottom row locks for 6 panels', () => {
     const output = mq(LocksRow, { position: 'bottom', numPanels: 6 });
-    output.should.have(['.Lock__button--bl', '.Lock__button--bm', '.Lock__button--br']);
+    output.should.have(['.Lock--bl', '.Lock--bm', '.Lock--br']);
 
-    output.should.not.have('.Lock__button--tl');
-    output.should.not.have('.Lock__button--tm');
-    output.should.not.have('.Lock__button--tr');
+    output.should.not.have('.Lock--tl');
+    output.should.not.have('.Lock--tm');
+    output.should.not.have('.Lock--tr');
   });
 
   o('renders locked top panels as locked', () => {
     window.location.search = 'locked=tl-tm-bm';
     const output = mq(LocksRow, { position: 'top', numPanels: 6 });
-    output.should.have(['.Lock__button--tl.Lock__button--locked', '.Lock__button--tm.Lock__button--locked']);
-    output.should.not.have('.Lock__button--tr.Lock__button--lockedLock');
+    output.should.have(['.Lock--tl.Lock--locked', '.Lock--tm.Lock--locked']);
+    output.should.not.have('.Lock--tr.Lock--lockedLock');
   });
 
   o('renders locked bottom panels as locked', () => {
     window.location.search = 'locked=tl-tm-bm';
     const output = mq(LocksRow, { position: 'bottom', numPanels: 6 });
-    output.should.have('.Lock__button--bm.Lock__button--locked');
-    output.should.not.have('.Lock__button--bl.Lock__button--locked');
-    output.should.not.have('.Lock__button--br.Lock__button--locked');
+    output.should.have('.Lock--bm.Lock--locked');
+    output.should.not.have('.Lock--bl.Lock--locked');
+    output.should.not.have('.Lock--br.Lock--locked');
   });
 });
