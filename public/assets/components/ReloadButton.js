@@ -17,7 +17,7 @@ const ReloadButton = {
 
   view: () => m(
     'a.ReloadButton', {
-      class: 'ReloadButton--unpressed',
+      class: 'Button Button--with-icon ReloadButton',
       href: ReloadButton.getNextPanelsUrl(),
       oncreate: m.route.link,
     },

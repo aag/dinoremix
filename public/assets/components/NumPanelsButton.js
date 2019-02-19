@@ -5,10 +5,10 @@ const NumPanelsButton = {
   view: (vnode) => {
     const { chosen, num } = vnode.attrs;
 
-    const chosenClass = chosen ? 'NumPanelsButton--chosen' : 'NumPanelsButton--unchosen';
+    const chosenClass = chosen ? 'Button--pressed' : '';
     return m('a.NumPanelsButton', {
       href: Url.setQueryParam('numpanels', num),
-      class: `${chosenClass}`,
+      class: `Button ${chosenClass}`,
       oncreate: m.route.link,
     }, num);
   },

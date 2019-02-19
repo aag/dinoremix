@@ -19,7 +19,7 @@ o.spec('The ReloadButton component', () => {
 
   o('renders correctly', () => {
     const output = mq(ReloadButton);
-    output.should.have('.ReloadButton--unpressed');
+    output.should.have('.ReloadButton.Button.Button--with-icon');
     output.should.contain('Reload the unlocked panels');
   });
 

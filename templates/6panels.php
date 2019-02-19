@@ -1,12 +1,12 @@
 <div class="ButtonsRow">
     <a href="<?= htmlspecialchars($reloadUri) ?>"
-        class="ReloadButton ReloadButton--unpressed">Reload the unlocked panels</a>
+        class="Button Button--with-icon ReloadButton">Reload the unlocked panels</a>
 
     <div class="NumPanelsWrapper">
         Number of panels: <span class="NumPanelsSwitcher">
-            <a href="<?= htmlspecialchars($permaLink2Panels) ?>" class="NumPanelsButton NumPanelsButton--unchosen">2</a>
-            <a href="<?= htmlspecialchars($permaLink3Panels) ?>" class="NumPanelsButton NumPanelsButton--unchosen">3</a>
-            <a href="<?= htmlspecialchars($permaLink6Panels) ?>" class="NumPanelsButton NumPanelsButton--chosen">6</a>
+            <a href="<?= htmlspecialchars($permaLink2Panels) ?>" class="Button">2</a>
+            <a href="<?= htmlspecialchars($permaLink3Panels) ?>" class="Button">3</a>
+            <a href="<?= htmlspecialchars($permaLink6Panels) ?>" class="Button Button--pressed">6</a>
         </span>
     </div>
 </div>
