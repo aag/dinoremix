@@ -1,5 +1,5 @@
 <div class="ButtonsRow clearfix">
-    <a href="<?= $reloadUri ?>">
+    <a href="<?= htmlspecialchars($reloadUri) ?>">
         <span class="ReloadButton ReloadButton--unpressed">
             <img src="images/reload.png" alt="" />
             <span id="reloadText">Reload the unlocked panels</span>
@@ -8,9 +8,9 @@
 
     <div class="NumPanelsWrapper">
         Number of panels: <span class="NumPanelsSwitcher">
-            <a href="<?= $permaLink2Panels ?>" class="NumPanelsButton NumPanelsButton--unchosen">2</a>
-            <a href="<?= $permaLink3Panels ?>" class="NumPanelsButton NumPanelsButton--unchosen">3</a>
-            <a href="<?= $permaLink6Panels ?>" class="NumPanelsButton NumPanelsButton--chosen">6</a>
+            <a href="<?= htmlspecialchars($permaLink2Panels) ?>" class="NumPanelsButton NumPanelsButton--unchosen">2</a>
+            <a href="<?= htmlspecialchars($permaLink3Panels) ?>" class="NumPanelsButton NumPanelsButton--unchosen">3</a>
+            <a href="<?= htmlspecialchars($permaLink6Panels) ?>" class="NumPanelsButton NumPanelsButton--chosen">6</a>
         </span>
     </div>
 </div>

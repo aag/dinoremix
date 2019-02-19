@@ -38,7 +38,7 @@
             ?>
 
             <div class="Permalink">
-                <a class="Permalink__link" href="<?= $permaLink ?>">
+                <a class="Permalink__link" href="<?= htmlspecialchars($permaLink) ?>">
                     <img src="images/link.png" alt="Link" />
                     <span class="Permalink__text">Permalink to this remix</span>
                 </a>
