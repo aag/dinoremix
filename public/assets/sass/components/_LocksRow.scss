@@ -1,12 +1,9 @@
 .Lock {
   &__button {
-    display: inline;
-    float: left;
+    display: inline-block;
     padding: 2px 0;
 
     text-align: center;
-
-    cursor: pointer;
 
     &--unlocked {
       background-color: #dfd;
@@ -17,10 +14,9 @@
     }
 
     &--locked {
-      text-align: center;
-      cursor: pointer;
-      float: left;
       background-color: #fdd;
+
+      text-align: center;
     }
 
     &--locked:hover {

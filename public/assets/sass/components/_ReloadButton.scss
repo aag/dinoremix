@@ -1,11 +1,9 @@
 .ReloadButton {
   padding: 5px 5px;
+  margin-bottom: 1em;
+
   color: black;
   text-decoration: none;
-  margin-bottom: 1em;
-  clear: none;
-  float: left;
-  cursor: pointer;
   font-size: 14px;
 
   &--unpressed {
@@ -22,5 +20,9 @@
     border-right: 2px gray solid;
     border-bottom: 2px gray solid;
     background-color: #ccc;
+  }
+
+  &__text {
+    text-decoration: none;
   }
 }

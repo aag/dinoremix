@@ -7,7 +7,7 @@ const ButtonsRow = {
   view: (vnode) => {
     const { numPanels } = vnode.attrs;
 
-    return m('.ButtonsRow', { class: 'clearfix' }, [
+    return m('.ButtonsRow', [
       m(ReloadButton),
       m(NumPanelsSwitcher, { numPanels }),
     ]);

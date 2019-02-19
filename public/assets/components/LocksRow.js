@@ -10,7 +10,7 @@ const LocksRow = {
     const children = ComicLayout.getVisibleLocks(position, numPanels)
       .map(pos => LocksRow.createLockNode(pos));
 
-    return m('div', { class: 'clearfix' }, children);
+    return m('.LocksRow', children);
   },
 
   createLockNode: (pos) => {

@@ -2,19 +2,11 @@
 	outline: 1px gray dotted;
 }
 
-.clearfix:after {
-    content:"";
-    display:block;
-    clear:both;
-}
-
 #setAltTextLink {
 	background-color: white;
 	position: absolute;
 	bottom: 16px;
 	right: 3px; 
-	clear: none;
-	float: none;
 	padding: 0px 0px;
 	z-index: 1000;
 	vertical-align: middle;

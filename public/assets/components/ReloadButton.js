@@ -16,12 +16,15 @@ const ReloadButton = {
   },
 
   view: () => m(
-    'a', { href: ReloadButton.getNextPanelsUrl(), oncreate: m.route.link },
-    m('span.ReloadButton', { class: 'ReloadButton--unpressed' }, [
+    'a.ReloadButton', {
+      class: 'ReloadButton--unpressed',
+      href: ReloadButton.getNextPanelsUrl(),
+      oncreate: m.route.link,
+    }, [
       m('img', { src: '/images/reload.png', alt: 'Reload' }),
       ' ',
-      m('span', 'Reload the unlocked panels'),
-    ]),
+      m('span.ReloadButton__text', 'Reload the unlocked panels'),
+    ],
   ),
 
   getNextPanelsUrl: () => {
