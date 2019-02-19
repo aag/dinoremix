@@ -17,8 +17,8 @@ const LocksRow = {
     const lockedClass = Url.isPanelLocked(pos) ? 'Lock__button--locked' : 'Lock__button--unlocked';
 
     return m('a.Lock', { href: Url.togglePanel(pos), oncreate: m.route.link },
-      m('div', { class: `Lock__button Lock__button--${pos} ${lockedClass}` },
-        m('img', { src: 'images/lock_open.png', alt: 'Click to lock' })));
+      m('div', { class: `Lock__button Lock__button--${pos} ${lockedClass}` } )
+    );
   },
 };
 

@@ -2,11 +2,12 @@
   &__button {
     display: inline-block;
     padding: 2px 0;
+    height: 20px;
 
     text-align: center;
 
     &--unlocked {
-      background-color: #dfd;
+      background: no-repeat center #dfd url("../../images/lock_open.png");
     }
 
     &--unlocked:hover {
@@ -14,9 +15,7 @@
     }
 
     &--locked {
-      background-color: #fdd;
-
-      text-align: center;
+      background: no-repeat center #fdd url("../../images/lock.png");
     }
 
     &--locked:hover {
