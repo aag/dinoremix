@@ -1,4 +1,5 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Fiber = require('fibers');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -15,6 +16,20 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader"
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass"),
+              fiber: Fiber
+            }
+          }
         ]
       }
     ]
