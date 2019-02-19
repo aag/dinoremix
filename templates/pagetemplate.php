@@ -37,12 +37,9 @@
             }
             ?>
 
-            <div class="Permalink">
-                <a class="Permalink__link" href="<?= htmlspecialchars($permaLink) ?>">
-                    <img src="images/link.png" alt="Link" />
-                    <span class="Permalink__text">Permalink to this remix</span>
-                </a>
-            </div>
+            <a class="Permalink" href="<?= htmlspecialchars($permaLink) ?>">
+                Permalink to this remix
+            </a>
         </div>
     </main>
 
@@ -51,12 +48,10 @@
         <?= $numPerms ?> possible remixes.
     </div>
 
-    <div class="CodeLink">
-        <p>The code for this page is available here:
-            <a class="CodeLink__link" href="http://github.com/aag/dinoremix/">
-                http://github.com/aag/dinoremix/</a>
-        </p>
-    </div>
+    <p class="CodeLink">The code for this page is available here:
+        <a class="CodeLink__link" href="http://github.com/aag/dinoremix/">
+            http://github.com/aag/dinoremix/</a>
+    </p>
 </div>
 
 <script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>
