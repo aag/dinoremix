@@ -1,8 +1,6 @@
 <div class="ButtonsRow">
-    <a href="<?= htmlspecialchars($reloadUri) ?>" class="ReloadButton ReloadButton--unpressed">
-        <img src="images/reload.png" alt="" />
-        <span class="ReloadButton__text">Reload the unlocked panels</span>
-    </a>
+    <a href="<?= htmlspecialchars($reloadUri) ?>"
+        class="ReloadButton ReloadButton--unpressed">Reload the unlocked panels</a>
 
     <div class="NumPanelsWrapper">
         Number of panels: <span class="NumPanelsSwitcher">

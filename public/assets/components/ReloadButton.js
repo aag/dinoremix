@@ -20,11 +20,8 @@ const ReloadButton = {
       class: 'ReloadButton--unpressed',
       href: ReloadButton.getNextPanelsUrl(),
       oncreate: m.route.link,
-    }, [
-      m('img', { src: '/images/reload.png', alt: 'Reload' }),
-      ' ',
-      m('span.ReloadButton__text', 'Reload the unlocked panels'),
-    ],
+    },
+    'Reload the unlocked panels',
   ),
 
   getNextPanelsUrl: () => {
