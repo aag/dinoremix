@@ -1,7 +1,12 @@
+.LocksRow {
+  height: 22px;
+}
+
 .Lock {
   display: inline-block;
   padding: 2px 0;
-  height: 20px;
+  height: 22px;
+  box-sizing: border-box;
 
   text-align: center;
 

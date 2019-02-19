@@ -6,6 +6,12 @@
     <title>Dinosaur Remix</title>
 
     <link rel="stylesheet" title="Default Style" href="<?= $assets->getUrl('dino.css') ?>" type="text/css" />
+
+    <script>
+        var dr = dr || {};
+        dr.initialComic = <?= json_encode($jsBootstrap['initialComic']) ?>;
+        dr.nextPanels = <?= json_encode($jsBootstrap['nextPanels']) ?>;
+    </script>
 </head>
 <body>
 
@@ -18,12 +24,6 @@
                 page is way more fun with JavaScript enabled.</span>
         </div>
     </noscript>
-
-    <script>
-        var dr = dr || {};
-        dr.initialComic = <?= json_encode($jsBootstrap['initialComic']) ?>;
-        dr.nextPanels = <?= json_encode($jsBootstrap['nextPanels']) ?>;
-    </script>
 
     <main class="ComicWrapper">
         <div class="Comic Comic--<?= $numPanels ?>_panels">
@@ -43,15 +43,19 @@
         </div>
     </main>
 
-    <div class="ComicCount">
-        Currently remixing <?= $numComics ?> comics, making for
-        <?= $numPerms ?> possible remixes.
-    </div>
+    <aside>
+        <p class="ComicCount">
+            Currently remixing <?= $numComics ?> comics, making for
+            <?= $numPerms ?> possible remixes.
+        </p>
+    </aside>
 
-    <p class="CodeLink">The code for this page is available here:
-        <a class="CodeLink__link" href="http://github.com/aag/dinoremix/">
-            http://github.com/aag/dinoremix/</a>
-    </p>
+    <footer>
+        <p class="CodeLink">The code for this page is available here:
+            <a class="CodeLink__link" href="http://github.com/aag/dinoremix/">
+                http://github.com/aag/dinoremix/</a>
+        </p>
+    </footer>
 </div>
 
 <script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>
