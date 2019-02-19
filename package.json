@@ -27,6 +27,9 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass": "^1.17.0",
     "sass-loader": "^7.1.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.5.3",
     "terser": "^3.16.1",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.29.5",
@@ -35,7 +38,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "check-style": "eslint public/assets",
+    "check-style": "eslint public/assets && stylelint \"public/assets/sass/**/*.scss\"",
     "fix-style": "eslint public/assets --fix",
     "start": "webpack --config webpack.dev.js --watch",
     "test": "ospec"
