@@ -22,8 +22,8 @@
     <img class="Panel Panel--br" src="panels/bottomright/<?=$imgFileNames["br"] ?>" alt="<?=$outAltText?>" title="<?=$outAltText?>" />
 
     <div class="CreditsRow">
-        <img src="panels/credits_left.png" alt="" class="lCredit" />
-        <img src="panels/credits_right.png" alt="" class="rCredit" />
+        <img src="panels/credits_left.png" alt="(C) 2003-2018 Ryan North" />
+        <img src="panels/credits_right.png" alt="www.qwantz.com" />
     </div>
 
     <a id="setAltTextLink" href="./" hidden><img src="images/edit_alt_text.png" alt="" /></a>

@@ -7,8 +7,8 @@ const mq = require('mithril-query');
 const CreditsRow = require('../CreditsRow');
 
 o.spec('The CreditRow component', () => {
-  o('renders the left and right images for 2 panels', () => {
+  o('renders the left and right credit images', () => {
     const output = mq(CreditsRow, { numPanels: 2 });
-    output.should.have(['.lCredit', '.rCredit']);
+    output.should.have(2, 'img');
   });
 });
