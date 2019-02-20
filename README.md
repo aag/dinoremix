@@ -16,13 +16,23 @@ location / {
 }
 ```
 
+The file dinoremix.local is an example nginx configuration file for local
+development.  Copy it to `/etc/nginx/sites-available` and customize the paths
+in the file for your environment. Then create a softlink to it with the command
+
+```sh
+sudo ln -s /etc/nginx/sites-available/dinoremix.local /etc/nginx/sites-enabled/dinoremix.local
+```
+
+Add dinoremix.local to your hosts file and then restart nginx.
+
 Before the site will work, you will need to run `./composer.phar install --no-dev` from the command line within the root directory of the repository.
 
 Then, run `python cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
 
 ### Requirements
 
-The code requires PHP 7.0+ and Python 2.7 or 3.
+The code requires PHP 7.1+ and Python 2.7 or 3.
 
 
 The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
@@ -83,10 +93,15 @@ php composer.phar test
 ```
 
 Minification of the frontend assets happens during deploy. To run it locally,
-run `npm install` and `npm run build`. If there are minified files in
-`public/assets/dist`, then those will be served to the browser instead of the
+run `npm install` and either `npm run build` or `npm start`. The output files
+in `public/assets/dist` will be served to the browser instead of the
 source files.
 
 ### License
 
 This code is free software licensed under the GPL 2. See the [LICENSE.md](LICENSE.md) file for details.
+
+### Assets
+
+This repository includes icons from the [Silk Icon Set](http://www.famfamfam.com/lab/icons/silk/).
+

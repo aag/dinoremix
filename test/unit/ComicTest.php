@@ -1,17 +1,17 @@
 <?php
-/* 
- * Copyright 2008-2017 Adam Goforth
+/*
+ * Copyright 2008-2018 Adam Goforth
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,7 +27,42 @@ use PHPUnit\Framework\TestCase;
 
 class ComicTest extends TestCase
 {
-    public function tearDown()
+    private $storageMock;
+    private $panelGeneratorMock;
+
+    // Sets up mocks with reasonable defaults
+    public function setUp(): void
+    {
+        $this->storageMock = m::mock(Storage::class);
+        $this->storageMock->shouldReceive('getPositionAbbrs')
+            ->andReturn(['tl', 'tm', 'br']);
+
+        $this->storageMock->shouldReceive('getTotalComicsCount')
+            ->andReturn(100);
+
+        $this->storageMock->shouldReceive('posAbbrToFull')
+            ->andReturnUsing(function ($pos) {
+                switch ($pos) {
+                    case 'tl':
+                        return 'topleft';
+                    case 'tm':
+                        return 'topmiddle';
+                    case 'br':
+                    default:
+                        return 'bottomright';
+                }
+            });
+
+
+        $this->panelGeneratorMock = m::mock(PanelGenerator::class);
+        $this->panelGeneratorMock->shouldReceive('getRandomPanelForPosition')
+            ->andReturnUsing(function ($pos) {
+                $id = rand(1, 5000);
+                return ['comic' => $id, 'filename' => "comic2-$id-$pos.png"];
+            });
+    }
+
+    public function tearDown(): void
     {
         m::close();
     }
@@ -42,39 +77,20 @@ class ComicTest extends TestCase
 
     public function testGetNumComics()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl']);
-
-        $storage->shouldReceive('getTotalComicsCount')
-            ->andReturn(1000);
-
-        $comic = new Comic($storage);
-
-        $this->assertEquals(1000, $comic->getNumComics());
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $this->assertEquals(100, $comic->getNumComics());
     }
 
     public function testGetNumComicPermutations()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl']);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
 
-        $storage->shouldReceive('getTotalComicsCount')
-            ->andReturn(5);
-
-        $comic = new Comic($storage);
-
-        $this->assertEquals('15,775', $comic->getNumComicPermutations());
+        $this->assertEquals('1,000,001,010,000', $comic->getNumComicPermutations());
     }
 
     public function testSetNumPanelWithValidNumber()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl']);
-
-        $comic = new Comic($storage);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
         $comic->setNumPanels(6);
         
         $this->assertEquals(6, $comic->getNumPanels());
@@ -82,11 +98,7 @@ class ComicTest extends TestCase
 
     public function testSetNumPanelWithInvalidNumber()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl']);
-
-        $comic = new Comic($storage);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
         $comic->setNumPanels(9);
         
         $this->assertEquals(3, $comic->getNumPanels());
@@ -94,32 +106,16 @@ class ComicTest extends TestCase
 
     public function testGetPositionAbbrs()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl', 'tm', 'tr']);
-
-        $comic = new Comic($storage);
-        $this->assertEquals(['tl', 'tm', 'tr'], $comic->getPositionAbbrs());
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $this->assertEquals(['tl', 'tm', 'br'], $comic->getPositionAbbrs());
     }
 
     public function testSetLockedPanels()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl', 'tm', 'tr']);
-        $storage->shouldReceive('posAbbrToFull')
-            ->andReturnUsing(function ($pos) {
-                if ($pos === 'tl') {
-                    return 'topleft';
-                }
-
-                return 'topright';
-            });
-
-        $comic = new Comic($storage);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
         $comic->setLockedPanels([
             ['pos' => 'tl', 'comic' => 1],
-            ['pos' => 'tr', 'comic' => 2],
+            ['pos' => 'tm', 'comic' => 2],
         ]);
 
         $expectedPanel = [
@@ -129,45 +125,38 @@ class ComicTest extends TestCase
                 'isLocked' => true,
                 'filename' => 'comic2-1-topleft.png',
             ],
-            'tr' => [
-                'pos' => 'tr',
+            'tm' => [
+                'pos' => 'tm',
                 'comic' => 2,
                 'isLocked' => true,
-                'filename' => 'comic2-2-topright.png',
+                'filename' => 'comic2-2-topmiddle.png',
             ],
         ];
         $panels = $comic->getPanels();
-        $this->assertArraySubset($expectedPanel, $panels);
+        $this->assertEquals($expectedPanel['tl'], $panels['tl']);
+        $this->assertEquals($expectedPanel['tm'], $panels['tm']);
     }
 
     public function testGenerateRandomPanelsSetsComicNumber()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl']);
-
         $panelGenerator = m::mock(PanelGenerator::class);
         $panelGenerator->shouldReceive('getRandomPanelForPosition')
-            ->andReturn(['comic' => 1234, 'filename' => 'testfile.png']);
+            ->andReturn(['comic' => '1234', 'filename' => 'testfile.png']);
 
-        $comic = new Comic($storage, $panelGenerator);
+        $comic = new Comic($this->storageMock, $panelGenerator);
         $comic->generateRandomPanels();
  
         $panels = $comic->getPanels();
-        $this->assertEquals(1234, $panels['tl']['comic']);
+        $this->assertEquals('1234', $panels['tl']['comic']);
     }
 
     public function testGenerateRandomPanelsSetsFilename()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl']);
-
         $panelGenerator = m::mock(PanelGenerator::class);
         $panelGenerator->shouldReceive('getRandomPanelForPosition')
-            ->andReturn(['comic' => 1, 'filename' => 'testfile.png']);
+            ->andReturn(['comic' => '1', 'filename' => 'testfile.png']);
 
-        $comic = new Comic($storage, $panelGenerator);
+        $comic = new Comic($this->storageMock, $panelGenerator);
         $comic->generateRandomPanels();
  
         $panels = $comic->getPanels();
@@ -176,48 +165,22 @@ class ComicTest extends TestCase
 
     public function testGenerateRandomPanelsSkipsLockedPanel()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl', 'tr']);
-        $storage->shouldReceive('posAbbrToFull')
-            ->andReturn('topleft');
- 
-        $panelGenerator = m::mock(PanelGenerator::class);
-        $panelGenerator->shouldReceive('getRandomPanelForPosition')
-            ->andReturn(['comic' => 99, 'filename' => 'testfile.png']);
-
-        $comic = new Comic($storage, $panelGenerator);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
         $comic->setLockedPanels([
-            ['pos' => 'tl', 'comic' => 1],
+            ['pos' => 'tl', 'comic' => '1'],
         ])->generateRandomPanels();
  
         $panels = $comic->getPanels();
-        $this->assertEquals(1, $panels['tl']['comic']);
+        $this->assertEquals('1', $panels['tl']['comic']);
     }
 
     public function testGetPermalinkThreePanels()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl', 'tm', 'br']);
-        $storage->shouldReceive('posAbbrToFull')
-            ->andReturnUsing(function ($pos) {
-                if ($pos === 'tl') {
-                    return 'topleft';
-                }
-
-                if ($pos === 'tm') {
-                    return 'topmiddle';
-                }
-
-                return 'bottomright';
-            });
-
-        $comic = new Comic($storage);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
         $comic->setLockedPanels([
-            ['pos' => 'tl', 'comic' => 1],
-            ['pos' => 'tm', 'comic' => 2],
-            ['pos' => 'br', 'comic' => 3],
+            ['pos' => 'tl', 'comic' => '1'],
+            ['pos' => 'tm', 'comic' => '2'],
+            ['pos' => 'br', 'comic' => '3'],
         ]);
 
         $this->assertEquals('?tl=1&tm=2&br=3', $comic->getPermalink());
@@ -225,25 +188,74 @@ class ComicTest extends TestCase
 
     public function testGetPermalinkTwoPanels()
     {
-        $storage = m::mock(Storage::class);
-        $storage->shouldReceive('getPositionAbbrs')
-            ->andReturn(['tl', 'tm', 'br']);
-        $storage->shouldReceive('posAbbrToFull')
-            ->andReturnUsing(function ($pos) {
-                if ($pos === 'tl') {
-                    return 'topleft';
-                }
-
-                return 'bottomright';
-            });
-
-        $comic = new Comic($storage);
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
         $comic->setNumPanels(2);
         $comic->setLockedPanels([
-            ['pos' => 'tl', 'comic' => 1],
-            ['pos' => 'br', 'comic' => 3],
+            ['pos' => 'tl', 'comic' => '1'],
+            ['pos' => 'br', 'comic' => '3'],
         ]);
 
         $this->assertEquals('?tl=1&br=3&numpanels=2', $comic->getPermalink());
+    }
+
+    public function testGetJsBootstrapContainsAltText()
+    {
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $comic->setAltText('Alt Text!');
+
+        $this->assertEquals('Alt Text!', $comic->getJsBootstrap()['initialComic']['altText']);
+    }
+
+    public function testGetJsBootstrapContainsNumPanels()
+    {
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $comic->setNumPanels(2);
+
+        $this->assertEquals(2, $comic->getJsBootstrap()['initialComic']['numPanels']);
+    }
+
+    public function testGetJsBootstrapContainsLockedPanels()
+    {
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $comic->setLockedPanels([
+            ['pos' => 'tl', 'comic' => '101'],
+            ['pos' => 'br', 'comic' => '102'],
+        ]);
+
+        $this->assertEquals(['tl', 'br'], $comic->getJsBootstrap()['initialComic']['lockedPanels']);
+    }
+
+    public function testGetJsBootstrapContainsPanels()
+    {
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+        $comic->setLockedPanels([
+            ['pos' => 'tl', 'comic' => '101'],
+            ['pos' => 'tm', 'comic' => '102'],
+            ['pos' => 'br', 'comic' => '103'],
+        ]);
+
+        $expectedPanels = [
+            'tl' => '101',
+            'tm' => '102',
+            'br' => '103',
+        ];
+        $this->assertEquals($expectedPanels, $comic->getJsBootstrap()['initialComic']['panels']);
+    }
+
+    public function testGetJsBootstrapContainsNextPanels()
+    {
+        // Note: the storageMock only returns 3 panel positions
+        $comic = new Comic($this->storageMock, $this->panelGeneratorMock);
+
+        $nextPanels = $comic->getJsBootstrap()['nextPanels'];
+        $this->assertEquals(3, count($nextPanels));
+        $this->assertArrayHasKey('tl', $nextPanels);
+        $this->assertStringMatchesFormat('%d', $nextPanels['tl']);
+
+        $this->assertArrayHasKey('tm', $nextPanels);
+        $this->assertStringMatchesFormat('%d', $nextPanels['tm']);
+
+        $this->assertArrayHasKey('br', $nextPanels);
+        $this->assertStringMatchesFormat('%d', $nextPanels['br']);
     }
 }

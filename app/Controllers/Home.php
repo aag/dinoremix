@@ -1,17 +1,17 @@
 <?php
-/* 
- * Copyright 2008-2017 Adam Goforth
+/*
+ * Copyright 2008-2018 Adam Goforth
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -20,6 +20,7 @@ namespace App\Controllers;
 
 use App\Lib\AssetManager;
 use App\Lib\Comic;
+use App\Lib\HtmlResponse;
 use App\Lib\Renderer;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -79,11 +80,11 @@ class Home
     private function createPanelLockClasses(array $panels)
     {
         return array_map(function ($panel) {
-            return $panel['isLocked'] ? 'locked' : 'unlocked';
+            return $panel['isLocked'] ? 'Lock--locked' : 'Lock--unlocked';
         }, $panels);
     }
 
-    public function index(ServerRequestInterface $request, ResponseInterface $response)
+    public function index(ServerRequestInterface $request) : ResponseInterface
     {
         $queryParams = $request->getQueryParams();
 
@@ -114,9 +115,9 @@ class Home
             'permaLink3Panels' => $this->comic->getPermalink(3),
             'permaLink6Panels' => $this->comic->getPermalink(6),
             'reloadUri' => $this->comic->getReloadUri(),
+            'jsBootstrap' => $this->comic->getJsBootstrap(),
         ]);
 
-        $response->getBody()->write($pageContent);
-        return $response;
+        return HtmlResponse::ok($pageContent);
     }
 }

@@ -5,12 +5,18 @@
 
     <title>Dinosaur Remix</title>
 
-    <link rel="stylesheet" title="Default Style" href="<?= $assets->getUrl('reset.css') ?>" type="text/css" />
     <link rel="stylesheet" title="Default Style" href="<?= $assets->getUrl('dino.css') ?>" type="text/css" />
+
+    <script>
+        var dr = dr || {};
+        dr.initialComic = <?= json_encode($jsBootstrap['initialComic']) ?>;
+        dr.nextPanels = <?= json_encode($jsBootstrap['nextPanels']) ?>;
+    </script>
 </head>
 <body>
-<div id="content">
-    <h1 class="pageTitle">Dinosaur Remix</h1>
+
+<div id="Content">
+    <header class="Header">Dinosaur Remix</header>
 
     <noscript>
         <div class="nojs-notice">
@@ -19,40 +25,39 @@
         </div>
     </noscript>
 
-    <div class="comic">
-        <?php
-        if ($numPanels === 2) {
-            include("2panels.php");
-        } elseif ($numPanels === 6) {
-            include("6panels.php");
-        } else {
-            include("3panels.php");
-        }
-        ?>
+    <main class="ComicWrapper">
+        <div class="Comic Comic--<?= $numPanels ?>_panels">
+            <?php
+            if ($numPanels === 2) {
+                include("2panels.php");
+            } elseif ($numPanels === 6) {
+                include("6panels.php");
+            } else {
+                include("3panels.php");
+            }
+            ?>
 
-        <div id="permaLinkHolder">
-            <a id="permaLink" style="text-decoration: none" href="<?= $permaLink ?>">
-                <img src="images/link.png" alt="Link" />
-                <span style="text-decoration: underline">Permalink to this remix</span>
+            <a class="Permalink" href="<?= htmlspecialchars($permaLink) ?>">
+                Permalink to this remix
             </a>
         </div>
-    </div>
+    </main>
 
-    <div class="comicCount">
-        Currently remixing <?= $numComics ?> comics, making for
-        <?= $numPerms ?> possible remixes.
-    </div>
+    <aside>
+        <p class="ComicCount">
+            Currently remixing <?= $numComics ?> comics, making for
+            <?= $numPerms ?> possible remixes.
+        </p>
+    </aside>
+
+    <footer>
+        <p class="CodeLink">The code for this page is available here:
+            <a class="CodeLink__link" href="http://github.com/aag/dinoremix/">
+                http://github.com/aag/dinoremix/</a>
+        </p>
+    </footer>
 </div>
 
-<div class="credits">
-    <p style="font-size: small; color: gray">The code for this page is
-        available here:
-        <a href="http://github.com/aag/dinoremix/" style="color: gray;">
-            http://github.com/aag/dinoremix/</a>
-    </p>
-</div>
-
-<script defer type="text/javascript" src="<?= $assets->getUrl('jquery.min.js') ?>"></script>
 <script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>
 
 </body>

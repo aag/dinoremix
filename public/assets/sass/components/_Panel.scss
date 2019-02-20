@@ -1,0 +1,10 @@
+.Panel {
+  position: relative;
+}
+
+.Comic--2_panels,
+.Comic--3_panels {
+  .Panel--br {
+    top: 1px;
+  }
+}

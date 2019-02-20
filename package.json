@@ -4,11 +4,45 @@
   "author": "Adam Goforth",
   "description": "A web app for remixing Dinosaur Comics",
   "license": "GPL-2.0",
+  "homepage": "http://dinoremix.definingterms.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aag/dinoremix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aag/dinoremix/issues"
+  },
   "dependencies": {
-    "minifier": "^0.8.1"
+    "mithril": "^1.1.6"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "css-loader": "^2.1.0",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "fibers": "^3.1.1",
+    "file-loader": "^3.0.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "mithril-query": "^2.5.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass": "^1.17.0",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.5.3",
+    "terser": "^3.16.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1"
   },
   "scripts": {
-    "build": "minify --no-comments --template {{filename}}-{{md5}}.min.{{ext}} --clean public/assets/ && rm -f public/assets/dist/* && mv public/assets/*-*.min.* public/assets/dist/",
-    "clean": "rm -f public/assets/dist/*"
+    "build": "webpack --config webpack.prod.js",
+    "check-style": "eslint public/assets && stylelint \"public/assets/sass/**/*.scss\"",
+    "fix-style": "eslint public/assets --fix",
+    "start": "webpack --config webpack.dev.js --watch",
+    "test": "ospec"
   }
 }

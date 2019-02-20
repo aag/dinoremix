@@ -1,0 +1,54 @@
+.LocksRow {
+  height: 22px;
+}
+
+.Lock {
+  display: inline-block;
+  padding: 2px 0;
+  height: 22px;
+  box-sizing: border-box;
+
+  text-align: center;
+
+  &--unlocked {
+    background: no-repeat center #dfd url("../../images/lock_open.png");
+  }
+
+  &--unlocked:hover,
+  &--unlocked:focus {
+    background-color: #bdb;
+  }
+
+  &--locked {
+    background: no-repeat center #fdd url("../../images/lock.png");
+  }
+
+  &--locked:hover,
+  &--locked:focus {
+    background-color: #dbb;
+  }
+
+  &--tl {
+    width: 244px;
+  }
+
+  &--tm {
+    width: 129px;
+  }
+
+  &--tr {
+    width: 362px;
+  }
+
+  &--bl {
+    width: 194px;
+  }
+
+  &--bm {
+    width: 298px;
+  }
+
+  &--br {
+    width: 243px;
+  }
+}

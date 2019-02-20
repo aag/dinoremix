@@ -1,0 +1,40 @@
+$btn-light-border-color: #808080;
+$btn-dark-border-color: #000;
+
+.Button {
+  margin: 0 0;
+  padding: 5px 5px;
+  box-sizing: border-box;
+
+  background-color: #ddd;
+  border-top: 2px $btn-light-border-color solid;
+  border-bottom: 2px $btn-dark-border-color solid;
+  border-left: 2px $btn-light-border-color solid;
+  border-right: 2px $btn-dark-border-color solid;
+
+  color: #000;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.15;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #e5e5e5;
+  }
+
+  &--pressed {
+    background-color: #ccc;
+    border-top: 2px $btn-dark-border-color solid;
+    border-bottom: 2px $btn-light-border-color solid;
+    border-left: 2px $btn-dark-border-color solid;
+    border-right: 2px $btn-light-border-color solid;
+  }
+
+  &--pressed:hover {
+    background-color: #d4d4d4;
+  }
+
+  &--with-icon {
+    padding-left: 24px;
+  }
+}

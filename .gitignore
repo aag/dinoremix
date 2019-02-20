@@ -1,7 +1,9 @@
+.phpunit.result.cache
 *.pyc
 /data/
 /node_modules/
 /public/assets/dist/
 /public/panels/
+/test/files/
 /vendor/
 
