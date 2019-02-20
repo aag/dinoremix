@@ -18,13 +18,6 @@
 <div id="Content">
     <header class="Header">Dinosaur Remix</header>
 
-    <noscript>
-        <div class="nojs-notice">
-            <span style="color: black; background-color: #ffffaf;">Psst! This
-                page is way more fun with JavaScript enabled.</span>
-        </div>
-    </noscript>
-
     <main class="ComicWrapper">
         <div class="Comic Comic--<?= $numPanels ?>_panels">
             <?php
