@@ -2,6 +2,7 @@
   "extends": "airbnb-base",
   "globals": {
     "document": true,
+    "Image": true,
     "window": true
   }
 }
