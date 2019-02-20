@@ -7,6 +7,16 @@ const AltTextEditor = require('./AltTextEditor');
 const Panel = require('./Panel');
 
 const PanelsContainer = {
+  isMouseAbove: false,
+
+  handleMouseenter: () => {
+    PanelsContainer.isMouseAbove = true;
+  },
+
+  handleMouseleave: () => {
+    PanelsContainer.isMouseAbove = false;
+  },
+
   view: (vnode) => {
     const { altText, panels, numPanels } = vnode.attrs;
 
@@ -21,7 +31,10 @@ const PanelsContainer = {
         });
       });
 
-    return m('.PanelsContainer', [panelElements, m(AltTextEditor)]);
+    return m('.PanelsContainer', {
+      onmouseenter: PanelsContainer.handleMouseenter,
+      onmouseleave: PanelsContainer.handleMouseleave,
+    }, [panelElements, m(AltTextEditor, { showButton: PanelsContainer.isMouseAbove })]);
   },
 };
 

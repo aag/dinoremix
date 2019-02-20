@@ -26,12 +26,18 @@ const AltTextEditor = {
     AltTextEditor.inputValue = Comic.altText;
   },
 
-  view: () => {
+  view: (vnode) => {
+    const { showButton } = vnode.attrs;
+
     if (!AltTextEditor.isFormVisible) {
-      return m('button.AltTextEditor', {
-        class: 'Button Button--with-icon',
-        onclick: AltTextEditor.handleEditClick,
-      }, 'Edit alt text');
+      if (showButton) {
+        return m('button.AltTextEditor', {
+          class: 'Button Button--with-icon',
+          onclick: AltTextEditor.handleEditClick,
+        }, 'Edit alt text');
+      }
+
+      return null;
     }
 
     const input = m('input.AltTextEditor__input', {
