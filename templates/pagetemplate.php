@@ -43,11 +43,26 @@
         </div>
     </main>
 
+    <section class="Explanation">
+        <header class="Explanation__header">What is this?</header>
+        <div class="Explanation__content">
+            <p>This page is a toy to play with
+                <a href="http://qwantz.com/">Dinosaur Comics</a>.</p>
+            <p>Dinosaur Comics is a web comic created by Ryan North. The unique
+                thing about it is that the pictures are the same (nearly) every
+                day and only the words change. This means that if you combine
+                panels from multiple days, the comic will still look right.</p>
+            <p>That's what this page lets you do. You can randomly mix together
+                panels from multiple comics, keeping the ones you like until
+                you arrive at a complete comic, and then save or share the link
+                to it.</p>
+            <p>There are a lot of possible comics you can make. Dinosaur Remix
+                currently contains <?= $numComics ?> comics, making for
+                <?= $numPerms ?> possible remixes.</p>
+        </div>
+    </section>
+
     <aside>
-        <p class="ComicCount">
-            Currently remixing <?= $numComics ?> comics, making for
-            <?= $numPerms ?> possible remixes.
-        </p>
     </aside>
 
     <footer>

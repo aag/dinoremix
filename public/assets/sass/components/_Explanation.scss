@@ -1,0 +1,18 @@
+.Explanation {
+  border: 3px #0a0 solid;
+
+  &__header {
+    padding: 5px 0;
+
+    background: #42c700;
+
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    padding: 0 10px;
+  }
+}
