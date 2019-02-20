@@ -18,8 +18,7 @@ $btn-dark-border-color: #000;
   line-height: 1.15;
   text-decoration: none;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: #e5e5e5;
   }
 
@@ -29,6 +28,10 @@ $btn-dark-border-color: #000;
     border-bottom: 2px $btn-light-border-color solid;
     border-left: 2px $btn-dark-border-color solid;
     border-right: 2px $btn-light-border-color solid;
+  }
+
+  &--pressed:hover {
+    background-color: #d4d4d4;
   }
 
   &--with-icon {
