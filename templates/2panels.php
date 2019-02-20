@@ -1,6 +1,6 @@
 <div class="ButtonsRow">
     <a href="<?= htmlspecialchars($reloadUri) ?>"
-        class="Button Button--with-icon ReloadButton">Reload the unlocked panels</a>
+        class="Button Button--with-icon ReloadButton">Reload the panels</a>
 
     <div class="NumPanelsWrapper">
         Number of panels: <span class="NumPanelsSwitcher">
@@ -9,12 +9,6 @@
             <a href="<?= htmlspecialchars($permaLink6Panels) ?>" class="Button">6</a>
         </span>
     </div>
-</div>
-
-<div class="LocksRow">
-    <a class="Lock Lock--tl <?=$lockClasses["tl"] ?>">
-    </a><a class="Lock Lock--br <?=$lockClasses["br"] ?>">
-    </a>
 </div>
 
 <div class="PanelsContainer">
