@@ -27,6 +27,8 @@ const Comic = {
 
   getPermalink: () => Url.setPanels(Comic.panels),
 
+  allPanelsLocked: () => Comic.lockedPanels.length === 6,
+
   // The backend writes a global JS object into the page HTML so we
   // can bootstrap from it.
   loadFromGlobal: () => {

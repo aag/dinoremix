@@ -8,11 +8,12 @@ const ReloadButton = {
   oninit: () => RandomPanels.loadFromGlobal(),
 
   onupdate: () => {
-    if (Comic.getPermalink() === ReloadButton.getNextPanelsUrl()) {
+    if (Comic.getPermalink() === ReloadButton.getNextPanelsUrl() &&
+        !Comic.allPanelsLocked()) {
       return RandomPanels.fetchFromServer();
     }
 
-    return undefined;
+    return null;
   },
 
   view: () => m(
