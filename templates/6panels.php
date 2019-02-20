@@ -30,14 +30,6 @@
         <img src="panels/credits_left.png" alt="(C) 2003-2018 Ryan North" />
         <img src="panels/credits_right.png" alt="www.qwantz.com" />
     </div>
-
-    <a id="setAltTextLink" href="./" hidden><img src="images/edit_alt_text.png" alt="" /></a>
-    <div id="altTextInputControls" hidden>
-        <form id="altTextForm" action="./">
-            <input id="altTextInput" name="altText" class="" type="text" size="60" value="<?=$outAltText?>" />
-        </form>
-        <a href="./" id="altTextOKButton"><img src="images/ok.png" class="altTextInputButton" alt="" /></a> <a href="./" id="altTextCancelButton"><img src="images/cancel.png" class="altTextInputButton" alt="" /></a>
-    </div>
 </div>
 
 <div class="LocksRow">
@@ -46,4 +38,3 @@
     </a><a class="Lock Lock--br <?=$lockClasses["br"] ?>">
     </a>
 </div>
-

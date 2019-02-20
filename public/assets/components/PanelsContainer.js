@@ -2,6 +2,8 @@ const m = require('mithril');
 
 const ComicLayout = require('../helpers/ComicLayout');
 const Url = require('../helpers/Url');
+
+const AltTextEditor = require('./AltTextEditor');
 const Panel = require('./Panel');
 
 const PanelsContainer = {
@@ -19,7 +21,7 @@ const PanelsContainer = {
         });
       });
 
-    return m('.PanelsContainer', panelElements);
+    return m('.PanelsContainer', [panelElements, m(AltTextEditor)]);
   },
 };
 

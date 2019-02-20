@@ -3,7 +3,7 @@ $btn-dark-border-color: #000;
 
 .Button {
   margin: 0 0;
-  padding: 5px 5px 4px 5px;
+  padding: 5px 5px;
   box-sizing: border-box;
 
   background-color: #ddd;
@@ -13,8 +13,15 @@ $btn-dark-border-color: #000;
   border-right: 2px $btn-dark-border-color solid;
 
   color: #000;
+  font-family: inherit;
   font-size: 14px;
+  line-height: 1.15;
   text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background-color: #e5e5e5;
+  }
 
   &--pressed {
     background-color: #ccc;

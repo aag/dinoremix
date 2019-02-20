@@ -1,17 +1,19 @@
 @import 'base/reset';
-@import 'base/legacy';
 @import 'base/typography';
 
 @import 'layout/page';
 @import 'layout/header';
 
 @import 'components/Button';
+
+@import 'components/AltTextEditor';
 @import 'components/ButtonsRow';
 @import 'components/CodeLink';
 @import 'components/Comic';
 @import 'components/ComicCount';
 @import 'components/CreditsRow';
 @import 'components/LocksRow';
+@import 'components/NumPanelsButton';
 @import 'components/NumPanelsSwitcher';
 @import 'components/Panel';
 @import 'components/PanelsContainer';

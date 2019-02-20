@@ -14,7 +14,8 @@
     background: no-repeat center #dfd url("../../images/lock_open.png");
   }
 
-  &--unlocked:hover {
+  &--unlocked:hover,
+  &--unlocked:focus {
     background-color: #bdb;
   }
 
@@ -22,7 +23,8 @@
     background: no-repeat center #fdd url("../../images/lock.png");
   }
 
-  &--locked:hover {
+  &--locked:hover,
+  &--locked:focus {
     background-color: #dbb;
   }
 
