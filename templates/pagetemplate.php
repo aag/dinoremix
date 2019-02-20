@@ -58,6 +58,8 @@
     </footer>
 </div>
 
+<div class="SkyBackground"></div>
+
 <script defer type="text/javascript" src="<?= $assets->getUrl('dino.js') ?>"></script>
 
 </body>

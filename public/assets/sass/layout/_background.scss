@@ -1,0 +1,10 @@
+.SkyBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 600px;
+  z-index: -1;
+
+  background-image: linear-gradient(to bottom, #408cff, #fff);
+}
