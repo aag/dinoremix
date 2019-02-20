@@ -1,6 +1,6 @@
 ## Dinosaur Remix [![Build Status](https://travis-ci.org/aag/dinoremix.svg?branch=master)](https://travis-ci.org/aag/dinoremix) [![License](https://img.shields.io/badge/License-GPLv2-blue.svg)](LICENSE.md)
 
-Dinosaur Remix is a web page that takes Dinosaur Comics and remixes them randomly, hopefully in interesting ways.  It uses PHP, Python, and jQuery to do its remix-o-matic dance.
+Dinosaur Remix is a web page that takes Dinosaur Comics and remixes them randomly, hopefully in interesting ways.  It uses PHP, Python, and MithrilJS to do its remix-o-matic dance.
 
 You can see it here:
 http://dinoremix.definingterms.com/
@@ -32,8 +32,7 @@ Then, run `python cli/downloadComics.py` to download the comics from the Dinosau
 
 ### Requirements
 
-The code requires PHP 7.1+ and Python 2.7 or 3.
-
+The code requires PHP 7.2+ and Python 2.7 or 3.
 
 The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
 
@@ -66,6 +65,8 @@ $ php deployer.phar deploy production
 
 ### Development
 
+#### Backend
+
 The PHP extensions `dom`, `simplexml`, and `mbstring` are required for the 
 development scripts. After installing them, you should run
 `php composer.phar install`.
@@ -92,10 +93,37 @@ command:
 php composer.phar test
 ```
 
-Minification of the frontend assets happens during deploy. To run it locally,
-run `npm install` and either `npm run build` or `npm start`. The output files
-in `public/assets/dist` will be served to the browser instead of the
-source files.
+#### Frontend
+
+The frontend code is based on [MithrilJS](https://mithril.js.org/) and
+[Sass](http://sass-lang.com/). Before running, you need to install the required
+NPM packages and build the assets.
+
+```sh
+npm install
+npm run build
+```
+
+During development it's helpful to have a watcher rebuild the assets whenever
+they change. You can start the watcher with `npm start`.
+
+The frontend code is written to comply with the
+[AirBnB JavaScript Style](https://github.com/airbnb/javascript) and the
+[Standard CSS](https://github.com/stylelint/stylelint-config-standard) for
+stylelint (with a couple of exceptions). Both of these can be automatically
+checked by running this command:
+
+```sh
+npm run check-style
+```
+
+There are Javascript tests written using
+[ospec](https://github.com/MithrilJS/mithril.js/tree/master/ospec). You can
+run them with this command:
+
+```sh
+npm test
+```
 
 ### License
 
