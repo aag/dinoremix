@@ -30,25 +30,53 @@
 
   &--tl {
     width: 244px;
+
+    border-top: 1px #000 solid;
+    border-left: 1px #000 solid;
+    border-right: 1px #000 solid;
   }
 
   &--tm {
-    width: 129px;
+    width: 130px;
+
+    border-top: 1px #000 solid;
+    border-right: 1px #000 solid;
   }
 
   &--tr {
-    width: 362px;
+    width: 361px;
+
+    border-top: 1px #000 solid;
+    border-right: 1px #000 solid;
   }
 
   &--bl {
     width: 194px;
+
+    border-bottom: 1px #000 solid;
+    border-left: 1px #000 solid;
+    border-right: 1px #000 solid;
   }
 
   &--bm {
-    width: 298px;
+    width: 299px;
+
+    border-bottom: 1px #000 solid;
+    border-right: 1px #000 solid;
   }
 
   &--br {
-    width: 243px;
+    width: 242px;
+
+    border-top: 1px #000 solid;
+    border-right: 1px #000 solid;
+  }
+}
+
+.Comic--6_panels {
+  .Lock--br {
+    border-top: 0;
+    border-bottom: 1px #000 solid;
+    border-right: 1px #000 solid;
   }
 }
