@@ -1,14 +1,14 @@
 {
     "require": {
-        "league/route": "^4.2",
+        "league/route": "^4.3.1",
         "zendframework/zend-diactoros": "^2.1",
-        "zendframework/zend-httphandlerrunner": "^1.0"
+        "zendframework/zend-httphandlerrunner": "^1.1"
     },
     "require-dev": {
-        "doctrine/instantiator": "^1.1",
+        "doctrine/instantiator": "^1.2",
         "mockery/mockery": "^1.2",
-        "phpunit/phpunit": "^8.0",
-        "squizlabs/php_codesniffer": "^3.4"
+        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "autoload": {
         "psr-4": {"App\\": "app/"}
