@@ -34,7 +34,7 @@ downloadDirPath = os.path.join(dataDir, "comics/")
 
 def getImageOnArchivePage(url, downloadDir):
     """Accepts the url of a Dinosaur Comics archive page and saves the contained comic image to disk."""
-    comicPage = urllib.urlopen(url)
+    comicPage = urllib.request.urlopen(url)
     pageContents = comicPage.read()
     comicSoup = BeautifulSoup(pageContents)
     comicImg = comicSoup.find('img', src=re.compile("comics\/comic2-.*\.[png|gif|jpg]"))
@@ -50,7 +50,7 @@ def getImageOnArchivePage(url, downloadDir):
         print("\tDownloading " + comicImg['src'])
         filename = comicImg['src'].replace("comics/", "")
         imageUrl = "http://www.qwantz.com/{}".format(comicImg['src'])
-        urllib.urlretrieve(imageUrl, os.path.join(downloadDir, filename))
+        urllib.request.urlretrieve(imageUrl, os.path.join(downloadDir, filename))
         
         """Add the page url to a list of already downloaded comics"""
         dlListFile = open(visitedPagesPath, 'a')
@@ -80,7 +80,7 @@ excludePages = visitedPages + guestPages
 
 print("Downloading comic archive list...\n")
 
-archivePage = urllib.urlopen("http://www.qwantz.com/archive.php")
+archivePage = urllib.request.urlopen("http://www.qwantz.com/archive.php")
 contents = archivePage.read()
 
 print("Retrieving new comics...\n")
