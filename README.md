@@ -32,24 +32,14 @@ Then, run `python cli/downloadComics.py` to download the comics from the Dinosau
 
 ### Requirements
 
-The code requires PHP 7.2+ and Python 2.7 or 3.
+The code requires PHP 7.2+ and Python 3.
 
-The Python scripts require the Python Image Library module. On Ubuntu systems, you can install the module with this console command:
-
-```sh
-sudo apt-get install python2.7-pil
-```
-
-Or, for Python 3:
+The Python scripts require the Pillow and BeautifulSoup modules. Both of these
+can be installed with pip:
 
 ```sh
-sudo apt-get install python3-pil
-```
-
-The BeautifulSoup module is also required. It can be installed with pip:
-
-```sh
-sudo pip install beautifulsoup
+sudo pip install pillow
+sudo pip install beautifulsoup4
 ```
 
 ### Deploying
