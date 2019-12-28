@@ -1,6 +1,6 @@
 const merge = require('webpack-merge');
 const path = require('path');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
@@ -10,28 +10,8 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        minify(file, sourceMap) {
-          // https://github.com/mishoo/UglifyJS2#minify-options
-          const uglifyJsOptions = {
-            /* your `uglify-js` package options */
-          };
-
-          if (sourceMap) {
-            uglifyJsOptions.sourceMap = {
-              content: sourceMap,
-            };
-          }
-
-          return require('terser').minify(file, uglifyJsOptions);
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   output: {
     filename: '[name]-[contenthash:10].min.js',
