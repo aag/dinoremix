@@ -54,7 +54,7 @@ const Url = {
 
     let lockedPanels = lockedPanelsString.split('-');
     if (lockedPanels.includes(pos)) {
-      lockedPanels = lockedPanels.filter(panel => panel !== pos);
+      lockedPanels = lockedPanels.filter((panel) => panel !== pos);
     } else {
       lockedPanels.push(pos);
     }

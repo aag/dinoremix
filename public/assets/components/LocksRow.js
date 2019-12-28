@@ -8,7 +8,7 @@ const LocksRow = {
     const { position, numPanels } = vnode.attrs;
 
     const children = ComicLayout.getVisibleLocks(position, numPanels)
-      .map(pos => LocksRow.createLockNode(pos));
+      .map((pos) => LocksRow.createLockNode(pos));
 
     if (children && children.length > 0) {
       return m('.LocksRow', children);
