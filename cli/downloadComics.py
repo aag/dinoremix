@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from bs4 import BeautifulSoup
+from datetime import datetime
 from subprocess import call
 import urllib.request
 import re
@@ -36,7 +37,7 @@ def getImageOnArchivePage(url, downloadDir):
     """Accepts the url of a Dinosaur Comics archive page and saves the contained comic image to disk."""
     comicPage = urllib.request.urlopen(url)
     pageContents = comicPage.read()
-    comicSoup = BeautifulSoup(pageContents)
+    comicSoup = BeautifulSoup(pageContents, 'html.parser')
     comicImg = comicSoup.find('img', src=re.compile("comics\/comic2-.*\.[png|gif|jpg]"))
     if comicImg == None:
         comicImg = comicSoup.find('img', src=re.compile("comics\/.*\.[png|jpg|jpeg|gif]"))
@@ -56,6 +57,11 @@ def getImageOnArchivePage(url, downloadDir):
         dlListFile = open(visitedPagesPath, 'a')
         dlListFile.write(url + "\n")
         dlListFile.close()
+
+now = datetime.now()
+dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+
+print("\n\nStarting download at", dt_string)
 
 """ Create missing directories."""
 if not os.path.exists(dataDir):
@@ -85,7 +91,7 @@ contents = archivePage.read()
 
 print("Retrieving new comics...\n")
 
-archiveSoup = BeautifulSoup(contents)
+archiveSoup = BeautifulSoup(contents, 'html.parser')
 allLinks = archiveSoup.findAll('a', href=re.compile("http:\/\/www.qwantz.com\/index\.php\?comic\=\d+"))
 for link in allLinks:
     url = link['href']
