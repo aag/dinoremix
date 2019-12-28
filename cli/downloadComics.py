@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from bs4 import BeautifulSoup
 from subprocess import call
-import urllib
+import urllib.request
 import re
 import os
 import sys
