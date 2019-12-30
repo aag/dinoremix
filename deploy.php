@@ -30,8 +30,8 @@ host('dinoremix.definingterms.com')
     ->user('deployer')
     ->forwardAgent(true)
     ->stage('production')
-    ->set('deploy_path', '/var/www/dinoremix');
-    
+    ->set('deploy_path', '/var/www/dinoremix.definingterms.com');
+
 
 // Tasks
 
@@ -46,7 +46,7 @@ task('deploy:npm_build', function () {
 })->desc('Build frontend assets');
 
 task('deploy:fpm_restart', function () {
-    $output = run('sudo service php7.1-fpm restart');
+    $output = run('sudo service php7.3-fpm restart');
 })->desc('Restart PHP-FPM');
 
 desc('Deploy Dinosaur Remix');
