@@ -1,14 +1,12 @@
-global.window = require('mithril/test-utils/browserMock.js')();
-
-global.document = window.document;
-
-const o = require('mithril/ospec/ospec');
 const mq = require('mithril-query');
+const o = require('ospec');
+
 const LocksRow = require('../LocksRow');
+const Url = require('../../helpers/Url');
 
 o.spec('The LocksRow component', () => {
   o.beforeEach(() => {
-    window.location.search = '';
+    Url.getQueryString = () => '';
   });
 
   o('renders the top row locks for 2 panels', () => {
@@ -71,14 +69,14 @@ o.spec('The LocksRow component', () => {
   });
 
   o('renders locked top panels as locked', () => {
-    window.location.search = 'locked=tl-tm-bm';
+    Url.getQueryString = () => '?locked=tl-tm-bm';
     const output = mq(LocksRow, { position: 'top', numPanels: 6 });
     output.should.have(['.Lock--tl.Lock--locked', '.Lock--tm.Lock--locked']);
     output.should.not.have('.Lock--tr.Lock--lockedLock');
   });
 
   o('renders locked bottom panels as locked', () => {
-    window.location.search = 'locked=tl-tm-bm';
+    Url.getQueryString = () => '?locked=tl-tm-bm';
     const output = mq(LocksRow, { position: 'bottom', numPanels: 6 });
     output.should.have('.Lock--bm.Lock--locked');
     output.should.not.have('.Lock--bl.Lock--locked');

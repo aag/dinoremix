@@ -6,10 +6,9 @@ const NumPanelsButton = {
     const { chosen, num } = vnode.attrs;
 
     const chosenClass = chosen ? 'Button--pressed' : '';
-    return m('a.NumPanelsButton', {
+    return m(m.route.Link, {
       href: Url.setQueryParam('numpanels', num),
-      class: `Button ${chosenClass}`,
-      oncreate: m.route.link,
+      class: `Button NumPanelsButton ${chosenClass}`,
     }, num);
   },
 };

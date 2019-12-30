@@ -1,19 +1,17 @@
-global.window = require('mithril/test-utils/browserMock.js')();
-
-global.document = window.document;
-
-const o = require('mithril/ospec/ospec');
 const mq = require('mithril-query');
+const o = require('ospec');
+
+const Comic = require('../../models/Comic');
 const RandomPanels = require('../../models/RandomPanels');
 const ReloadButton = require('../ReloadButton');
-const Comic = require('../../models/Comic');
+const Url = require('../../helpers/Url');
 
 // Stub out the XHR request
 RandomPanels.fetchFromServer = () => {};
 
 o.spec('The ReloadButton component', () => {
   o.beforeEach(() => {
-    window.location.search = '';
+    Url.getQueryString = () => '';
     Comic.lockedPanels = [];
   });
 
@@ -45,7 +43,7 @@ o.spec('The ReloadButton component', () => {
     });
 
     o('with all locked panels', () => {
-      window.location.search = '?locked=tl-tm-tr-bl-bm-br';
+      Url.getQueryString = () => '?locked=tl-tm-tr-bl-bm-br';
       Comic.lockedPanels = ['tl', 'tm', 'tr', 'bl', 'bm', 'br'];
       o(ReloadButton.getNextPanelsUrl())
         .equals('?locked=tl-tm-tr-bl-bm-br&tl=101&tm=102&tr=103&bl=104&bm=105&br=106');
@@ -57,7 +55,7 @@ o.spec('The ReloadButton component', () => {
     });
 
     o('with some locked panels', () => {
-      window.location.search = '?locked=tm-bl-br';
+      Url.getQueryString = () => '?locked=tm-bl-br';
       Comic.lockedPanels = ['tm', 'bl', 'br'];
       o(ReloadButton.getNextPanelsUrl())
         .equals('?locked=tm-bl-br&tl=201&tm=102&tr=203&bl=104&bm=205&br=106');

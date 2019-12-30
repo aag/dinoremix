@@ -1,4 +1,4 @@
-const o = require('mithril/ospec/ospec');
+const o = require('ospec');
 
 const ComicLayout = require('../ComicLayout');
 

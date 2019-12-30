@@ -20,10 +20,9 @@ const LocksRow = {
   createLockNode: (pos) => {
     const lockedClass = Url.isPanelLocked(pos) ? 'Lock--locked' : 'Lock--unlocked';
 
-    return m('a.Lock', {
+    return m(m.route.Link, {
       href: Url.togglePanel(pos),
-      oncreate: m.route.link,
-      class: `Lock--${pos} ${lockedClass}`,
+      class: `Lock Lock--${pos} ${lockedClass}`,
     });
   },
 };

@@ -17,10 +17,9 @@ const ReloadButton = {
   },
 
   view: () => m(
-    'a.ReloadButton', {
+    m.route.Link, {
       class: 'Button Button--with-icon ReloadButton',
       href: ReloadButton.getNextPanelsUrl(),
-      oncreate: m.route.link,
     },
     'Reload the unlocked panels',
   ),

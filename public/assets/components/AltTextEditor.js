@@ -43,7 +43,7 @@ const AltTextEditor = {
     const input = m('input.AltTextEditor__input', {
       type: 'text',
       value: AltTextEditor.inputValue,
-      oninput: m.withAttr('value', (val) => { AltTextEditor.inputValue = val; }),
+      oninput: (e) => { AltTextEditor.inputValue = e.target.value; },
     });
 
     const okButton = m('input.AltTextEditor__ok-button', {

@@ -6,7 +6,7 @@ import styles from './sass/main.scss';
 
 import ComicUI from './components/ComicUI';
 
-m.route.prefix('');
+m.route.prefix = '';
 
 m.route(document.querySelector('.ComicWrapper'), '/', {
   '/': ComicUI,

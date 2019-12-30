@@ -1,8 +1,5 @@
-global.window = require('mithril/test-utils/browserMock.js')();
+const o = require('ospec');
 
-global.document = window.document;
-
-const o = require('mithril/ospec/ospec');
 const Comic = require('../Comic');
 
 o.spec('The Comic model', () => {
