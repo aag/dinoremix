@@ -1,4 +1,4 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Fiber = require('fibers');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -7,7 +7,9 @@ module.exports = {
     dino: './public/assets/index.js'
   },
   plugins: [
-    new CleanWebpackPlugin(['public/assets/dist/*']),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
+    }),
   ],
   module: {
     rules: [
@@ -27,7 +29,6 @@ module.exports = {
             loader: "sass-loader",
             options: {
               implementation: require("sass"),
-              fiber: Fiber
             }
           }
         ]
