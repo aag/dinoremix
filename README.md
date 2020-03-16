@@ -38,8 +38,7 @@ The Python scripts require the Pillow and BeautifulSoup modules. Both of these
 can be installed with pip:
 
 ```sh
-sudo pip install pillow
-sudo pip install beautifulsoup4
+pip install -r requirements.txt
 ```
 
 ### Deploying
