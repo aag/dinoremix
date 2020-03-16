@@ -23,6 +23,12 @@ set('shared_dirs', [
     'public/panels',
 ]);
 
+// Speed up the native ssh client
+set('ssh_multiplexing', true);
+
+// Keep 4 total versions for rollbacks
+set('keep_releases', 4);
+
 
 // Hosts
 
