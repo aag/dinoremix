@@ -73,7 +73,7 @@ def cutImage(image):
 
 
 def dumpPanels(outdir, comicFileName, imageDict):
-    for panelname, image in imageDict.iteritems():
+    for panelname, image in imageDict.items():
         outputdir = os.path.join(outdir, panelname)
         if not os.path.exists(outputdir):
             os.mkdir(outputdir)
