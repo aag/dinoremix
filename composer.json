@@ -1,14 +1,14 @@
 {
     "require": {
-        "php": "^7.2.0",
-        "league/route": "^4.3.1",
-        "laminas/laminas-diactoros": "^2.2",
-        "laminas/laminas-httphandlerrunner": "^1.1"
+        "php": "^7.3.0",
+        "league/route": "^4.5",
+        "laminas/laminas-diactoros": "^2.3",
+        "laminas/laminas-httphandlerrunner": "^1.2"
     },
     "require-dev": {
         "doctrine/instantiator": "^1.3",
-        "mockery/mockery": "^1.3",
-        "phpunit/phpunit": "^8.5",
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.2",
         "squizlabs/php_codesniffer": "^3.5"
     },
     "autoload": {
