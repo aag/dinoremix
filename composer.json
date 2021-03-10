@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "^7.3.0",
+        "php": ">=7.3",
         "league/route": "^5.0",
         "laminas/laminas-diactoros": "^2.3",
         "laminas/laminas-httphandlerrunner": "^1.2"
