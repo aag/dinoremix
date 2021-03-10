@@ -1,0 +1,29 @@
+on: [push, pull_request]
+
+name: CI
+
+jobs:
+  js-style:
+    name: JS Style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm run check-style
+
+  js-tests:
+    name: JS Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm build
+      - run: npm test
+
+
