@@ -3,8 +3,8 @@ on: [push, pull_request]
 name: CI
 
 jobs:
-  js-style:
-    name: JS Style
+  frontend-assets-linting:
+    name: Frontend Assets Linting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,7 @@ jobs:
       - run: npm run check-style
 
   js-tests:
-    name: JS Tests
+    name: JavaScript Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
