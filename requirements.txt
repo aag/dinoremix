@@ -1,2 +1,2 @@
 beautifulsoup4==4.8.2
-pillow==8.1.1
+pillow==8.2.0
