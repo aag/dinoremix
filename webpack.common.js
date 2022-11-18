@@ -1,5 +1,4 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const Fiber = require('fibers');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
