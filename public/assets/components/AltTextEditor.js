@@ -57,10 +57,12 @@ const AltTextEditor = {
       onclick: AltTextEditor.handleCancelClick,
     }, 'Cancel');
 
-    return m('.AltTextEditor',
+    return m(
+      '.AltTextEditor',
       m('form', {
         onsubmit: AltTextEditor.handleFormSubmit,
-      }, [input, okButton, cancelButton]));
+      }, [input, okButton, cancelButton]),
+    );
   },
 };
 
