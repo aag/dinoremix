@@ -33,16 +33,8 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: '[name]-[contenthash:10].[ext]',
-            }
-          }
-        ]
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        type: "asset",
       },
       {
         test: /\.m?js$/,
