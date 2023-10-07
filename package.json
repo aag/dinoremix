@@ -33,7 +33,7 @@
     "minimist": ">=1.2.6",
     "mithril-query": "^4.0.1",
     "ospec": "^4.1.1",
-    "postcss": "^8.4.19",
+    "postcss": "^8.4.31",
     "postcss-scss": "^4.0.5",
     "sass": "^1.32.8",
     "sass-loader": "^13.2.0",
