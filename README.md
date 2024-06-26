@@ -32,7 +32,7 @@ Then, run `python cli/downloadComics.py` to download the comics from the Dinosau
 
 ### Requirements
 
-The code requires PHP 7.2+ and Python 3.
+The code requires PHP 8.1+ and Python 3.
 
 The Python scripts require the Pillow and BeautifulSoup modules. Both of these
 can be installed with pip:
