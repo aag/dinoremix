@@ -28,14 +28,14 @@ Add dinoremix.local to your hosts file and then restart nginx.
 
 Before the site will work, you will need to run `./composer.phar install --no-dev` from the command line within the root directory of the repository.
 
-Then, run `python cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  You can set up a cron job to do this daily if you want it to always be up-to-date.
+Then, run `cli/downloadComics.py` to download the comics from the Dinosaur Comics site and divide them into panels.  This is most easily done with [uv](https://docs.astral.sh/uv/), with the command `uv run cli/downloadComics.py`.  You can set up a cron job to do this daily if you want it to always be up-to-date.
 
 ### Requirements
 
 The code requires PHP 8.1+ and Python 3.
 
 The Python scripts require the Pillow and BeautifulSoup modules. Both of these
-can be installed with pip:
+can be installed with pip, if not using uv to run the scripts:
 
 ```sh
 pip install -r requirements.txt

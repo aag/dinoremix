@@ -1,3 +1,10 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4==4.8.2",
+#     "pillow==12.3.0",
+# ]
+# ///
 """
 Python script to download all of the comics from
 the Dinosaur Comics web site.
