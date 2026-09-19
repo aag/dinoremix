@@ -25,9 +25,9 @@ require __DIR__ . '/../vendor/autoload.php';
 use App\Controllers;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
-use Zend\Diactoros\ResponseFactory;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 
 $responseFactory = new ResponseFactory();
 
