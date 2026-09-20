@@ -22,24 +22,17 @@
     "browserslist": "^4.28.8",
     "caniuse-lite": "^1.0.30001197",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^7.1.5",
-    "css-minimizer-webpack-plugin": "^8.0.0",
     "eslint": "^8.27.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.22.1",
     "file-loader": "^6.2.0",
     "jsdom": "^28.1.0",
-    "mini-css-extract-plugin": "^2.7.0",
     "minimist": ">=1.2.6",
     "mithril-query": "^4.0.1",
     "ospec": "^4.1.1",
     "postcss": "^8.5.24",
-    "postcss-scss": "^4.0.5",
-    "sass": "^1.32.8",
-    "sass-loader": "^17.0.1",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
-    "stylelint-scss": "^6.3.2",
     "terser": "^5.14.2",
     "terser-webpack-plugin": "^5.3.17",
     "url-loader": "^4.1.1",
@@ -49,9 +42,9 @@
   },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "check-style": "eslint public/assets && stylelint \"public/assets/sass/**/*.scss\"",
+    "check-style": "eslint public/assets && stylelint \"public/assets/css/**/*.css\"",
     "fix-style": "eslint public/assets --fix",
     "start": "webpack --config webpack.dev.js --watch",
-    "test": "ospec --preload ./test-setup.js"
+    "test": "ospec 'public/assets/**/*.test.js' --preload ./test-setup.js"
   }
 }

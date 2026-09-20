@@ -1,76 +1,76 @@
 .LocksRow {
-  height: 22px;
+    height: 22px;
 }
 
 .Lock {
-  display: inline-block;
-  padding: 2px 0;
-  height: 22px;
-  box-sizing: border-box;
+    display: inline-block;
+    padding: 2px 0;
+    height: 22px;
+    box-sizing: border-box;
 
-  text-align: center;
+    text-align: center;
+}
 
-  &--unlocked {
-    background: no-repeat center #dfd url("../../images/lock_open.png");
-  }
+.Lock--unlocked {
+    background: no-repeat center #dfd url("/public/images/lock_open.png");
 
-  &--unlocked:hover,
-  &--unlocked:focus {
-    background-color: #bdb;
-  }
+    &:hover,
+    &:focus {
+        background-color: #bdb;
+    }
+}
 
-  &--locked {
-    background: no-repeat center #fdd url("../../images/lock.png");
-  }
+.Lock--locked {
+    background: no-repeat center #fdd url("/public/images/lock.png");
 
-  &--locked:hover,
-  &--locked:focus {
-    background-color: #dbb;
-  }
+    &:hover,
+    &:focus {
+        background-color: #dbb;
+    }
+}
 
-  &--tl {
+.Lock--tl {
     width: 244px;
 
     border-top: 1px #000 solid;
     border-left: 1px #000 solid;
     border-right: 1px #000 solid;
-  }
+}
 
-  &--tm {
+.Lock--tm {
     width: 130px;
 
     border-top: 1px #000 solid;
     border-right: 1px #000 solid;
-  }
+}
 
-  &--tr {
+.Lock--tr {
     width: 361px;
 
     border-top: 1px #000 solid;
     border-right: 1px #000 solid;
-  }
+}
 
-  &--bl {
+.Lock--bl {
     width: 194px;
 
     border-bottom: 1px #000 solid;
     border-left: 1px #000 solid;
     border-right: 1px #000 solid;
-  }
+}
 
-  &--bm {
+.Lock--bm {
     width: 299px;
 
     border-bottom: 1px #000 solid;
     border-right: 1px #000 solid;
-  }
+}
 
-  &--br {
+.Lock--br {
     width: 242px;
 
     border-top: 1px #000 solid;
     border-right: 1px #000 solid;
-  }
 }
 
 .Comic--6_panels {

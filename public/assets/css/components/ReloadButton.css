@@ -1,5 +1,5 @@
 .ReloadButton {
-  background-image: url("../../images/reload.png");
+  background-image: url("/public/images/reload.png");
   background-repeat: no-repeat;
   background-position: 5px 41%;
 
