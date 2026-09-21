@@ -32,7 +32,7 @@ Then, run `cli/downloadComics.py` to download the comics from the Dinosaur Comic
 
 ### Requirements
 
-The code requires PHP 8.1+ and Python 3.
+The code requires PHP 8.2+ and Python 3.
 
 The Python scripts require the Pillow and BeautifulSoup modules. Both of these
 can be installed with pip, if not using uv to run the scripts:
@@ -84,9 +84,8 @@ php composer.phar test
 
 #### Frontend
 
-The frontend code is based on [MithrilJS](https://mithril.js.org/) and
-[Sass](http://sass-lang.com/). Before running, you need to install the required
-NPM packages and build the assets.
+The frontend code is based on [MithrilJS](https://mithril.js.org/). Before
+running, you need to install the required NPM packages and build the assets.
 
 ```sh
 npm install
