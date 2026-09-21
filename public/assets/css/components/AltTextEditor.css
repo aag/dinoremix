@@ -5,7 +5,7 @@
     display: flex;
     justify-content: right;
 
-    background-image: url("/public/images/edit_alt_text.png");
+    background-image: url("../../../images/edit_alt_text.png");
     background-repeat: no-repeat;
     background-position: 5px 41%;
 }

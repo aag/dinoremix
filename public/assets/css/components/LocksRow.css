@@ -12,7 +12,7 @@
 }
 
 .Lock--unlocked {
-    background: no-repeat center #dfd url("/public/images/lock_open.png");
+    background: no-repeat center #dfd url("../../../images/lock_open.png");
 
     &:hover,
     &:focus {
@@ -21,7 +21,7 @@
 }
 
 .Lock--locked {
-    background: no-repeat center #fdd url("/public/images/lock.png");
+    background: no-repeat center #fdd url("../../../images/lock.png");
 
     &:hover,
     &:focus {
